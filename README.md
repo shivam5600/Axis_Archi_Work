@@ -2,7 +2,17 @@
 
 A premium, editorial-grade architecture portfolio for **Axis Architects — Architects & Engineers** (Lucknow, est. 2005). Built on **Next.js 14 (App Router)**, **Tailwind CSS**, **Framer Motion**, and **Lenis** smooth scrolling. Asymmetric grids, scroll-driven reveals, a CSS-only sketch ↔ photo hover effect, animated stat counters, lightbox project galleries, and a calibrated dark/light theme.
 
-> **This `web/` folder is fully self-contained.** Copy or share the folder, install Node 18+, and it runs anywhere — no references to files outside it, no external services required.
+## Live URLs
+
+| | URL |
+|---|---|
+| 🌐 **Production** | https://axis-archi-work.vercel.app |
+| 📦 **GitHub repo** | https://github.com/shivam5600/Axis_Archi_Work |
+| ▲ **Vercel project** | `axis-archi-work` (team `kumarshivamiitbhu-7050s-projects`) |
+
+> **Self-contained.** This `web/` folder runs anywhere with Node 18+ — no references outside it, no external services required.
+>
+> A clean, no-credentials sibling copy lives at `../web-shareable/` (regenerated on demand via `scripts/sync-shareable.sh`). See [AGENTS.md](AGENTS.md) for the working rules.
 
 ---
 
@@ -208,9 +218,56 @@ To go further: compress source images. The 21 photos in `public/images/` are ful
 
 ## 7. Deploy
 
-The simplest path: push to GitHub and import to **Vercel** — zero configuration.
+This project is already wired to Vercel — every `git push origin main` automatically rebuilds and replaces production at https://axis-archi-work.vercel.app.
 
-Other hosts (Netlify, Cloudflare Pages) work as standard Next.js deployments.
+> ⚠️ **Workflow rule:** always test locally first (`npm run dev` or `npm run build`). Push to GitHub or Vercel **only after explicit confirmation**. See [AGENTS.md](AGENTS.md) for the full rule.
+
+### Working with the existing setup
+
+```bash
+# Local test
+npm run dev                                   # http://localhost:3000
+npm run build                                 # verify production build is green
+
+# Push to GitHub (triggers automatic Vercel redeploy of production)
+git add . && git commit -m "your message"
+git push origin main
+
+# Direct Vercel CLI (alternative — already linked)
+npx vercel                                    # preview deploy → throwaway URL
+npx vercel --prod                             # promote current code to production
+npx vercel ls                                 # list recent deploys
+npx vercel logs axis-archi-work.vercel.app    # tail production logs
+npx vercel rollback <url>                     # roll back to a previous deploy
+```
+
+### Refresh the shareable copy
+
+When you want to hand a clean, no-credentials copy to a reviewer:
+
+```bash
+bash scripts/sync-shareable.sh
+```
+
+This refreshes `../web-shareable/` from the current state of `web/`, stripping `.git`, `.vercel`, `node_modules`, `.next`, and `.originals`. The reviewer can then run that folder standalone with `python3 app.py`.
+
+### Deploying somewhere else
+
+The codebase is portable to any host that supports Next.js 14:
+- **Netlify** — `netlify.toml` would be auto-detected; framework preset Next.js
+- **Cloudflare Pages** — framework preset Next.js
+- **Self-hosted** — `npm run build && npm run start` behind a reverse proxy
+
+For a static export (e.g. GitHub Pages), set `output: 'export'` and `images.unoptimized: true` in `next.config.mjs` — this trades the Vercel image optimisation pipeline for plain `<img>` tags.
+
+---
+
+## 8. Where the rest of the rules live
+
+- **`AGENTS.md`** — workflow for any AI assistant or collaborator working on this folder (push gates, brand essentials, file conventions)
+- **`data/projects.json`** — single source of truth for all studio + project content
+- **`app/globals.css`** — theme tokens, sketch effect, preloader, custom cursor styling
+- **`scripts/sync-shareable.sh`** — regenerates the clean distribution mirror
 
 ---
 
