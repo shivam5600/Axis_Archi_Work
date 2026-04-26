@@ -1,6 +1,6 @@
 # Axis Architects — Studio Website
 
-A premium, editorial-grade architecture portfolio for **Axis Architects — Architects & Engineers** (Lucknow, est. 2005). Built on **Next.js 14 (App Router)**, **Tailwind CSS**, **Framer Motion**, and **Lenis** smooth scrolling. Asymmetric grids, scroll-driven reveals, a CSS-only sketch ↔ photo hover effect, animated stat counters, lightbox project galleries, and a calibrated dark/light theme.
+A premium, editorial-grade architecture portfolio for **Axis Architects — Architects & Engineers** (Lucknow, est. 2005). Built on **Next.js 14 (App Router)**, **Tailwind CSS**, **Framer Motion**, and **Lenis** smooth scrolling. Hero slideshow, category-based projects index, animated stat counters, theme-aware pencil-sketch hover effect, lightbox project galleries, dark/light theme.
 
 ## Live URLs
 
@@ -18,30 +18,21 @@ A premium, editorial-grade architecture portfolio for **Axis Architects — Arch
 
 ## 1. Run it (any of three ways)
 
-You only need **Node 18+** installed. Then from inside the `web/` folder:
+You only need **Node 18+** installed.
 
 ### Easiest — Python launcher
-
 ```bash
 python3 app.py
 ```
+Auto-installs npm dependencies the first time, starts the dev server on `http://localhost:3000`, opens your browser. Flags: `--build` (production build + start) · `--port 4000` · `--no-browser`.
 
-This auto-installs npm dependencies (the first time only), starts the dev server on `http://localhost:3000`, and opens your browser.
-
-Flags:
-- `python3 app.py --build` — production build, then start
-- `python3 app.py --port 4000` — custom port
-- `python3 app.py --no-browser`
-
-### Easiest (bash)
-
+### Bash launcher
 ```bash
 ./run.sh           # dev mode
 ./run.sh build     # production build + serve
 ```
 
 ### Manual
-
 ```bash
 npm install
 npm run dev        # dev server on :3000
@@ -51,102 +42,98 @@ npm run start      # production server
 
 ---
 
-## 2. Folder structure (everything lives inside `web/`)
+## 2. Folder structure
 
 ```
 web/
-├── app/                     # Next.js App Router
-│   ├── layout.jsx           # Root layout: fonts, smooth scroll, navbar, footer, cursor
-│   ├── globals.css          # Theme tokens, sketch effect, grain, reveals, cursor
-│   ├── page.jsx             # Homepage (Hero → About → Services → Projects → Stats → Testimonials → CTA)
-│   ├── exteriors/page.jsx
-│   ├── interiors/page.jsx
+├── app/                              # Next.js App Router
+│   ├── layout.jsx                    # fonts, smooth scroll, navbar, footer, cursor, preloader
+│   ├── globals.css                   # theme tokens, sketch effect, grain, reveals
+│   ├── page.jsx                      # Homepage (slideshow → categories → about → services → featured → stats → testimonials → CTA)
+│   ├── projects/page.jsx             # Projects index (all categories, every image)
+│   ├── projects/[slug]/page.jsx      # Individual project detail
 │   ├── about/page.jsx
-│   ├── contact/page.jsx
-│   ├── contact/layout.jsx   # Server-side metadata for /contact
-│   ├── projects/[slug]/page.jsx
-│   └── not-found.jsx
+│   ├── contact/page.jsx + layout.jsx # form + map; layout exports metadata
+│   ├── not-found.jsx
+│   ├── icon.png                      # favicon (auto-served)
+│   └── apple-icon.png                # apple touch icon
 │
-├── components/              # Reusable client components
-│   ├── Navbar.jsx           # Sticky nav with scroll behaviour, theme toggle, mobile drawer, logo
-│   ├── Footer.jsx           # Dark 4-column footer with logo, brand, links, services, contact
-│   ├── SmoothScroll.jsx     # Lenis (skipped on touch / reduced-motion)
-│   ├── Cursor.jsx           # Event-delegated mouse-follow cursor (skipped on touch)
-│   ├── Reveal.jsx           # IntersectionObserver fade / mask reveals
-│   ├── SketchImage.jsx      # Photo by default, sketch on hover (lazy-mounted SVG)
-│   ├── ProjectGrid.jsx      # Editorial mosaic grid
-│   ├── Marquee.jsx          # Looping headline strip
-│   ├── Lightbox.jsx         # Click-to-zoom gallery with keyboard navigation
-│   ├── Services.jsx         # 6-service grid with custom SVG icons
-│   ├── Stats.jsx            # Animated counters (17+, 500+, 06, 100%)
-│   ├── Testimonials.jsx     # 3-up testimonial grid
-│   └── SectionHeader.jsx    # Consistent section header bar
+├── components/
+│   ├── HeroSlideshow.jsx             # 5-image hero — mobile stacked / desktop full-bleed
+│   ├── Navbar.jsx                    # logo, dropdown, theme toggle, mobile drawer
+│   ├── Footer.jsx                    # dark 4-column footer
+│   ├── Preloader.jsx                 # full-screen splash with progress
+│   ├── SmoothScroll.jsx              # Lenis (skipped on touch / reduced-motion)
+│   ├── Cursor.jsx                    # event-delegated mouse-follow cursor
+│   ├── Reveal.jsx                    # IntersectionObserver reveals
+│   ├── SketchImage.jsx               # pencil-sketch-on-paper / hover for photo
+│   ├── Marquee.jsx                   # looping headline strip
+│   ├── Lightbox.jsx                  # click-to-zoom gallery
+│   ├── Services.jsx                  # 6-tile grid with custom SVG icons
+│   ├── Stats.jsx                     # animated counters
+│   ├── Testimonials.jsx              # 3 quote cards
+│   ├── ProjectGrid.jsx               # editorial mosaic (legacy — used by Lightbox preview)
+│   └── SectionHeader.jsx             # consistent section header bar
 │
-├── data/
-│   └── projects.json        # All studio info + project list — your CMS-lite
+├── data/projects.json                # SINGLE source of truth: studio + categories + slideshow + projects
+├── lib/projects.js                   # helpers: getProjects, getProject, getRelated, projectsByCategory, etc.
 │
-├── lib/
-│   └── projects.js          # Helpers: getProjects, getProject, getRelated
+├── public/images/
+│   ├── brand/    logo.png            # cropped brand mark (1702 × 1100)
+│   ├── slideshow/ slide-01.jpg … slide-05.jpg
+│   ├── projects/  commercial/ hospitality/ institutional/ residential/ township/ offices/
+│   └── office/    office-01.jpg … office-07.jpg   (Axis studio interior — used on /about)
 │
-├── public/images/           # All photographic assets (self-contained)
-│   ├── brand/    logo.png
-│   ├── exterior/ ext-01.jpg … ext-07.jpg
-│   ├── interior/ int-01.jpg … int-07.jpg
-│   └── office/   office-01.jpg … office-07.jpg
-│
-├── app.py                   # Python one-shot launcher
-├── run.sh                   # Bash one-shot launcher
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── next.config.mjs
-└── jsconfig.json
+├── scripts/sync-shareable.sh         # regenerate ../web-shareable/
+├── app.py · run.sh                   # one-shot launchers
+├── package.json · next.config.mjs · tailwind.config.js · postcss.config.js · jsconfig.json
+├── README.md · AGENTS.md
 ```
 
 ---
 
 ## 3. Add or edit content
 
-All studio info, services, stats, testimonials, contact details and projects live in **`data/projects.json`**. Edit the file, save, and the site updates everywhere.
+All studio info, services, stats, testimonials, contact, slideshow, categories and projects live in **`data/projects.json`**. Edit the file, save, the site updates everywhere.
 
 ### Add a new project
 
-1. Drop the new images into `public/images/exterior/` (or `interior/`).
+1. Drop new images into `public/images/projects/<category>/`.
 2. Append a project under `"projects"` in `data/projects.json`:
 
 ```json
 {
   "slug": "your-new-project",
   "title": "Your New Project",
-  "category": "exterior",
+  "category": "residential",
   "type": "Residential",
   "year": "2025",
   "location": "Locality, Lucknow",
   "area": "5,000 sq ft",
   "status": "Completed",
-  "cover": "/images/exterior/your-new-project-01.jpg",
+  "cover": "/images/projects/residential/your-new-project-01.jpg",
   "images": [
-    "/images/exterior/your-new-project-01.jpg",
-    "/images/exterior/your-new-project-02.jpg"
+    "/images/projects/residential/your-new-project-01.jpg",
+    "/images/projects/residential/your-new-project-02.jpg"
   ],
-  "summary": "One sentence that lives on listing cards.",
-  "description": "Two or three sentences for the project page."
+  "summary": "One sentence that lives on the index card.",
+  "description": "A paragraph for the project page."
 }
 ```
 
-3. The new project automatically appears on `/exteriors` (or `/interiors`), the homepage selected-work shelf (if its slug is added to `FEATURED_SLUGS` in `app/page.jsx`), and at `/projects/your-new-project`.
+3. The new project automatically appears in its category section on `/projects` and gets its own page at `/projects/your-new-project`.
 
-### Featured projects on the homepage
+### Featured projects on homepage
 
-Open `app/page.jsx` and edit the `FEATURED_SLUGS` array near the top. Order matters — the layout cycles through six pre-designed mosaic positions.
+Open `app/page.jsx` and edit the `FEATURED_SLUGS` array near the top. The grid cycles through four pre-designed mosaic positions.
+
+### Update slideshow
+
+Edit `data.slideshow[]` — each entry has `src`, `title`, `type`, `location`. Drop new images into `public/images/slideshow/`.
 
 ### Update studio info
 
-Edit the top-level `"studio"` object in `data/projects.json` — name, tagline, contact, social, services, stats, highlights, testimonials.
-
-### Social links
-
-In `data/projects.json` under `studio.social`. Already wired for Instagram, Facebook, LinkedIn and WhatsApp — point them at your real profiles.
+Edit the top-level `"studio"` object in `data/projects.json`. Includes `social[]` with working URLs (Instagram, Facebook, LinkedIn, WhatsApp).
 
 ---
 
@@ -161,48 +148,52 @@ Defined in `tailwind.config.js` and as CSS variables in `app/globals.css`:
 | `--bg` | `#F5F5F5` | `#0E0E0E` |
 | `--fg` | `#111111` | `#F5F5F5` |
 | `--accent` | `#CC1F1F` (brand red) | `#E63A3A` |
-
-Change accent: edit both blocks in `app/globals.css` and the `terracotta` / `brand` colours in `tailwind.config.js`.
+| `--paper` (sketch) | `#efe7d6` | `#1a1a1a` |
 
 ### Typography
 
-- **Display** — Fraunces (variable serif, used for all headlines)
-- **Sans** — Inter Tight (used for body / labels)
-- **Mono** — JetBrains Mono (used for eyebrows, captions)
+- **Display** — Fraunces (variable serif)
+- **Sans** — Inter Tight
+- **Mono** — JetBrains Mono
 
-Loaded via `next/font/google` in `app/layout.jsx`. Swap by editing the imports + variable bindings.
+Loaded via `next/font/google` in `app/layout.jsx`.
 
 ### Sketch hover effect
 
-`components/SketchImage.jsx`. Photo is the default state; on hover, an SVG-edge sketch crossfades over. The sketch SVG is **lazy-mounted on first hover** to keep initial paint cheap.
+`components/SketchImage.jsx`. Default state shows a stylised **pencil sketch on cream paper** (SVG `feConvolveMatrix` edge filter); on hover, the photo crossfades in. The SVG sketch is **lazy-mounted via IntersectionObserver** so off-screen images cost nothing.
 
-To disable on a specific image, pass `mode="static"`. To tune the look, edit the `feFuncR/G/B` slope/intercept in the component.
+In dark mode the paper turns dark grey and the edge SVG is inverted/screened so the lines render light. Pass `mode="static"` to disable on a specific image.
 
 ### Theme toggle
 
 Stored in `localStorage`. Set by the **Dark/Light** button in the navbar. Respects `prefers-color-scheme` on first load.
 
+### Hero slideshow
+
+`components/HeroSlideshow.jsx`. Two layouts via Tailwind `md:hidden` / `hidden md:block`:
+- **Mobile**: 16:10 image area on top + slide controls + tagline + CTA stacked below
+- **Desktop**: full-bleed h-[100svh] with overlay text
+
+Auto-advances every 6 s (controlled by `AUTO_MS`). Pauses on hover. Keyboard ←/→ supported.
+
 ### Contact form
 
-Uses a `mailto:` fallback by default. To wire a real backend:
-
+Uses a `mailto:` fallback. To wire a real backend:
 1. Create `app/api/contact/route.js` that POSTs to your provider (Resend, SendGrid, Postmark).
 2. Replace the `mailto` line in `app/contact/page.jsx` with `fetch('/api/contact', …)`.
 
 ---
 
-## 5. Performance notes
+## 5. Performance
 
-- All images use Next.js `<Image>` with explicit `sizes` for responsive `srcset` + AVIF/WebP.
-- The sketch overlay SVG is **lazy-mounted on first hover** — uninteracted images cost nothing extra.
-- The custom cursor uses **event delegation** rather than per-element listeners — adding any `<a>`/`<button>` to the page costs nothing.
-- Lenis smooth scroll is **skipped on touch devices** and when `prefers-reduced-motion` is set.
-- The grain overlay is **static** (painted once) — no animation loop.
-- Fonts load via `next/font` self-hosting with `display: swap`.
+- All images use Next.js `<Image>` with explicit `sizes` for responsive `srcset` + AVIF/WebP
+- Sketch overlay SVG is lazy-mounted via IntersectionObserver
+- Custom cursor uses event delegation (no per-element listeners)
+- Lenis smooth scroll skipped on touch + `prefers-reduced-motion`
+- Static grain overlay (no animation loop)
+- Preloader hides on `window.load` (4.5s safety stop)
 
-Production build (with all 12 project pages pre-rendered): **~103 kB First Load JS, all routes static.**
-
-To go further: compress source images. The 21 photos in `public/images/` are full-size (~125 MB total). For production, run them through `npx @squoosh/cli --webp auto public/images/**/*.jpg` or [TinyJPG](https://tinyjpg.com).
+Production build: **~103 kB First Load JS, all routes static**, ~17 MB of optimised image assets.
 
 ---
 
@@ -210,8 +201,8 @@ To go further: compress source images. The 21 photos in `public/images/` are ful
 
 - Visible focus states on all interactive elements
 - Custom cursor disabled on touch devices
-- `prefers-reduced-motion` short-circuits Lenis + animations
-- Lightbox supports `Esc`, `←`, `→`
+- `prefers-reduced-motion` short-circuits all animations
+- Lightbox + slideshow support `Esc`, `←`, `→`
 - Semantic landmarks (`<header>`, `<main>`, `<footer>`, `<article>`, `<section>`)
 
 ---
@@ -243,28 +234,17 @@ npx vercel rollback <url>                     # roll back to a previous deploy
 
 ### Refresh the shareable copy
 
-When you want to hand a clean, no-credentials copy to a reviewer:
-
 ```bash
 bash scripts/sync-shareable.sh
 ```
 
-This refreshes `../web-shareable/` from the current state of `web/`, stripping `.git`, `.vercel`, `node_modules`, `.next`, and `.originals`. The reviewer can then run that folder standalone with `python3 app.py`.
-
-### Deploying somewhere else
-
-The codebase is portable to any host that supports Next.js 14:
-- **Netlify** — `netlify.toml` would be auto-detected; framework preset Next.js
-- **Cloudflare Pages** — framework preset Next.js
-- **Self-hosted** — `npm run build && npm run start` behind a reverse proxy
-
-For a static export (e.g. GitHub Pages), set `output: 'export'` and `images.unoptimized: true` in `next.config.mjs` — this trades the Vercel image optimisation pipeline for plain `<img>` tags.
+Refreshes `../web-shareable/` from the current state of `web/`, stripping `.git`, `.vercel`, `node_modules`, `.next`, `.originals`. The reviewer can then run that folder standalone with `python3 app.py`.
 
 ---
 
 ## 8. Where the rest of the rules live
 
-- **`AGENTS.md`** — workflow for any AI assistant or collaborator working on this folder (push gates, brand essentials, file conventions)
+- **`AGENTS.md`** — workflow for any AI assistant or collaborator working on this folder (push gates, brand essentials, file conventions, real project list)
 - **`data/projects.json`** — single source of truth for all studio + project content
 - **`app/globals.css`** — theme tokens, sketch effect, preloader, custom cursor styling
 - **`scripts/sync-shareable.sh`** — regenerates the clean distribution mirror

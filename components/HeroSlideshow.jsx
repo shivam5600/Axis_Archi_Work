@@ -2,12 +2,11 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import clsx from 'clsx';
 
 const AUTO_MS = 6000;
 
-export default function HeroSlideshow({ slides, tagline, eyebrow }) {
+export default function HeroSlideshow({ slides, eyebrow }) {
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -178,24 +177,6 @@ export default function HeroSlideshow({ slides, tagline, eyebrow }) {
           <SlideMeta />
           <div className="mt-6 mb-6 hairline-b" />
           <Controls />
-
-          {tagline && (
-            <div className="mt-8">
-              <h1 className="display text-[14vw] sm:text-[12vw] leading-[0.95] tracking-tight">
-                {tagline}
-              </h1>
-              <Link
-                href="/projects"
-                className="mt-7 inline-flex w-full items-center justify-between gap-3 px-5 py-3.5 bg-[var(--accent)] text-white eyebrow"
-                data-cursor="hover"
-              >
-                Explore Our Work
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden>
-                  <path d="M0 5h14m0 0L10 1m4 4l-4 4" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
-              </Link>
-            </div>
-          )}
         </div>
       </div>
 
@@ -219,7 +200,7 @@ export default function HeroSlideshow({ slides, tagline, eyebrow }) {
           <div className="flex-1" />
 
           <div className="container-edge max-w-[100rem] mx-auto pb-14">
-            <div className="grid grid-cols-12 gap-6 items-end mb-12">
+            <div className="grid grid-cols-12 gap-6 items-end">
               <div className="col-span-7" key={`d-label-${index}`}>
                 <p className="eyebrow opacity-70 mb-3">
                   {slides[index].type} · {slides[index].location}
@@ -232,28 +213,6 @@ export default function HeroSlideshow({ slides, tagline, eyebrow }) {
                 <Controls inverse />
               </div>
             </div>
-
-            {tagline && (
-              <div className="grid grid-cols-12 gap-6 items-end pt-8 border-t border-bone/15">
-                <div className="col-span-9">
-                  <h1 className="display text-[7.6vw] lg:text-[7rem] xl:text-[8.4rem] leading-[0.92] tracking-tight">
-                    {tagline}
-                  </h1>
-                </div>
-                <div className="col-span-3 flex justify-end">
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center justify-between gap-3 px-5 py-3.5 bg-[var(--accent)] text-white eyebrow hover:bg-[var(--accent-strong)] transition-colors min-w-[12rem]"
-                    data-cursor="hover"
-                  >
-                    Explore Our Work
-                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden>
-                      <path d="M0 5h14m0 0L10 1m4 4l-4 4" stroke="currentColor" strokeWidth="1.2" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

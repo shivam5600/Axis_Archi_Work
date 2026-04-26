@@ -27,13 +27,6 @@ export default function HomePage() {
       <HeroSlideshow
         slides={slideshow}
         eyebrow={studio.eyebrow}
-        tagline={
-          <>
-            We design{' '}
-            <em className="italic font-light">spaces</em>{' '}
-            that tell <span className="text-[var(--accent)]">stories.</span>
-          </>
-        }
       />
 
       {/* ─────── PROJECT TYPES MARQUEE ─────── */}
