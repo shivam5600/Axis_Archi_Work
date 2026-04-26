@@ -108,46 +108,81 @@ html.lenis, html.lenis body { height: auto; }
     background-size: 100% 1px;
   }
 
-  /* Sketch effect — photo by default, sketch on hover */
+  /* Sketch effect — pencil sketch on paper by default, full photo on hover */
   .sketch-wrap {
     position: relative;
     overflow: hidden;
+    background: var(--paper);
   }
-  .sketch-wrap .sketch-img,
-  .sketch-wrap .real-img {
+  :root {
+    --paper: #efe7d6;
+    --paper-grad: linear-gradient(150deg, #f3ecde 0%, #e8dec7 60%, #ddd2b6 100%);
+  }
+  .dark {
+    --paper: #1a1a1a;
+    --paper-grad: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #0e0e0e 100%);
+  }
+
+  .sketch-wrap .sketch-paper,
+  .sketch-wrap .real-img,
+  .sketch-wrap .sketch-overlay {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
                 transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .sketch-wrap .real-img {
+
+  .sketch-wrap .sketch-paper {
+    z-index: 0;
+    background: var(--paper-grad);
     opacity: 1;
-    z-index: 1;
   }
-  .sketch-wrap .sketch-img {
-    z-index: 2;
-    opacity: 0;
-    mix-blend-mode: multiply;
+  .sketch-wrap .sketch-overlay {
+    z-index: 1;
+    opacity: 0.92;
     pointer-events: none;
   }
-  /* On hover: reveal the sketch overlay */
-  @media (hover: hover) and (pointer: fine) {
-    .sketch-wrap:hover .sketch-img {
-      opacity: 1;
-    }
-    .sketch-wrap:hover .real-img {
-      transform: scale(1.04);
-    }
+  /* In light mode, ink edges multiply onto cream paper */
+  .sketch-wrap .sketch-overlay {
+    mix-blend-mode: multiply;
   }
-  /* In reveal mode: brief sketch ↔ photo flash on first scroll-in */
-  .sketch-wrap.is-revealing .sketch-img {
-    opacity: 1;
+  /* In dark mode, edges should be light — invert and screen onto dark paper */
+  .dark .sketch-wrap .sketch-overlay {
+    filter: invert(1) brightness(1.4);
+    mix-blend-mode: screen;
+    opacity: 0.85;
   }
-  .sketch-wrap.is-revealed .sketch-img {
+  .sketch-wrap .real-img {
+    z-index: 2;
+    object-fit: cover;
+  }
+  /* In hover mode, photo is hidden by default — sketch shows */
+  .sketch-mode-hover .real-img {
     opacity: 0;
+  }
+  /* In static mode, the photo is always shown (no sketch layers exist) */
+
+  /* On hover (or focus-within): swap to the photo, fade out sketch */
+  @media (hover: hover) and (pointer: fine) {
+    .sketch-mode-hover:hover .real-img,
+    .sketch-mode-hover:focus-within .real-img {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+    .sketch-mode-hover:hover .sketch-paper,
+    .sketch-mode-hover:hover .sketch-overlay,
+    .sketch-mode-hover:focus-within .sketch-paper,
+    .sketch-mode-hover:focus-within .sketch-overlay {
+      opacity: 0;
+    }
+  }
+  /* On touch devices the hover state is unreachable — show photo as-is */
+  @media (hover: none) {
+    .sketch-mode-hover .real-img { opacity: 1; }
+    .sketch-mode-hover .sketch-paper,
+    .sketch-mode-hover .sketch-overlay { display: none; }
   }
 
   /* Grain overlay — static, painted once. No animation. */

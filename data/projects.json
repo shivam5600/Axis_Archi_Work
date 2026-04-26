@@ -22,42 +22,12 @@
       { "label": "Client Satisfaction", "value": "100%", "raw": 100 }
     ],
     "services": [
-      {
-        "n": "01",
-        "title": "Architectural Design",
-        "blurb": "Custom designs that balance beauty, structure, and function.",
-        "icon": "blueprint"
-      },
-      {
-        "n": "02",
-        "title": "Interior Design",
-        "blurb": "Interiors that reflect your personality and elevate your space.",
-        "icon": "layers"
-      },
-      {
-        "n": "03",
-        "title": "Commercial Spaces",
-        "blurb": "High-impact commercial environments designed for business growth.",
-        "icon": "store"
-      },
-      {
-        "n": "04",
-        "title": "Residential Design",
-        "blurb": "Dream homes crafted with precision, comfort, and timeless style.",
-        "icon": "home"
-      },
-      {
-        "n": "05",
-        "title": "Institutional Projects",
-        "blurb": "Functional and inspiring spaces for schools, hospitals, and more.",
-        "icon": "institution"
-      },
-      {
-        "n": "06",
-        "title": "Township & Landscape",
-        "blurb": "Integrated planning for townships, parks, and outdoor spaces.",
-        "icon": "trees"
-      }
+      { "n": "01", "title": "Architectural Design", "blurb": "Custom designs that balance beauty, structure, and function.", "icon": "blueprint" },
+      { "n": "02", "title": "Interior Design", "blurb": "Interiors that reflect your personality and elevate your space.", "icon": "layers" },
+      { "n": "03", "title": "Commercial Spaces", "blurb": "High-impact commercial environments designed for business growth.", "icon": "store" },
+      { "n": "04", "title": "Residential Design", "blurb": "Dream homes crafted with precision, comfort, and timeless style.", "icon": "home" },
+      { "n": "05", "title": "Institutional Projects", "blurb": "Functional and inspiring spaces for schools, hospitals, and more.", "icon": "institution" },
+      { "n": "06", "title": "Township & Landscape", "blurb": "Integrated planning for townships, parks, and outdoor spaces.", "icon": "trees" }
     ],
     "testimonials": [
       {
@@ -76,7 +46,6 @@
         "role": "Commercial Showroom, Hazratganj"
       }
     ],
-    "filters": ["All", "Residential", "Commercial", "Institutional", "Hospitality", "Township"],
     "contact": {
       "email": "architects@axisarchi.com",
       "phone": "+91 98390 97733",
@@ -92,219 +61,246 @@
       { "label": "WhatsApp", "href": "https://wa.me/919839097733" }
     ]
   },
+
+  "slideshow": [
+    {
+      "src": "/images/slideshow/slide-01.jpg",
+      "title": "Stallion Honda Showroom",
+      "type": "Commercial",
+      "location": "Faizabad Road, Lucknow"
+    },
+    {
+      "src": "/images/slideshow/slide-02.jpg",
+      "title": "Boutique Resort",
+      "type": "Hospitality",
+      "location": "Lucknow"
+    },
+    {
+      "src": "/images/slideshow/slide-03.jpg",
+      "title": "Ambalika MBA Building",
+      "type": "Institutional",
+      "location": "Lucknow"
+    },
+    {
+      "src": "/images/slideshow/slide-04.jpg",
+      "title": "Premium Residence",
+      "type": "Residential",
+      "location": "Lucknow"
+    },
+    {
+      "src": "/images/slideshow/slide-05.jpg",
+      "title": "Commercial Landmark",
+      "type": "Commercial",
+      "location": "Lucknow"
+    }
+  ],
+
+  "categories": [
+    {
+      "slug": "commercial",
+      "title": "Commercial",
+      "description": "Showrooms, offices, and high-impact retail addresses across the city.",
+      "cover": "/images/projects/commercial/stallion-honda.jpg"
+    },
+    {
+      "slug": "hospitality",
+      "title": "Hospitality",
+      "description": "Resorts, banquet halls, and welcoming spaces designed for hosting.",
+      "cover": "/images/projects/hospitality/boutique-resort-01.jpg"
+    },
+    {
+      "slug": "institutional",
+      "title": "Institutional",
+      "description": "Calm, daylit campuses for learning and care.",
+      "cover": "/images/projects/institutional/ambalika-campus-01.jpg"
+    },
+    {
+      "slug": "residential",
+      "title": "Residential",
+      "description": "Houses, villas and apartments — the slow architecture of home.",
+      "cover": "/images/projects/residential/kalra-residence.jpg"
+    },
+    {
+      "slug": "township",
+      "title": "Township & Landscape",
+      "description": "Master-planned communities where the green network leads.",
+      "cover": "/images/projects/township/greenfield-aerial.jpg"
+    },
+    {
+      "slug": "offices",
+      "title": "Office Interiors",
+      "description": "Workspaces tuned for focus, light, and small daily rituals.",
+      "cover": "/images/projects/offices/studio-office-01.jpg"
+    }
+  ],
+
   "projects": [
     {
-      "slug": "uttam-palace",
-      "title": "Uttam Palace",
-      "category": "exterior",
+      "slug": "stallion-honda",
+      "title": "Stallion Honda Showroom",
+      "category": "commercial",
       "type": "Commercial",
       "year": "2023",
-      "location": "Hazratganj, Lucknow",
-      "area": "42,000 sq ft",
+      "location": "Faizabad Road, Lucknow",
+      "area": "32,000 sq ft",
       "status": "Completed",
-      "cover": "/images/exterior/ext-01.jpg",
-      "images": [
-        "/images/exterior/ext-01.jpg",
-        "/images/exterior/ext-02.jpg",
-        "/images/interior/int-01.jpg"
-      ],
-      "summary": "A landmark commercial address on Sapru Marg — a confident street wall that holds Hazratganj's heritage axis.",
-      "description": "Uttam Palace is a flagship commercial development conceived as a contemporary counterpart to the colonial architecture of Hazratganj. A deep stone plinth grounds the building to the avenue while a recessed glass volume above lets the upper floors recede behind a layered façade. Internally, the building is organised around a sky-lit atrium that brings daylight to every floor."
+      "cover": "/images/projects/commercial/stallion-honda.jpg",
+      "images": ["/images/projects/commercial/stallion-honda.jpg"],
+      "summary": "A flagship showroom and workshop building on the Faizabad Road — a clean glass-and-steel volume that lets the brand and the cars take centre stage.",
+      "description": "Conceived as a long, low-rise pavilion stretched along the highway, the building wraps a triple-height showroom in a continuous glass envelope. The service workshop is set behind a deep cantilevered overhang that doubles as the customer drop-off. A dark stone plinth grounds the building to the avenue, while horizontal aluminium fins modulate the strong westerly sun without ever interrupting the view of the cars."
     },
     {
-      "slug": "penguin-tower",
-      "title": "Penguin Tower",
-      "category": "exterior",
+      "slug": "jewellers-flagship",
+      "title": "Jewellers Flagship Store",
+      "category": "commercial",
       "type": "Commercial",
       "year": "2024",
       "location": "Lucknow",
-      "area": "1,20,000 sq ft",
-      "status": "Completed",
-      "cover": "/images/exterior/ext-02.jpg",
-      "images": [
-        "/images/exterior/ext-02.jpg",
-        "/images/exterior/ext-05.jpg",
-        "/images/interior/int-04.jpg"
-      ],
-      "summary": "A high-rise office tower that reads as a single, slim vertical gesture against the city skyline.",
-      "description": "Penguin Tower is a 14-storey commercial high-rise designed for boutique offices and a curated retail base. Vertical aluminium fins articulate the façade and modulate the strong westerly sun, while a double-height sky-lobby on the seventh floor offers tenants a shared garden space cantilevered out over the street."
-    },
-    {
-      "slug": "sr-hospital",
-      "title": "SR Hospital",
-      "category": "exterior",
-      "type": "Institutional",
-      "year": "2022",
-      "location": "Lucknow",
-      "area": "85,000 sq ft",
-      "status": "Completed",
-      "cover": "/images/exterior/ext-03.jpg",
-      "images": [
-        "/images/exterior/ext-03.jpg",
-        "/images/exterior/ext-04.jpg",
-        "/images/interior/int-06.jpg"
-      ],
-      "summary": "A multi-specialty hospital where the architecture is calibrated for calm — daylight, soft volumes, and a clear path of care.",
-      "description": "SR Hospital was designed around a single principle: that a healing building must, above all, be quiet. Wards are organised around landscaped light-wells; circulation is split between staff and visitor flows; and the public faces of the building use a soft, warm palette of cream stone and timber to soften the institutional scale."
-    },
-    {
-      "slug": "modern-villa-gomti-nagar",
-      "title": "Modern Villa — Gomti Nagar",
-      "category": "exterior",
-      "type": "Residential",
-      "year": "2024",
-      "location": "Gomti Nagar, Lucknow",
       "area": "8,400 sq ft",
       "status": "Completed",
-      "cover": "/images/exterior/ext-04.jpg",
-      "images": [
-        "/images/exterior/ext-04.jpg",
-        "/images/exterior/ext-05.jpg",
-        "/images/interior/int-04.jpg"
-      ],
-      "summary": "A modern residence in Gomti Nagar — three wings folded around a private central court.",
-      "description": "Conceived as a sequence of thresholds, the villa stretches around a generous central court anchored by an existing mango tree. Concrete fins articulate the western face, slowing the afternoon light into soft horizontal bands; the eastern wing opens fully to the morning sun via a deep, shaded verandah."
+      "cover": "/images/projects/commercial/jewellers-flagship.jpg",
+      "images": ["/images/projects/commercial/jewellers-flagship.jpg"],
+      "summary": "A jewel of a façade — a layered street face that catches the light the way the merchandise does.",
+      "description": "The brief was simple: a building that feels as crafted as the jewellery inside it. The street face is a sequence of recessed bays, each lit independently, so the façade reads like a long, illuminated cabinet at night. Inside, the showroom is conceived as a single, hushed room with display vitrines arranged like islands in a quiet sea of plaster and oak."
     },
     {
-      "slug": "green-meadows-township",
-      "title": "Green Meadows Township",
-      "category": "exterior",
-      "type": "Township",
+      "slug": "aquatic-centre",
+      "title": "Aquatic Centre",
+      "category": "commercial",
+      "type": "Commercial",
       "year": "2023",
-      "location": "Outskirts, Lucknow",
-      "area": "42 acres",
-      "status": "Phase I Completed",
-      "cover": "/images/exterior/ext-05.jpg",
-      "images": [
-        "/images/exterior/ext-05.jpg",
-        "/images/exterior/ext-06.jpg",
-        "/images/exterior/ext-07.jpg"
-      ],
-      "summary": "An integrated township master-plan that puts the green network — not the road network — at the centre of community life.",
-      "description": "Green Meadows is a 42-acre township master-plan in which the central spine is not a road but a continuous landscape — a pedestrian green that links every cluster, school and community building. The vehicular network is pushed to the perimeter, allowing the inner blocks to be unhurried, walkable, and densely planted."
-    },
-    {
-      "slug": "heritage-bungalow-mall-avenue",
-      "title": "Heritage Bungalow — Mall Avenue",
-      "category": "exterior",
-      "type": "Residential",
-      "year": "2022",
-      "location": "Mall Avenue, Lucknow",
-      "area": "9,200 sq ft",
+      "location": "Lucknow",
+      "area": "18,000 sq ft",
       "status": "Completed",
-      "cover": "/images/exterior/ext-06.jpg",
-      "images": [
-        "/images/exterior/ext-06.jpg",
-        "/images/exterior/ext-07.jpg",
-        "/images/interior/int-02.jpg"
-      ],
-      "summary": "A careful adaptive reuse of a colonial-era bungalow, reawakened as a modern family home.",
-      "description": "The original 1930s bungalow was retained in its entirety; new programme is added as a discreet glass-and-steel pavilion to the rear, connected to the old house by a glazed link. The work is a study in restraint — every new element is set back, set apart, or set below the original."
+      "cover": "/images/projects/commercial/aquatic-centre.jpg",
+      "images": ["/images/projects/commercial/aquatic-centre.jpg"],
+      "summary": "A swimming pool building organised around a single, generous span — daylight from above, shadow from the sides.",
+      "description": "An indoor swimming complex with a clear-span steel roof structure that allows the pool hall to be column-free. North-facing clerestory windows provide an even, shadowless light all day, while solid southern walls keep the heat out. A linear changing block runs along one side, separated from the pool deck by a shaded outdoor terrace."
     },
     {
-      "slug": "riverside-resort",
-      "title": "Riverside Resort",
-      "category": "exterior",
+      "slug": "boutique-resort",
+      "title": "Boutique Resort",
+      "category": "hospitality",
       "type": "Hospitality",
       "year": "2024",
       "location": "Outskirts, Lucknow",
       "area": "5.6 acres",
       "status": "Completed",
-      "cover": "/images/exterior/ext-07.jpg",
+      "cover": "/images/projects/hospitality/boutique-resort-01.jpg",
       "images": [
-        "/images/exterior/ext-07.jpg",
-        "/images/exterior/ext-04.jpg",
-        "/images/interior/int-03.jpg"
+        "/images/projects/hospitality/boutique-resort-01.jpg",
+        "/images/projects/hospitality/boutique-resort-02.jpg"
       ],
-      "summary": "A boutique resort along the Gomti — an architecture of pitched roofs, deep verandahs, and a long, slow approach to the water.",
-      "description": "The resort is conceived as a small village of low pitched-roof pavilions threaded along the river edge. Locally fired brick, timber, and lime-washed walls give the architecture a quiet, regional character; the longest move is the approach itself — a 200-metre walk under a canopy of mature trees that ends at the water."
+      "summary": "A small village of pitched-roof pavilions arranged along a slow, treed approach.",
+      "description": "The resort is laid out as a loose village of low pavilions threaded between mature trees. Locally fired brick, timber and lime-washed walls give the architecture a quiet, regional character. The longest move is the approach itself — a 200-metre walk under a canopy of trees that ends at the central courtyard, with all rooms opening onto private gardens."
     },
     {
-      "slug": "the-wardrobe-showroom",
-      "title": "The Wardrobe Showroom",
-      "category": "interior",
-      "type": "Commercial",
-      "year": "2024",
+      "slug": "banquet-hall",
+      "title": "Banquet Hall",
+      "category": "hospitality",
+      "type": "Hospitality",
+      "year": "2025",
       "location": "Lucknow",
-      "area": "6,200 sq ft",
-      "status": "Completed",
-      "cover": "/images/interior/int-01.jpg",
+      "area": "12,000 sq ft",
+      "status": "In Progress",
+      "cover": "/images/projects/hospitality/banquet-hall-01.jpg",
       "images": [
-        "/images/interior/int-01.jpg",
-        "/images/interior/int-02.jpg",
-        "/images/interior/int-03.jpg"
+        "/images/projects/hospitality/banquet-hall-01.jpg",
+        "/images/projects/hospitality/banquet-hall-02.jpg"
       ],
-      "summary": "A flagship retail interior — inked walls, deep oak, and a sequence of carefully composed display rooms.",
-      "description": "The showroom is conceived as a series of \"rooms within a room\" — each defined by a different tonal pairing of plaster and timber. Custom millwork wraps the spine of the space, and the lighting is calibrated almost entirely for fabric: soft, warm, and shadow-free. The dressing rooms occupy the most private corner, lined in a deep ink-blue cloth."
+      "summary": "A flexible event venue — one large hall that can become two, three or many small rooms.",
+      "description": "A modern banquet venue conceived around a single column-free hall and a series of operable partitions. The central space can host a single 700-person event or be subdivided into smaller, more intimate rooms for daily use. A wraparound landscaped terrace doubles the usable area in the cooler months."
     },
     {
-      "slug": "sapru-marg-residence",
-      "title": "Sapru Marg Residence",
-      "category": "interior",
+      "slug": "ambalika-campus",
+      "title": "Ambalika Institute Campus",
+      "category": "institutional",
+      "type": "Institutional",
+      "year": "2022",
+      "location": "Lucknow",
+      "area": "84,000 sq ft",
+      "status": "Completed",
+      "cover": "/images/projects/institutional/ambalika-campus-01.jpg",
+      "images": [
+        "/images/projects/institutional/ambalika-campus-01.jpg",
+        "/images/projects/institutional/ambalika-campus-02.jpg",
+        "/images/projects/institutional/ambalika-campus-03.jpg",
+        "/images/projects/institutional/ambalika-campus-04.jpg"
+      ],
+      "summary": "An institutional building organised around a generous central court — daylight, calm, and a clear circulation spine.",
+      "description": "The Ambalika building is arranged as four wings folded around a planted central court. Classrooms and labs face the perimeter for daylight; circulation runs around the court so every room is just one threshold from open air. The façade is a deep, unfussy composition of concrete bands and recessed glazing, calibrated to handle Lucknow's strong summer sun."
+    },
+    {
+      "slug": "kalra-residence",
+      "title": "Kalra Residence",
+      "category": "residential",
       "type": "Residential",
+      "year": "2023",
+      "location": "Lucknow",
+      "area": "6,400 sq ft",
+      "status": "Completed",
+      "cover": "/images/projects/residential/kalra-residence.jpg",
+      "images": [
+        "/images/projects/residential/kalra-residence.jpg",
+        "/images/projects/residential/garden-residence.jpg"
+      ],
+      "summary": "A family residence designed around a single mature mango tree at the heart of the plot.",
+      "description": "The Kalra Residence is organised as three wings folded around a central court anchored by the existing mango tree. Concrete fins articulate the western face, slowing the afternoon light into soft horizontal bands; the eastern wing opens fully to the morning sun via a deep, shaded verandah. Materials were drawn from the site's own context — local sandstone, lime plaster, teak."
+    },
+    {
+      "slug": "modern-villa",
+      "title": "Modern Villa",
+      "category": "residential",
+      "type": "Residential",
+      "year": "2024",
+      "location": "Gomti Nagar, Lucknow",
+      "area": "8,200 sq ft",
+      "status": "In Progress",
+      "cover": "/images/projects/residential/modern-villa-01.jpg",
+      "images": [
+        "/images/projects/residential/modern-villa-01.jpg",
+        "/images/projects/residential/modern-villa-02.jpg"
+      ],
+      "summary": "A contemporary villa — clean horizontal lines, a deep cantilever, and a stone plinth that grounds the volume.",
+      "description": "Conceived as a horizontal composition of three stacked floors, the villa is grounded by a stone plinth and crowned by a deep cantilevered slab that shades the upper terraces. The living spaces face the south garden through a continuous wall of openable sliding glass, while the bedrooms are tucked into the cooler north side."
+    },
+    {
+      "slug": "greenfield-township",
+      "title": "Greenfield Township",
+      "category": "township",
+      "type": "Township",
+      "year": "2024",
+      "location": "Outskirts, Lucknow",
+      "area": "42 acres",
+      "status": "Phase I Completed",
+      "cover": "/images/projects/township/greenfield-aerial.jpg",
+      "images": [
+        "/images/projects/township/greenfield-aerial.jpg",
+        "/images/projects/township/greenfield-aerial-2.jpg",
+        "/images/projects/township/greenfield-villas-bhk23.jpg",
+        "/images/projects/township/greenfield-villas-bhk4.jpg",
+        "/images/projects/township/greenfield-gate.jpg"
+      ],
+      "summary": "A 42-acre township master-plan built around a continuous green spine — walkable, planted, unhurried.",
+      "description": "Greenfield is a 42-acre township in which the central spine is not a road but a continuous landscape — a pedestrian green that links every cluster, school and community building. The vehicular network is pushed to the perimeter, allowing the inner blocks to be unhurried and densely planted. Two- and three-BHK villas occupy the inner clusters; larger four-BHK villas line the perimeter green."
+    },
+    {
+      "slug": "studio-office",
+      "title": "Studio Office Interior",
+      "category": "offices",
+      "type": "Office Interior",
       "year": "2023",
       "location": "Hazratganj, Lucknow",
-      "area": "3,400 sq ft",
+      "area": "4,200 sq ft",
       "status": "Completed",
-      "cover": "/images/interior/int-02.jpg",
+      "cover": "/images/projects/offices/studio-office-01.jpg",
       "images": [
-        "/images/interior/int-02.jpg",
-        "/images/interior/int-04.jpg",
-        "/images/interior/int-05.jpg"
+        "/images/projects/offices/studio-office-01.jpg",
+        "/images/projects/offices/studio-office-02.jpg",
+        "/images/projects/offices/studio-office-03.jpg"
       ],
-      "summary": "A family apartment on Sapru Marg — soft curves, plaster the colour of dawn, and a single long oak spine.",
-      "description": "Every interior wall is a soft curve and the rooms blur into one another. The palette is drawn from raw materials — limewashed plaster, cane, brushed brass — and held together by a single warm undertone. A continuous oak spine runs the full length of the apartment, holding books, art and storage in one quiet gesture."
-    },
-    {
-      "slug": "cantt-boutique-hotel",
-      "title": "Cantt Boutique Hotel",
-      "category": "interior",
-      "type": "Hospitality",
-      "year": "2023",
-      "location": "Cantonment, Lucknow",
-      "area": "18,000 sq ft",
-      "status": "Completed",
-      "cover": "/images/interior/int-03.jpg",
-      "images": [
-        "/images/interior/int-03.jpg",
-        "/images/interior/int-06.jpg"
-      ],
-      "summary": "A 22-room boutique hotel — a quiet, tonal palette and rooms that feel more like libraries than hotels.",
-      "description": "A 22-key boutique hotel with a careful, library-like character. The lobby is treated as a long reading room; the rooms are organised as small studies with a writing desk at every window. Nothing is loud, nothing is corporate — and every detail, down to the door pulls, is custom."
-    },
-    {
-      "slug": "aliganj-family-home",
-      "title": "Aliganj Family Home",
-      "category": "interior",
-      "type": "Residential",
-      "year": "2024",
-      "location": "Aliganj, Lucknow",
-      "area": "2,800 sq ft",
-      "status": "Completed",
-      "cover": "/images/interior/int-04.jpg",
-      "images": [
-        "/images/interior/int-04.jpg",
-        "/images/interior/int-07.jpg"
-      ],
-      "summary": "An interior of restraint, designed for a young family. The only ornament is daylight.",
-      "description": "A near-monochromatic interior — white plaster, pale stone, bleached ash — designed as a quiet stage for a young family's daily life. Light is the principal material; built-in millwork hides the practical clutter of family living without ever drawing attention to itself."
-    },
-    {
-      "slug": "indira-nagar-office",
-      "title": "Indira Nagar Office",
-      "category": "interior",
-      "type": "Commercial",
-      "year": "2022",
-      "location": "Indira Nagar, Lucknow",
-      "area": "4,400 sq ft",
-      "status": "Completed",
-      "cover": "/images/interior/int-05.jpg",
-      "images": [
-        "/images/interior/int-05.jpg",
-        "/images/interior/int-06.jpg"
-      ],
-      "summary": "A professional services office, organised around a single long table and one good library.",
-      "description": "An office for a small professional firm. The whole floor is treated as one continuous loft, anchored by a 24-foot communal worktable; private rooms are tucked behind a long, full-height oak library that doubles as the firm's archive."
+      "summary": "An office tuned for focus — a continuous oak spine, soft north light, and a single long communal table.",
+      "description": "The office is treated as one continuous loft, anchored by a 24-foot communal worktable. Private cabins are tucked behind a long, full-height oak library that doubles as the firm's archive. Materials are deliberately quiet — washed oak, raw plaster, brushed brass — and the lighting is calibrated almost entirely for paper and screens."
     }
   ]
 }

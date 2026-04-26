@@ -5,11 +5,22 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 /**
- * Photo by default. On hover, a sketch (in-browser SVG edge filter) crossfades over.
- * The sketch SVG is only mounted on first hover — keeps initial paint cheap.
+ * Real sketch effect — looks like a hand-drawn line study on paper.
+ * Hover (or focus) reveals the original color photograph.
  *
- * mode="hover"  : photo, sketch on hover (default)
- * mode="static" : photo only, no sketch
+ *   Default state          Hover state
+ *   ─────────────          ───────────
+ *   paper background       full color photo
+ *   + dark edge lines      (sketch fades out)
+ *
+ * Implementation:
+ *   - Layer A: paper background (theme-aware cream / dark grey)
+ *   - Layer B: SVG with `feConvolveMatrix` edge filter, multiplied/screened over paper
+ *   - Layer C: full-color <Image>, opacity 0 by default
+ *   On hover the photo crossfades in and the sketch layers fade out.
+ *
+ * mode="hover"  : default behaviour described above
+ * mode="static" : no sketch effect — just shows the photo
  */
 export default function SketchImage({
   src,
@@ -22,32 +33,95 @@ export default function SketchImage({
 }) {
   const id = useId().replace(/:/g, '');
   const wrapRef = useRef(null);
-  const [armed, setArmed] = useState(false);
+  const [armed, setArmed] = useState(mode !== 'hover');
 
-  // Lazily mount the sketch SVG only when the wrapper has been hovered or focused.
+  // Lazy-mount the SVG sketch once the image is in view (so first paint stays cheap)
   useEffect(() => {
-    if (mode !== 'hover') return;
+    if (mode !== 'hover' || !wrapRef.current) return;
     const el = wrapRef.current;
-    if (!el) return;
-    const arm = () => {
-      setArmed(true);
-      el.removeEventListener('pointerenter', arm);
-      el.removeEventListener('focusin', arm);
-    };
-    el.addEventListener('pointerenter', arm, { once: true });
-    el.addEventListener('focusin', arm, { once: true });
-    return () => {
-      el.removeEventListener('pointerenter', arm);
-      el.removeEventListener('focusin', arm);
-    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setArmed(true);
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '200px 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, [mode]);
 
   return (
     <div
       ref={wrapRef}
-      className={clsx('sketch-wrap', aspect, className)}
+      className={clsx(
+        'sketch-wrap',
+        mode === 'hover' && 'sketch-mode-hover',
+        aspect,
+        className
+      )}
       data-cursor="hover"
     >
+      {mode === 'hover' && (
+        <>
+          {/* Layer A: paper background */}
+          <span className="sketch-paper" aria-hidden />
+
+          {/* Layer B: edge lines via SVG */}
+          {armed && (
+            <svg
+              className="sketch-overlay"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <filter id={`edge-${id}`} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+                  {/* desaturate */}
+                  <feColorMatrix
+                    type="matrix"
+                    values="0.33 0.33 0.33 0 0
+                            0.33 0.33 0.33 0 0
+                            0.33 0.33 0.33 0 0
+                            0    0    0    1 0"
+                  />
+                  {/* edge detect (Laplacian-ish) */}
+                  <feConvolveMatrix
+                    order="3"
+                    preserveAlpha="true"
+                    kernelMatrix="-1 -1 -1 -1  8 -1 -1 -1 -1"
+                    result="edges"
+                  />
+                  {/* invert so edges become dark on transparent */}
+                  <feComponentTransfer in="edges" result="ink">
+                    <feFuncR type="table" tableValues="1 0" />
+                    <feFuncG type="table" tableValues="1 0" />
+                    <feFuncB type="table" tableValues="1 0" />
+                  </feComponentTransfer>
+                  {/* boost contrast — line work that reads as pencil */}
+                  <feComponentTransfer in="ink" result="boosted">
+                    <feFuncR type="linear" slope="2.4" intercept="-0.5" />
+                    <feFuncG type="linear" slope="2.4" intercept="-0.5" />
+                    <feFuncB type="linear" slope="2.4" intercept="-0.5" />
+                  </feComponentTransfer>
+                </filter>
+              </defs>
+              <image
+                href={src}
+                x="0" y="0" width="100" height="100"
+                preserveAspectRatio="xMidYMid slice"
+                filter={`url(#edge-${id})`}
+              />
+            </svg>
+          )}
+        </>
+      )}
+
+      {/* Layer C: real photo */}
       <div className="real-img">
         <Image
           src={src}
@@ -58,45 +132,6 @@ export default function SketchImage({
           className="object-cover"
         />
       </div>
-
-      {mode === 'hover' && armed && (
-        <svg
-          className="sketch-img"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          preserveAspectRatio="xMidYMid slice"
-          viewBox="0 0 100 100"
-        >
-          <defs>
-            <filter id={`sketch-${id}`} x="0" y="0" width="100%" height="100%">
-              <feColorMatrix
-                type="matrix"
-                values="0.33 0.33 0.33 0 0
-                        0.33 0.33 0.33 0 0
-                        0.33 0.33 0.33 0 0
-                        0 0 0 1 0"
-              />
-              <feConvolveMatrix
-                order="3"
-                preserveAlpha="true"
-                kernelMatrix="1 1 1 1 -8 1 1 1 1"
-                result="edges"
-              />
-              <feComponentTransfer in="edges">
-                <feFuncR type="linear" slope="-2" intercept="1.05" />
-                <feFuncG type="linear" slope="-2" intercept="1.05" />
-                <feFuncB type="linear" slope="-2" intercept="1.05" />
-              </feComponentTransfer>
-            </filter>
-          </defs>
-          <image
-            href={src}
-            x="0" y="0" width="100" height="100"
-            preserveAspectRatio="xMidYMid slice"
-            filter={`url(#sketch-${id})`}
-          />
-        </svg>
-      )}
     </div>
   );
 }

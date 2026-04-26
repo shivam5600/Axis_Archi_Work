@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { studio, projects } from '@/lib/projects';
+import { studio, projects, slideshow, categories } from '@/lib/projects';
 import SketchImage from '@/components/SketchImage';
 import Reveal from '@/components/Reveal';
 import Marquee from '@/components/Marquee';
@@ -7,15 +7,15 @@ import Services from '@/components/Services';
 import Stats from '@/components/Stats';
 import Testimonials from '@/components/Testimonials';
 import SectionHeader from '@/components/SectionHeader';
+import HeroSlideshow from '@/components/HeroSlideshow';
 
 export default function HomePage() {
+  // Pick 4 featured projects from across the categories for the homepage shelf
   const FEATURED_SLUGS = [
-    'uttam-palace',
-    'penguin-tower',
-    'modern-villa-gomti-nagar',
-    'sr-hospital',
-    'the-wardrobe-showroom',
-    'green-meadows-township',
+    'stallion-honda',
+    'kalra-residence',
+    'ambalika-campus',
+    'greenfield-township',
   ];
   const featured = FEATURED_SLUGS
     .map((slug) => projects.find((p) => p.slug === slug))
@@ -23,99 +23,72 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ─────── HERO ─────── */}
-      <section className="relative min-h-[100svh] container-edge max-w-[100rem] mx-auto pt-36 md:pt-48 pb-20 flex flex-col">
-        <div className="flex items-end justify-between mb-10">
-          <Reveal variant="mask">
-            <p className="eyebrow text-smoke">◦ {studio.eyebrow}</p>
-          </Reveal>
-          <Reveal variant="mask" delay={120}>
-            <p className="eyebrow text-smoke text-right">
-              Est. {studio.established} · {studio.city}
-            </p>
-          </Reveal>
-        </div>
+      {/* ─────── HERO SLIDESHOW ─────── */}
+      <HeroSlideshow
+        slides={slideshow}
+        eyebrow={studio.eyebrow}
+        tagline={
+          <>
+            We design{' '}
+            <em className="italic font-light">spaces</em>{' '}
+            that tell <span className="text-[var(--accent)]">stories.</span>
+          </>
+        }
+      />
 
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8 items-end">
-          <div className="col-span-12 md:col-span-9">
-            <Reveal variant="mask" delay={80}>
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10.4vw] lg:text-[9rem] xl:text-[11.4rem] leading-[0.92] md:leading-[0.86]">
-                We design
-              </h1>
-            </Reveal>
-            <Reveal variant="mask" delay={180}>
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10.4vw] lg:text-[9rem] xl:text-[11.4rem] leading-[0.92] md:leading-[0.86]">
-                spaces that tell
-              </h1>
-            </Reveal>
-            <Reveal variant="mask" delay={280}>
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10.4vw] lg:text-[9rem] xl:text-[11.4rem] leading-[0.92] md:leading-[0.86]">
-                <em className="italic font-light">stories</em><span className="text-[var(--accent)]">.</span>
-              </h1>
-            </Reveal>
-          </div>
+      {/* ─────── PROJECT TYPES MARQUEE ─────── */}
+      <Marquee
+        items={categories.map((c) => c.title)}
+      />
 
-          <Reveal delay={520} className="col-span-12 md:col-span-3 md:pl-6">
-            <p className="body-serif text-pretty leading-relaxed text-[var(--fg-soft)] md:max-w-[28ch]">
-              {studio.subTagline}
-            </p>
-            <div className="mt-8 flex flex-col gap-3">
+      {/* ─────── 01 · CATEGORIES (clickable category blocks) ─────── */}
+      <section id="categories" className="container-edge max-w-[100rem] mx-auto pt-10 md:pt-16 pb-14 md:pb-24">
+        <SectionHeader
+          number="01"
+          label="Browse our work by type"
+          right={<Link href="/projects" className="ink-link">View all projects →</Link>}
+        />
+
+        <Reveal className="mb-12 max-w-2xl">
+          <p className="body-serif text-lg text-[var(--fg-soft)] leading-relaxed">
+            Six verticals · {projects.length} featured projects · {studio.stats[1].value} delivered. Click any block to jump straight to that section.
+          </p>
+        </Reveal>
+
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-10">
+          {categories.map((cat, i) => (
+            <Reveal as="li" key={cat.slug} delay={i * 70}>
               <Link
-                href="/exteriors"
-                className="inline-flex items-center justify-between gap-3 px-5 py-3.5 bg-[var(--accent)] text-white eyebrow hover:bg-[var(--accent-strong)] transition-colors"
+                href={`/projects#${cat.slug}`}
+                className="group block"
                 data-cursor="hover"
               >
-                Explore Our Work
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden>
-                  <path d="M0 5h14m0 0L10 1m4 4l-4 4" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
+                <SketchImage
+                  src={cat.cover}
+                  alt={cat.title}
+                  aspect="aspect-[4/3]"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="mt-5 flex items-baseline justify-between gap-3">
+                  <h3 className="display text-2xl md:text-3xl tracking-tight">
+                    <span className="ink-link">{cat.title}</span>
+                  </h3>
+                  <span className="eyebrow text-smoke whitespace-nowrap">
+                    {String(i + 1).padStart(2, '0')} →
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-[var(--fg-soft)] leading-relaxed text-pretty">
+                  {cat.description}
+                </p>
               </Link>
-              <Link href="/about" className="arrow-link eyebrow">
-                Know more about us
-                <svg width="14" height="9" viewBox="0 0 16 10" fill="none" aria-hidden>
-                  <path d="M0 5h14m0 0L10 1m4 4l-4 4" stroke="currentColor" strokeWidth="1" />
-                </svg>
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Hero collage */}
-        <div className="mt-12 md:mt-28 grid grid-cols-12 gap-x-4 md:gap-x-6 gap-y-6 md:gap-y-10">
-          <Reveal className="col-span-12 md:col-span-7">
-            <SketchImage
-              src="/images/exterior/ext-01.jpg"
-              alt="Uttam Palace, Hazratganj"
-              aspect="aspect-[16/10]"
-              priority
-              sizes="(max-width: 768px) 92vw, 60vw"
-            />
-            <p className="eyebrow text-smoke mt-3">[ Fig. 01 ] — Uttam Palace, Hazratganj</p>
-          </Reveal>
-
-          <Reveal delay={140} className="col-span-12 md:col-span-4 md:col-start-9 md:-mt-32">
-            <SketchImage
-              src="/images/interior/int-04.jpg"
-              alt="Aliganj Family Home"
-              aspect="aspect-[16/11] md:aspect-[3/4]"
-              sizes="(max-width: 768px) 92vw, 30vw"
-            />
-            <p className="eyebrow text-smoke mt-3">[ Fig. 02 ] — Aliganj Family Home</p>
-          </Reveal>
-        </div>
-
-        <div className="hidden md:flex items-center justify-between mt-10 eyebrow text-smoke opacity-70">
-          <span className="flex items-center gap-3">
-            <span className="block w-8 h-px bg-current" />
-            Scroll
-          </span>
-          <span aria-hidden>↓</span>
-        </div>
+            </Reveal>
+          ))}
+        </ul>
       </section>
 
-      {/* ─────── 01 · ABOUT ─────── */}
-      <section id="about" className="container-edge max-w-[100rem] mx-auto pt-16 md:pt-32 pb-20 md:pb-40">
-        <SectionHeader number="01" label="About us" right="The studio" />
+      {/* ─────── 02 · ABOUT ─────── */}
+      <section id="about" className="container-edge max-w-[100rem] mx-auto pt-10 md:pt-16 pb-14 md:pb-24">
+        <SectionHeader number="02" label="About us" right="The studio" />
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
           <div className="col-span-12 md:col-span-7">
             <Reveal variant="mask">
@@ -156,40 +129,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Marquee divider */}
-      <Marquee
-        items={['Architecture', 'Interiors', 'Townships', 'Institutional', 'Hospitality', 'Commercial', 'Residential']}
-      />
-
-      {/* ─────── 02 · SERVICES ─────── */}
+      {/* ─────── 03 · SERVICES ─────── */}
       <section id="services">
-        <SectionHeader number="02" label="What we do" right="Six verticals" wrapper />
+        <SectionHeader number="03" label="What we do" right="Six verticals" wrapper />
         <Services services={studio.services} />
       </section>
 
-      {/* ─────── 03 · PROJECTS ─────── */}
-      <section id="projects" className="container-edge max-w-[100rem] mx-auto pt-16 md:pt-24 pb-20 md:pb-32">
+      {/* ─────── 04 · FEATURED PROJECTS ─────── */}
+      <section id="featured" className="container-edge max-w-[100rem] mx-auto pt-10 md:pt-16 pb-14 md:pb-24">
         <SectionHeader
-          number="03"
-          label="Projects that define us"
-          right={<Link href="/exteriors" className="ink-link">View all projects →</Link>}
+          number="04"
+          label="Selected projects"
+          right={<Link href="/projects" className="ink-link">View all →</Link>}
         />
 
-        <Reveal className="mb-12 max-w-2xl">
-          <p className="body-serif text-lg text-[var(--fg-soft)] leading-relaxed">
-            A curated selection from {studio.stats[1].value} completed projects across Lucknow and beyond.
-          </p>
-        </Reveal>
-
-        <div className="grid grid-cols-12 gap-x-4 md:gap-x-6 gap-y-16 md:gap-y-32">
+        <div className="grid grid-cols-12 gap-x-4 md:gap-x-6 gap-y-14 md:gap-y-24">
           {featured.map((p, i) => {
             const layouts = [
               { col: 'md:col-span-7', aspect: 'aspect-[16/11] md:aspect-[5/6]', mt: '' },
               { col: 'md:col-span-4 md:col-start-9', aspect: 'aspect-[16/11] md:aspect-[3/4]', mt: 'md:mt-40' },
               { col: 'md:col-span-5', aspect: 'aspect-[16/11] md:aspect-[4/5]', mt: '' },
               { col: 'md:col-span-6 md:col-start-7', aspect: 'aspect-[16/10] md:aspect-[16/11]', mt: 'md:-mt-12' },
-              { col: 'md:col-span-7', aspect: 'aspect-[16/11] md:aspect-[5/6]', mt: '' },
-              { col: 'md:col-span-4 md:col-start-9', aspect: 'aspect-[16/11] md:aspect-[3/4]', mt: 'md:mt-32' },
             ];
             const l = layouts[i % layouts.length];
             return (
@@ -215,26 +175,22 @@ export default function HomePage() {
             );
           })}
         </div>
-
-        <div className="mt-24 flex justify-center md:hidden">
-          <Link href="/exteriors" className="eyebrow ink-link">View all projects →</Link>
-        </div>
       </section>
 
-      {/* ─────── 04 · IMPACT (Stats) ─────── */}
+      {/* ─────── 05 · IMPACT ─────── */}
       <section id="impact">
         <Stats items={studio.stats} theme="dark" />
       </section>
 
-      {/* ─────── 05 · TESTIMONIALS ─────── */}
+      {/* ─────── 06 · TESTIMONIALS ─────── */}
       <section id="testimonials">
-        <SectionHeader number="05" label="In their words" right="Three client notes" wrapper />
+        <SectionHeader number="06" label="In their words" right="Three client notes" wrapper />
         <Testimonials items={studio.testimonials} />
       </section>
 
-      {/* ─────── 06 · CONTACT CTA ─────── */}
-      <section id="cta" className="container-edge max-w-[100rem] mx-auto pt-16 md:pt-24 pb-20 md:pb-32">
-        <SectionHeader number="06" label="Let's work together" />
+      {/* ─────── 07 · CONTACT CTA ─────── */}
+      <section id="cta" className="container-edge max-w-[100rem] mx-auto pt-10 md:pt-16 pb-14 md:pb-24">
+        <SectionHeader number="07" label="Let's work together" />
         <div className="grid grid-cols-12 gap-6 items-end">
           <Reveal variant="mask" className="col-span-12 md:col-span-9">
             <h2 className="display text-[12vw] md:text-[8rem] leading-[0.92]">

@@ -40,7 +40,7 @@ export default function AboutPage() {
   return (
     <>
       {/* HEADER */}
-      <section className="container-edge max-w-[100rem] mx-auto pt-32 md:pt-56 pb-12 md:pb-20">
+      <section className="container-edge max-w-[100rem] mx-auto pt-28 md:pt-44 pb-12 md:pb-20">
         <div className="grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-3">
             <p className="eyebrow text-smoke">— Section IV / Studio</p>
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* PHILOSOPHY */}
-      <section className="container-edge max-w-[100rem] mx-auto pb-20 md:pb-32">
+      <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-7 md:col-start-2">
             <Reveal>
@@ -101,7 +101,7 @@ export default function AboutPage() {
       <Services services={studio.services} />
 
       {/* OFFICE GALLERY */}
-      <section className="container-edge max-w-[100rem] mx-auto py-20 md:py-32">
+      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
         <div className="hairline-b pb-6 mb-16 flex items-end justify-between">
           <p className="eyebrow text-smoke">[ V.a ]  The studio, photographed</p>
           <p className="eyebrow text-smoke">{offices.length.toString().padStart(2, '0')} frames</p>
@@ -147,7 +147,7 @@ export default function AboutPage() {
       </section>
 
       {/* TIMELINE */}
-      <section className="container-edge max-w-[100rem] mx-auto py-20 md:py-32">
+      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
         <div className="hairline-b pb-6 mb-16">
           <p className="eyebrow text-smoke">[ V.b ]  A short chronology</p>
         </div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
       </section>
 
       {/* TEAM */}
-      <section className="container-edge max-w-[100rem] mx-auto py-20 md:py-32">
+      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
         <div className="hairline-b pb-6 mb-16">
           <p className="eyebrow text-smoke">[ V.c ]  The people</p>
         </div>

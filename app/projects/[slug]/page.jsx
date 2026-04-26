@@ -75,7 +75,7 @@ export default function ProjectPage({ params }) {
       </section>
 
       {/* Long description */}
-      <section className="container-edge max-w-[100rem] mx-auto py-20 md:py-32">
+      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-3">
             <p className="eyebrow text-smoke">— Project note</p>
@@ -91,7 +91,7 @@ export default function ProjectPage({ params }) {
       </section>
 
       {/* Gallery — lightbox-enabled mosaic */}
-      <section className="container-edge max-w-[100rem] mx-auto pb-20 md:pb-32">
+      <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
         <div className="hairline-b pb-6 mb-12 flex items-end justify-between">
           <p className="eyebrow text-smoke">[ Gallery ] {project.images.length.toString().padStart(2, '0')} frames</p>
           <p className="eyebrow text-smoke hidden md:block">Click to enlarge</p>
@@ -100,7 +100,7 @@ export default function ProjectPage({ params }) {
       </section>
 
       {/* Pull quote */}
-      <section className="container-edge max-w-[100rem] mx-auto pb-24 md:pb-40">
+      <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-24">
         <div className="hairline-b pb-6 mb-12">
           <p className="eyebrow text-smoke">— A note on the work</p>
         </div>
@@ -113,10 +113,10 @@ export default function ProjectPage({ params }) {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="container-edge max-w-[100rem] mx-auto pb-20 md:pb-32">
+        <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
           <div className="hairline-b pb-6 mb-12 flex items-end justify-between">
             <p className="eyebrow text-smoke">— Continue reading</p>
-            <Link href={`/${project.category}s`} className="eyebrow ink-link">All {project.category}s →</Link>
+            <Link href={`/projects#${project.category}`} className="eyebrow ink-link">All {project.type} projects →</Link>
           </div>
           <div className="grid grid-cols-12 gap-6">
             {related.map((r, i) => (

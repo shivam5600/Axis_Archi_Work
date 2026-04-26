@@ -25,7 +25,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="container-edge max-w-[100rem] mx-auto pt-32 md:pt-56 pb-20 md:pb-32">
+      <section className="container-edge max-w-[100rem] mx-auto pt-28 md:pt-44 pb-20 md:pb-32">
         <div className="grid grid-cols-12 gap-6 items-end mb-12 md:mb-20">
           <div className="col-span-12 md:col-span-3">
             <p className="eyebrow text-smoke">— Section VI / Contact</p>
