@@ -1,0 +1,310 @@
+{
+  "studio": {
+    "name": "Axis Architects",
+    "fullName": "Axis Architects — Architects & Engineers",
+    "tagline": "We Design Spaces That Tell Stories.",
+    "subTagline": "17+ years of architecture, interiors & urban design across Lucknow.",
+    "established": "2005",
+    "city": "Lucknow",
+    "eyebrow": "Best Architecture Firm in Lucknow",
+    "shortAbout": "Axis Architects is a Lucknow-based architecture and interior design firm with over 17 years of expertise. From luxury residences to corporate offices, our work reflects a deep commitment to design excellence, client trust, and timeless craft.",
+    "philosophy": "Lucknow's trusted design partner since 2005 — leaders in architecture & design delivering buildings that balance beauty, structure and function.",
+    "highlights": [
+      "17+ Years of Experience",
+      "500+ Projects Delivered",
+      "Led by Expert Architects",
+      "Eco-Friendly Design Focus"
+    ],
+    "stats": [
+      { "label": "Years of Experience", "value": "17+", "raw": 17 },
+      { "label": "Projects Completed", "value": "500+", "raw": 500 },
+      { "label": "Design Verticals", "value": "06", "raw": 6 },
+      { "label": "Client Satisfaction", "value": "100%", "raw": 100 }
+    ],
+    "services": [
+      {
+        "n": "01",
+        "title": "Architectural Design",
+        "blurb": "Custom designs that balance beauty, structure, and function.",
+        "icon": "blueprint"
+      },
+      {
+        "n": "02",
+        "title": "Interior Design",
+        "blurb": "Interiors that reflect your personality and elevate your space.",
+        "icon": "layers"
+      },
+      {
+        "n": "03",
+        "title": "Commercial Spaces",
+        "blurb": "High-impact commercial environments designed for business growth.",
+        "icon": "store"
+      },
+      {
+        "n": "04",
+        "title": "Residential Design",
+        "blurb": "Dream homes crafted with precision, comfort, and timeless style.",
+        "icon": "home"
+      },
+      {
+        "n": "05",
+        "title": "Institutional Projects",
+        "blurb": "Functional and inspiring spaces for schools, hospitals, and more.",
+        "icon": "institution"
+      },
+      {
+        "n": "06",
+        "title": "Township & Landscape",
+        "blurb": "Integrated planning for townships, parks, and outdoor spaces.",
+        "icon": "trees"
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Axis Architects transformed our office into a stunning, functional space. Professional team, flawless execution, and delivered on time.",
+        "name": "Rahul Srivastava",
+        "role": "Corporate Office, Lucknow"
+      },
+      {
+        "quote": "Our home is exactly what we dreamed of. The attention to detail and creativity is unmatched in Lucknow.",
+        "name": "Priya & Anil Verma",
+        "role": "Residential Villa, Gomti Nagar"
+      },
+      {
+        "quote": "From planning to handover, the Axis Architects team was exceptional. Highly recommend for any commercial project.",
+        "name": "Mohit Agarwal",
+        "role": "Commercial Showroom, Hazratganj"
+      }
+    ],
+    "filters": ["All", "Residential", "Commercial", "Institutional", "Hospitality", "Township"],
+    "contact": {
+      "email": "architects@axisarchi.com",
+      "phone": "+91 98390 97733",
+      "addressShort": "Hazratganj, Lucknow",
+      "address": "Uttam Palace, Sapru Marg, Hazratganj, Lucknow, Uttar Pradesh – 226001",
+      "hours": "Mon–Sat, 10:00 – 19:00 IST",
+      "mapsEmbed": "https://www.google.com/maps?q=Hazratganj,Lucknow&output=embed"
+    },
+    "social": [
+      { "label": "Instagram", "href": "https://www.instagram.com/axisarchi/" },
+      { "label": "Facebook", "href": "https://www.facebook.com/axisarchi" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/company/axis-archi/" },
+      { "label": "WhatsApp", "href": "https://wa.me/919839097733" }
+    ]
+  },
+  "projects": [
+    {
+      "slug": "uttam-palace",
+      "title": "Uttam Palace",
+      "category": "exterior",
+      "type": "Commercial",
+      "year": "2023",
+      "location": "Hazratganj, Lucknow",
+      "area": "42,000 sq ft",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-01.jpg",
+      "images": [
+        "/images/exterior/ext-01.jpg",
+        "/images/exterior/ext-02.jpg",
+        "/images/interior/int-01.jpg"
+      ],
+      "summary": "A landmark commercial address on Sapru Marg — a confident street wall that holds Hazratganj's heritage axis.",
+      "description": "Uttam Palace is a flagship commercial development conceived as a contemporary counterpart to the colonial architecture of Hazratganj. A deep stone plinth grounds the building to the avenue while a recessed glass volume above lets the upper floors recede behind a layered façade. Internally, the building is organised around a sky-lit atrium that brings daylight to every floor."
+    },
+    {
+      "slug": "penguin-tower",
+      "title": "Penguin Tower",
+      "category": "exterior",
+      "type": "Commercial",
+      "year": "2024",
+      "location": "Lucknow",
+      "area": "1,20,000 sq ft",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-02.jpg",
+      "images": [
+        "/images/exterior/ext-02.jpg",
+        "/images/exterior/ext-05.jpg",
+        "/images/interior/int-04.jpg"
+      ],
+      "summary": "A high-rise office tower that reads as a single, slim vertical gesture against the city skyline.",
+      "description": "Penguin Tower is a 14-storey commercial high-rise designed for boutique offices and a curated retail base. Vertical aluminium fins articulate the façade and modulate the strong westerly sun, while a double-height sky-lobby on the seventh floor offers tenants a shared garden space cantilevered out over the street."
+    },
+    {
+      "slug": "sr-hospital",
+      "title": "SR Hospital",
+      "category": "exterior",
+      "type": "Institutional",
+      "year": "2022",
+      "location": "Lucknow",
+      "area": "85,000 sq ft",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-03.jpg",
+      "images": [
+        "/images/exterior/ext-03.jpg",
+        "/images/exterior/ext-04.jpg",
+        "/images/interior/int-06.jpg"
+      ],
+      "summary": "A multi-specialty hospital where the architecture is calibrated for calm — daylight, soft volumes, and a clear path of care.",
+      "description": "SR Hospital was designed around a single principle: that a healing building must, above all, be quiet. Wards are organised around landscaped light-wells; circulation is split between staff and visitor flows; and the public faces of the building use a soft, warm palette of cream stone and timber to soften the institutional scale."
+    },
+    {
+      "slug": "modern-villa-gomti-nagar",
+      "title": "Modern Villa — Gomti Nagar",
+      "category": "exterior",
+      "type": "Residential",
+      "year": "2024",
+      "location": "Gomti Nagar, Lucknow",
+      "area": "8,400 sq ft",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-04.jpg",
+      "images": [
+        "/images/exterior/ext-04.jpg",
+        "/images/exterior/ext-05.jpg",
+        "/images/interior/int-04.jpg"
+      ],
+      "summary": "A modern residence in Gomti Nagar — three wings folded around a private central court.",
+      "description": "Conceived as a sequence of thresholds, the villa stretches around a generous central court anchored by an existing mango tree. Concrete fins articulate the western face, slowing the afternoon light into soft horizontal bands; the eastern wing opens fully to the morning sun via a deep, shaded verandah."
+    },
+    {
+      "slug": "green-meadows-township",
+      "title": "Green Meadows Township",
+      "category": "exterior",
+      "type": "Township",
+      "year": "2023",
+      "location": "Outskirts, Lucknow",
+      "area": "42 acres",
+      "status": "Phase I Completed",
+      "cover": "/images/exterior/ext-05.jpg",
+      "images": [
+        "/images/exterior/ext-05.jpg",
+        "/images/exterior/ext-06.jpg",
+        "/images/exterior/ext-07.jpg"
+      ],
+      "summary": "An integrated township master-plan that puts the green network — not the road network — at the centre of community life.",
+      "description": "Green Meadows is a 42-acre township master-plan in which the central spine is not a road but a continuous landscape — a pedestrian green that links every cluster, school and community building. The vehicular network is pushed to the perimeter, allowing the inner blocks to be unhurried, walkable, and densely planted."
+    },
+    {
+      "slug": "heritage-bungalow-mall-avenue",
+      "title": "Heritage Bungalow — Mall Avenue",
+      "category": "exterior",
+      "type": "Residential",
+      "year": "2022",
+      "location": "Mall Avenue, Lucknow",
+      "area": "9,200 sq ft",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-06.jpg",
+      "images": [
+        "/images/exterior/ext-06.jpg",
+        "/images/exterior/ext-07.jpg",
+        "/images/interior/int-02.jpg"
+      ],
+      "summary": "A careful adaptive reuse of a colonial-era bungalow, reawakened as a modern family home.",
+      "description": "The original 1930s bungalow was retained in its entirety; new programme is added as a discreet glass-and-steel pavilion to the rear, connected to the old house by a glazed link. The work is a study in restraint — every new element is set back, set apart, or set below the original."
+    },
+    {
+      "slug": "riverside-resort",
+      "title": "Riverside Resort",
+      "category": "exterior",
+      "type": "Hospitality",
+      "year": "2024",
+      "location": "Outskirts, Lucknow",
+      "area": "5.6 acres",
+      "status": "Completed",
+      "cover": "/images/exterior/ext-07.jpg",
+      "images": [
+        "/images/exterior/ext-07.jpg",
+        "/images/exterior/ext-04.jpg",
+        "/images/interior/int-03.jpg"
+      ],
+      "summary": "A boutique resort along the Gomti — an architecture of pitched roofs, deep verandahs, and a long, slow approach to the water.",
+      "description": "The resort is conceived as a small village of low pitched-roof pavilions threaded along the river edge. Locally fired brick, timber, and lime-washed walls give the architecture a quiet, regional character; the longest move is the approach itself — a 200-metre walk under a canopy of mature trees that ends at the water."
+    },
+    {
+      "slug": "the-wardrobe-showroom",
+      "title": "The Wardrobe Showroom",
+      "category": "interior",
+      "type": "Commercial",
+      "year": "2024",
+      "location": "Lucknow",
+      "area": "6,200 sq ft",
+      "status": "Completed",
+      "cover": "/images/interior/int-01.jpg",
+      "images": [
+        "/images/interior/int-01.jpg",
+        "/images/interior/int-02.jpg",
+        "/images/interior/int-03.jpg"
+      ],
+      "summary": "A flagship retail interior — inked walls, deep oak, and a sequence of carefully composed display rooms.",
+      "description": "The showroom is conceived as a series of \"rooms within a room\" — each defined by a different tonal pairing of plaster and timber. Custom millwork wraps the spine of the space, and the lighting is calibrated almost entirely for fabric: soft, warm, and shadow-free. The dressing rooms occupy the most private corner, lined in a deep ink-blue cloth."
+    },
+    {
+      "slug": "sapru-marg-residence",
+      "title": "Sapru Marg Residence",
+      "category": "interior",
+      "type": "Residential",
+      "year": "2023",
+      "location": "Hazratganj, Lucknow",
+      "area": "3,400 sq ft",
+      "status": "Completed",
+      "cover": "/images/interior/int-02.jpg",
+      "images": [
+        "/images/interior/int-02.jpg",
+        "/images/interior/int-04.jpg",
+        "/images/interior/int-05.jpg"
+      ],
+      "summary": "A family apartment on Sapru Marg — soft curves, plaster the colour of dawn, and a single long oak spine.",
+      "description": "Every interior wall is a soft curve and the rooms blur into one another. The palette is drawn from raw materials — limewashed plaster, cane, brushed brass — and held together by a single warm undertone. A continuous oak spine runs the full length of the apartment, holding books, art and storage in one quiet gesture."
+    },
+    {
+      "slug": "cantt-boutique-hotel",
+      "title": "Cantt Boutique Hotel",
+      "category": "interior",
+      "type": "Hospitality",
+      "year": "2023",
+      "location": "Cantonment, Lucknow",
+      "area": "18,000 sq ft",
+      "status": "Completed",
+      "cover": "/images/interior/int-03.jpg",
+      "images": [
+        "/images/interior/int-03.jpg",
+        "/images/interior/int-06.jpg"
+      ],
+      "summary": "A 22-room boutique hotel — a quiet, tonal palette and rooms that feel more like libraries than hotels.",
+      "description": "A 22-key boutique hotel with a careful, library-like character. The lobby is treated as a long reading room; the rooms are organised as small studies with a writing desk at every window. Nothing is loud, nothing is corporate — and every detail, down to the door pulls, is custom."
+    },
+    {
+      "slug": "aliganj-family-home",
+      "title": "Aliganj Family Home",
+      "category": "interior",
+      "type": "Residential",
+      "year": "2024",
+      "location": "Aliganj, Lucknow",
+      "area": "2,800 sq ft",
+      "status": "Completed",
+      "cover": "/images/interior/int-04.jpg",
+      "images": [
+        "/images/interior/int-04.jpg",
+        "/images/interior/int-07.jpg"
+      ],
+      "summary": "An interior of restraint, designed for a young family. The only ornament is daylight.",
+      "description": "A near-monochromatic interior — white plaster, pale stone, bleached ash — designed as a quiet stage for a young family's daily life. Light is the principal material; built-in millwork hides the practical clutter of family living without ever drawing attention to itself."
+    },
+    {
+      "slug": "indira-nagar-office",
+      "title": "Indira Nagar Office",
+      "category": "interior",
+      "type": "Commercial",
+      "year": "2022",
+      "location": "Indira Nagar, Lucknow",
+      "area": "4,400 sq ft",
+      "status": "Completed",
+      "cover": "/images/interior/int-05.jpg",
+      "images": [
+        "/images/interior/int-05.jpg",
+        "/images/interior/int-06.jpg"
+      ],
+      "summary": "A professional services office, organised around a single long table and one good library.",
+      "description": "An office for a small professional firm. The whole floor is treated as one continuous loft, anchored by a 24-foot communal worktable; private rooms are tucked behind a long, full-height oak library that doubles as the firm's archive."
+    }
+  ]
+}
