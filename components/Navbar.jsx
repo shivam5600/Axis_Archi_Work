@@ -79,9 +79,11 @@ export default function Navbar() {
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-soft bg-transparent',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-soft',
           scrolled ? 'py-2' : 'py-3',
-          overHero ? 'text-bone' : 'text-[var(--fg)]'
+          // Transparent over the hero; solid page-coloured bar once scrolled past it
+          // (and on all inner pages) so content never collides with the nav.
+          overHero ? 'text-bone bg-transparent' : 'text-[var(--fg)] bg-[var(--bg)] hairline-b'
         )}
       >
         <div className="mx-auto container-edge max-w-[100rem] flex items-center justify-between gap-4 md:gap-6">

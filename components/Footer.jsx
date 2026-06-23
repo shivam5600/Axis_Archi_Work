@@ -55,7 +55,7 @@ export default function Footer() {
   const pathname = usePathname();
   const isHome = pathname === '/';
   return (
-    <footer className="hairline mt-32 bg-ink text-bone" style={{ background: '#111111', color: '#F5F5F5' }}>
+    <footer className={`hairline bg-ink text-bone ${isHome ? '' : 'mt-32'}`} style={{ background: '#111111', color: '#F5F5F5' }}>
       <div className="container-edge max-w-[100rem] mx-auto pt-20 pb-10">
         {/* Pre-footer CTA — hidden on the homepage (merged into the homepage CTA section) */}
         {!isHome && (
