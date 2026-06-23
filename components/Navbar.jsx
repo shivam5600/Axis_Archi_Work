@@ -16,7 +16,6 @@ const NAV = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -24,13 +23,6 @@ export default function Navbar() {
   // since the navbar background is fully transparent at all times).
   const [overHero, setOverHero] = useState(pathname === '/');
   const dropdownTimerRef = useRef(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Track whether we're still over the homepage hero (so text flips light/dark).
   useEffect(() => {
@@ -79,25 +71,25 @@ export default function Navbar() {
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-soft',
-          scrolled ? 'py-2' : 'py-3',
-          // Transparent over the hero; solid page-coloured bar once scrolled past it
-          // (and on all inner pages) so content never collides with the nav.
-          overHero ? 'text-bone bg-transparent' : 'text-[var(--fg)] bg-[var(--bg)] hairline-b'
+          'fixed top-0 left-0 right-0 z-50 py-3 transition-colors duration-300 ease-soft',
+          overHero ? 'text-bone' : 'text-[var(--fg)]'
         )}
       >
+        {/* Background fades in once scrolled past the hero (opacity only — no layout/color thrash). */}
+        <div
+          aria-hidden
+          className={clsx(
+            'pointer-events-none absolute inset-0 -z-10 bg-[var(--bg)] hairline-b transition-opacity duration-300',
+            overHero ? 'opacity-0' : 'opacity-100'
+          )}
+        />
         <div className="mx-auto container-edge max-w-[100rem] flex items-center justify-between gap-4 md:gap-6">
           <Link
             href="/"
             aria-label="Axis Architects — home"
             className="group flex items-center gap-3 md:gap-4 shrink-0"
           >
-            <span
-              className={clsx(
-                'relative block transition-all duration-500 ease-soft',
-                scrolled ? 'h-14 w-[5.6rem] md:h-16 md:w-[6.6rem]' : 'h-16 w-[6.4rem] md:h-20 md:w-[8.4rem]'
-              )}
-            >
+            <span className="relative block h-16 w-[6.4rem] md:h-20 md:w-[8.4rem]">
               <Image
                 src="/images/brand/logo.png"
                 alt="Axis Architects logo"
@@ -109,10 +101,7 @@ export default function Navbar() {
               />
             </span>
             <span className="hidden lg:flex flex-col leading-none">
-              <span className={clsx(
-                'display tracking-tight transition-all duration-500',
-                scrolled ? 'text-xl' : 'text-[1.4rem]'
-              )}>
+              <span className="display tracking-tight text-[1.4rem]">
                 Axis Architects<span className="text-[var(--accent)]">.</span>
               </span>
               <span className="eyebrow mt-1.5 opacity-70">Architects & Engineers · Est. 2005</span>
