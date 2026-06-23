@@ -6,7 +6,7 @@ import Reveal from '@/components/Reveal';
 
 export const metadata = {
   title: 'Projects',
-  description: `Selected works by ${studio.name} — across Commercial, Hospitality, Institutional, Residential, Township and Office Interior projects in Lucknow.`,
+  description: `Selected works by ${studio.name} — across Commercial, Hospitality, Institutional, Residential, Township and Interior projects in Lucknow.`,
 };
 
 export default function ProjectsIndex() {
@@ -110,13 +110,14 @@ export default function ProjectsIndex() {
 
                   {/* All images for this project — primary on left, thumbs on right */}
                   {p.images.length === 1 ? (
-                    <div className="col-span-12">
+                    <div className="col-span-12 md:col-span-7">
                       <Link href={`/projects/${p.slug}`} className="block" data-cursor="hover">
                         <SketchImage
                           src={p.images[0]}
                           alt={p.title}
-                          aspect="aspect-[16/10] md:aspect-[16/9]"
-                          sizes="(max-width: 768px) 100vw, 100vw"
+                          mode="static"
+                          aspect="aspect-[4/5]"
+                          sizes="(max-width: 768px) 100vw, 58vw"
                         />
                       </Link>
                     </div>
@@ -127,7 +128,8 @@ export default function ProjectsIndex() {
                           <SketchImage
                             src={p.images[0]}
                             alt={`${p.title} — primary`}
-                            aspect="aspect-[16/10] md:aspect-[5/4]"
+                            mode="static"
+                            aspect="aspect-[4/5]"
                             sizes="(max-width: 768px) 100vw, 66vw"
                           />
                         </Link>
@@ -143,13 +145,8 @@ export default function ProjectsIndex() {
                             <SketchImage
                               src={src}
                               alt={`${p.title} — frame ${ii + 2}`}
-                              aspect={
-                                p.images.length === 2
-                                  ? 'aspect-[5/4]'
-                                  : p.images.length === 3
-                                    ? 'aspect-[5/4]'
-                                    : 'aspect-[5/4]'
-                              }
+                              mode="static"
+                              aspect="aspect-[4/5]"
                               sizes="(max-width: 768px) 50vw, 33vw"
                             />
                           </Link>

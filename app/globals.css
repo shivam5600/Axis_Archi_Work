@@ -125,6 +125,7 @@ html.lenis, html.lenis body { height: auto; }
 
   .sketch-wrap .sketch-paper,
   .sketch-wrap .real-img,
+  .sketch-wrap .sketch-photo,
   .sketch-wrap .sketch-overlay {
     position: absolute;
     inset: 0;
@@ -137,6 +138,12 @@ html.lenis, html.lenis body { height: auto; }
   .sketch-wrap .sketch-paper {
     z-index: 0;
     background: var(--paper-grad);
+    opacity: 1;
+  }
+
+  /* Provided sketch artwork (when SketchImage is given an explicit sketchSrc) */
+  .sketch-wrap .sketch-photo {
+    z-index: 1;
     opacity: 1;
   }
   .sketch-wrap .sketch-overlay {
@@ -173,8 +180,10 @@ html.lenis, html.lenis body { height: auto; }
     }
     .sketch-mode-hover:hover .sketch-paper,
     .sketch-mode-hover:hover .sketch-overlay,
+    .sketch-mode-hover:hover .sketch-photo,
     .sketch-mode-hover:focus-within .sketch-paper,
-    .sketch-mode-hover:focus-within .sketch-overlay {
+    .sketch-mode-hover:focus-within .sketch-overlay,
+    .sketch-mode-hover:focus-within .sketch-photo {
       opacity: 0;
     }
   }
@@ -182,7 +191,8 @@ html.lenis, html.lenis body { height: auto; }
   @media (hover: none) {
     .sketch-mode-hover .real-img { opacity: 1; }
     .sketch-mode-hover .sketch-paper,
-    .sketch-mode-hover .sketch-overlay { display: none; }
+    .sketch-mode-hover .sketch-overlay,
+    .sketch-mode-hover .sketch-photo { display: none; }
   }
 
   /* Grain overlay — static, painted once. No animation. */
@@ -280,10 +290,30 @@ html.lenis, html.lenis body { height: auto; }
   justify-content: center;
   padding: 1.5rem;
   transition: opacity 600ms cubic-bezier(0.65, 0, 0.35, 1);
+  /* Failsafe: if client JS never dismisses the splash (in-app browsers, blocked
+     storage, JS errors, very slow hydration), hide it anyway so the page is
+     never trapped behind it. Working devices unmount it well before this fires. */
+  animation: preloader-failsafe 0.6s ease 3.6s forwards;
 }
 .preloader.is-exiting {
   opacity: 0;
   pointer-events: none;
+}
+@keyframes preloader-failsafe {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* Hero slideshow progress bar — pure CSS (no per-frame re-renders) */
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.hero-progress {
+  transform-origin: left;
+  animation: hero-progress 6000ms linear forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-progress { animation: none; transform: scaleX(1); }
 }
 .preloader-inner {
   width: min(34rem, 100%);

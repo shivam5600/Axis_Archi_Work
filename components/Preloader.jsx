@@ -20,64 +20,61 @@ export default function Preloader() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (sessionStorage.getItem('axis-loaded') === '1') {
-      setVisible(false);
-      return;
-    }
-    document.documentElement.style.overflow = 'hidden';
 
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      cancelAnimationFrame(rafRef.current);
+      setPct(100);
+      setExiting(true);
+      try { sessionStorage.setItem('axis-loaded', '1'); } catch {}
+      setTimeout(() => setVisible(false), 700);
+    };
+
+    // Arm the hard safety stop FIRST — before any code that could throw — so the
+    // splash can NEVER get stuck (e.g. sessionStorage blocked in in-app browsers).
+    const hardStop = setTimeout(finish, 2200);
+
+    // Skip the splash entirely on repeat views in the same session.
+    let seen = false;
+    try { seen = sessionStorage.getItem('axis-loaded') === '1'; } catch {}
+    if (seen) {
+      clearTimeout(hardStop);
+      setVisible(false);
+      return () => {};
+    }
+
+    // Cosmetic progress bar
     let target = 8;
     let value = 0;
     const step = () => {
-      // Smoothly chase the target, leaving a little gap so the bar never sits at 100 too long
       value += (target - value) * 0.08;
       const shown = Math.min(99, Math.round(value));
       setPct(shown);
       if (shown < 99) rafRef.current = requestAnimationFrame(step);
     };
     rafRef.current = requestAnimationFrame(step);
-
-    // Push the target forward as paint milestones happen
     const bumps = [
-      { delay: 250,  to: 32 },
-      { delay: 600,  to: 58 },
-      { delay: 1100, to: 78 },
-      { delay: 1900, to: 92 },
+      { delay: 200,  to: 42 },
+      { delay: 650,  to: 74 },
+      { delay: 1300, to: 93 },
     ];
     const timers = bumps.map((b) => setTimeout(() => { target = b.to; }, b.delay));
 
-    const finish = () => {
-      target = 100;
-      setTimeout(() => {
-        cancelAnimationFrame(rafRef.current);
-        setPct(100);
-        setExiting(true);
-        sessionStorage.setItem('axis-loaded', '1');
-        // After fade-out, unmount and restore scroll
-        setTimeout(() => {
-          setVisible(false);
-          document.documentElement.style.overflow = '';
-        }, 700);
-      }, 200);
-    };
-
+    // Dismiss as soon as the page is loaded (hard stop above guarantees it regardless).
     const onLoad = () => finish();
     if (document.readyState === 'complete') {
-      // Already loaded — give a brief beat so the splash doesn't flash
-      setTimeout(finish, 600);
+      setTimeout(finish, 400);
     } else {
       window.addEventListener('load', onLoad, { once: true });
     }
-
-    // Hard safety: never block the user for more than 4.5s.
-    const hardStop = setTimeout(finish, 4500);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       timers.forEach(clearTimeout);
       clearTimeout(hardStop);
       window.removeEventListener('load', onLoad);
-      document.documentElement.style.overflow = '';
     };
   }, []);
 

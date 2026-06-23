@@ -50,13 +50,12 @@ export default function Stats({ items, theme = 'dark' }) {
       className={`relative ${dark ? 'bg-ink text-bone' : 'bg-[var(--bg)]'}`}
       style={dark ? { background: '#111111', color: '#F5F5F5' } : undefined}
     >
-      <div className="container-edge max-w-[100rem] mx-auto py-24 md:py-32">
-        <div className="flex items-end justify-between mb-12 pb-6 border-b border-white/15">
+      <div className="container-edge max-w-[100rem] mx-auto py-12 md:py-14">
+        <div className="flex items-end justify-between mb-8 pb-5 border-b border-white/15">
           <p className="eyebrow opacity-70">
             <span className="text-[var(--accent)] mr-3">[ 04 ]</span>
             Impact, in numbers
           </p>
-          <p className="eyebrow opacity-60 hidden md:block">Updated {new Date().getFullYear()}</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-x-8">
           {items.map((s, i) => (

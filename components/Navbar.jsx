@@ -20,6 +20,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  // Light nav while sitting over the dark hero; dark nav otherwise (kept legible
+  // since the navbar background is fully transparent at all times).
+  const [overHero, setOverHero] = useState(pathname === '/');
   const dropdownTimerRef = useRef(null);
 
   useEffect(() => {
@@ -28,6 +31,21 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Track whether we're still over the homepage hero (so text flips light/dark).
+  useEffect(() => {
+    if (pathname !== '/') { setOverHero(false); return; }
+    let hero = null;
+    const check = () => {
+      if (!hero) hero = document.querySelector('[data-hero]');
+      const h = hero ? hero.offsetHeight : window.innerHeight;
+      setOverHero(window.scrollY < h - 72);
+    };
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    return () => { window.removeEventListener('scroll', check); window.removeEventListener('resize', check); };
+  }, [pathname]);
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' && localStorage.getItem('theme');
@@ -55,29 +73,17 @@ export default function Navbar() {
     dropdownTimerRef.current = setTimeout(() => setShowDropdown(false), 180);
   };
 
+  const link = 'eyebrow ink-link transition-opacity opacity-65 hover:opacity-100';
+
   return (
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-soft',
-          scrolled ? 'py-2' : 'py-3'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-soft bg-transparent',
+          scrolled ? 'py-2' : 'py-3',
+          overHero ? 'text-bone' : 'text-[var(--fg)]'
         )}
       >
-        {/* Persistent backdrop — softer at top, stronger when scrolled */}
-        <div
-          aria-hidden
-          className={clsx(
-            'pointer-events-none absolute inset-x-0 top-0 h-full -z-10 transition-opacity duration-500',
-            scrolled ? 'opacity-100' : 'opacity-90'
-          )}
-          style={{
-            background:
-              'linear-gradient(to bottom, color-mix(in oklab, var(--bg) 92%, transparent), color-mix(in oklab, var(--bg) 70%, transparent) 70%, transparent)',
-            backdropFilter: 'blur(14px) saturate(1.1)',
-            WebkitBackdropFilter: 'blur(14px) saturate(1.1)',
-          }}
-        />
-
         <div className="mx-auto container-edge max-w-[100rem] flex items-center justify-between gap-4 md:gap-6">
           <Link
             href="/"
@@ -97,6 +103,7 @@ export default function Navbar() {
                 priority
                 sizes="160px"
                 className="object-contain logo-mark"
+                style={overHero ? { filter: 'brightness(0) invert(1)' } : undefined}
               />
             </span>
             <span className="hidden lg:flex flex-col leading-none">
@@ -106,7 +113,7 @@ export default function Navbar() {
               )}>
                 Axis Architects<span className="text-[var(--accent)]">.</span>
               </span>
-              <span className="eyebrow text-smoke mt-1.5 opacity-80">Architects & Engineers · Est. 2005</span>
+              <span className="eyebrow mt-1.5 opacity-70">Architects & Engineers · Est. 2005</span>
             </span>
           </Link>
 
@@ -124,10 +131,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={item.href}
-                      className={clsx(
-                        'eyebrow ink-link transition-colors flex items-center gap-1.5',
-                        active ? 'text-[var(--fg)]' : 'text-smoke hover:text-[var(--fg)]'
-                      )}
+                      className={clsx('eyebrow ink-link transition-opacity flex items-center gap-1.5', active ? 'opacity-100' : 'opacity-65 hover:opacity-100')}
                       aria-expanded={showDropdown}
                       aria-haspopup="true"
                     >
@@ -143,10 +147,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={clsx(
-                    'eyebrow ink-link transition-colors',
-                    active ? 'text-[var(--fg)]' : 'text-smoke hover:text-[var(--fg)]'
-                  )}
+                  className={clsx('eyebrow ink-link transition-opacity', active ? 'opacity-100' : 'opacity-65 hover:opacity-100')}
                 >
                   {item.label}
                 </Link>
@@ -155,7 +156,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="eyebrow ink-link text-smoke hover:text-[var(--fg)]"
+              className={link}
               aria-label="Toggle theme"
             >
               {dark ? 'Light' : 'Dark'}
@@ -182,7 +183,7 @@ export default function Navbar() {
         {/* PROJECTS DROPDOWN — desktop only */}
         <div
           className={clsx(
-            'hidden md:block absolute left-1/2 -translate-x-1/2 transition-all duration-300 ease-soft',
+            'hidden md:block absolute left-1/2 -translate-x-1/2 transition-all duration-300 ease-soft text-[var(--fg)]',
             showDropdown ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
           )}
           style={{ top: 'calc(100% - 0.5rem)' }}
@@ -233,7 +234,7 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div
         className={clsx(
-          'fixed inset-0 z-40 bg-[var(--bg)] transition-all duration-500 ease-soft md:hidden',
+          'fixed inset-0 z-40 bg-[var(--bg)] text-[var(--fg)] transition-all duration-500 ease-soft md:hidden',
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
       >

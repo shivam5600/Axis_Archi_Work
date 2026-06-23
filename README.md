@@ -1,6 +1,6 @@
 # Axis Architects — Studio Website
 
-A premium, editorial-grade architecture portfolio for **Axis Architects — Architects & Engineers** (Lucknow, est. 2005). Built on **Next.js 14 (App Router)**, **Tailwind CSS**, **Framer Motion**, and **Lenis** smooth scrolling. Hero slideshow, category-based projects index, animated stat counters, theme-aware pencil-sketch hover effect, lightbox project galleries, dark/light theme.
+A premium, editorial-grade architecture portfolio for **Axis Architects — Architects & Engineers** (Lucknow, est. 2005). Built on **Next.js 14 (App Router)**, **Tailwind CSS**, **Framer Motion**, and **Lenis** smooth scrolling. **Hero video slideshow**, category-based projects index, animated stat counters, **sketch→photo hover on the homepage category cards** (plain photos on sub-pages), lightbox project galleries, dark/light theme.
 
 ## Live URLs
 
@@ -49,8 +49,8 @@ web/
 ├── app/                              # Next.js App Router
 │   ├── layout.jsx                    # fonts, smooth scroll, navbar, footer, cursor, preloader
 │   ├── globals.css                   # theme tokens, sketch effect, grain, reveals
-│   ├── page.jsx                      # Homepage (slideshow → categories → about → services → featured → stats → testimonials → CTA)
-│   ├── projects/page.jsx             # Projects index (all categories, every image)
+│   ├── page.jsx                      # Homepage (video hero → categories → about → stats → testimonials → merged dark CTA)
+│   ├── projects/page.jsx             # Projects index (all categories, plain photos, portrait 4:5)
 │   ├── projects/[slug]/page.jsx      # Individual project detail
 │   ├── about/page.jsx
 │   ├── contact/page.jsx + layout.jsx # form + map; layout exports metadata
@@ -59,15 +59,15 @@ web/
 │   └── apple-icon.png                # apple touch icon
 │
 ├── components/
-│   ├── HeroSlideshow.jsx             # 5-image hero — mobile stacked / desktop full-bleed
+│   ├── HeroSlideshow.jsx             # VIDEO hero — desktop full-bleed / mobile 16:9 band; poster-first, full-length playback, play/pause toggle
 │   ├── Navbar.jsx                    # logo, dropdown, theme toggle, mobile drawer
 │   ├── Footer.jsx                    # dark 4-column footer
 │   ├── Preloader.jsx                 # full-screen splash with progress
 │   ├── SmoothScroll.jsx              # Lenis (skipped on touch / reduced-motion)
 │   ├── Cursor.jsx                    # event-delegated mouse-follow cursor
 │   ├── Reveal.jsx                    # IntersectionObserver reveals
-│   ├── SketchImage.jsx               # pencil-sketch-on-paper / hover for photo
-│   ├── Marquee.jsx                   # looping headline strip
+│   ├── SketchImage.jsx               # sketch→photo hover (sketchSrc = provided art, home cards); mode="static" = plain photo (sub-pages)
+│   ├── Marquee.jsx                   # looping headline strip (unused — removed from homepage)
 │   ├── Lightbox.jsx                  # click-to-zoom gallery
 │   ├── Services.jsx                  # 6-tile grid with custom SVG icons
 │   ├── Stats.jsx                     # animated counters
@@ -75,14 +75,17 @@ web/
 │   ├── ProjectGrid.jsx               # editorial mosaic (legacy — used by Lightbox preview)
 │   └── SectionHeader.jsx             # consistent section header bar
 │
-├── data/projects.json                # SINGLE source of truth: studio + categories + slideshow + projects
-├── lib/projects.js                   # helpers: getProjects, getProject, getRelated, projectsByCategory, etc.
+├── data/projects.json                # studio + categories + slideshow (videos) + 19 projects
+├── data/links.js                     # EDITABLE social links (single source: Instagram / FB / LinkedIn / WhatsApp)
+├── lib/projects.js                   # helpers: getProjects, getProject, getRelated, projectsByCategory; merges links.js social
 │
-├── public/images/
-│   ├── brand/    logo.png            # cropped brand mark (1702 × 1100)
-│   ├── slideshow/ slide-01.jpg … slide-05.jpg
-│   ├── projects/  commercial/ hospitality/ institutional/ residential/ township/ offices/
-│   └── office/    office-01.jpg … office-07.jpg   (Axis studio interior — used on /about)
+├── public/
+│   ├── videos/hero/  township.mp4 · hospitality.mp4 (+ *-poster.jpg)   # hero VIDEO slideshow
+│   └── images/
+│       ├── brand/       logo.png            # cropped brand mark (1702 × 1100)
+│       ├── categories/  <cat>-sketch.jpg + <cat>-photo.jpg   # homepage card hover art (team-provided)
+│       ├── about/       founder-namit-tandon.jpg
+│       └── projects/    commercial/ hospitality/ institutional/ residential/ township/ offices/   # client photos only
 │
 ├── scripts/sync-shareable.sh         # regenerate ../web-shareable/
 ├── app.py · run.sh                   # one-shot launchers
@@ -123,17 +126,24 @@ All studio info, services, stats, testimonials, contact, slideshow, categories a
 
 3. The new project automatically appears in its category section on `/projects` and gets its own page at `/projects/your-new-project`.
 
-### Featured projects on homepage
+### Hero videos (slideshow)
 
-Open `app/page.jsx` and edit the `FEATURED_SLUGS` array near the top. The grid cycles through four pre-designed mosaic positions.
+Edit `data.slideshow[]` — each entry is `{ src, video: true, poster, title, type, location }` where `src` is an mp4 under `public/videos/hero/`. **Array order = play order**; the first video eager-loads, the rest lazy. Add an entry + drop the mp4 in — no code change needed. (The homepage Featured-projects section was removed, so there is no `FEATURED_SLUGS` array anymore.)
 
-### Update slideshow
+### Change social / external links
 
-Edit `data.slideshow[]` — each entry has `src`, `title`, `type`, `location`. Drop new images into `public/images/slideshow/`.
+Edit **`data/links.js`** — the single source for footer social links:
+```js
+export const SOCIAL_LINKS = [
+  { label: 'Instagram', href: 'https://www.instagram.com/axisarchilko/' },
+  // Facebook, LinkedIn, WhatsApp …
+];
+```
+Change a URL there and it updates everywhere.
 
 ### Update studio info
 
-Edit the top-level `"studio"` object in `data/projects.json`. Includes `social[]` with working URLs (Instagram, Facebook, LinkedIn, WhatsApp).
+Edit the top-level `"studio"` object in `data/projects.json` (name, tagline, stats, services, testimonials, contact). **Social links are not here** — they live in `data/links.js`.
 
 ---
 
@@ -170,11 +180,11 @@ Stored in `localStorage`. Set by the **Dark/Light** button in the navbar. Respec
 
 ### Hero slideshow
 
-`components/HeroSlideshow.jsx`. Two layouts via Tailwind `md:hidden` / `hidden md:block`:
-- **Mobile**: 16:10 image area on top + slide controls + tagline + CTA stacked below
-- **Desktop**: full-bleed h-[100svh] with overlay text
+`components/HeroSlideshow.jsx`. **Two device-specific layouts** chosen at runtime (`matchMedia`), sharing one rotation/video state:
+- **Mobile**: video in a **16:9 band** (full frame, no over-crop) with title/meta/controls below.
+- **Desktop**: full-bleed `h-[100svh]` with overlay text.
 
-Auto-advances every 6 s (controlled by `AUTO_MS`). Pauses on hover. Keyboard ←/→ supported.
+A high-res **poster paints first** (never black); the active slide's video lazy-loads and fades in when it can play. Videos autoplay (muted, `playsInline`) and the slideshow **advances when each video ends** (`onEnded`, full-length) — the CSS progress bar is synced to the real video duration. The rightmost **play/pause toggle** acts on the mounted video (works in the user gesture, iOS Low-Power safe). Keyboard ←/→ supported. Add a video in `data/slideshow[]` — no code change.
 
 ### Contact form
 

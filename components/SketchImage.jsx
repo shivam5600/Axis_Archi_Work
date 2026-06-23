@@ -25,6 +25,7 @@ import clsx from 'clsx';
 export default function SketchImage({
   src,
   alt = '',
+  sketchSrc,
   mode = 'hover',
   priority = false,
   sizes = '(max-width: 768px) 100vw, 50vw',
@@ -65,7 +66,7 @@ export default function SketchImage({
       )}
       data-cursor="hover"
     >
-      {mode === 'hover' && (
+      {mode === 'hover' && !sketchSrc && (
         <>
           {/* Layer A: paper background */}
           <span className="sketch-paper" aria-hidden />
@@ -119,6 +120,20 @@ export default function SketchImage({
             </svg>
           )}
         </>
+      )}
+
+      {/* Provided sketch artwork (default layer; fades out on hover to reveal the photo) */}
+      {mode === 'hover' && sketchSrc && (
+        <div className="sketch-photo" aria-hidden>
+          <Image
+            src={sketchSrc}
+            alt=""
+            fill
+            priority={priority}
+            sizes={sizes}
+            className="object-cover"
+          />
+        </div>
       )}
 
       {/* Layer C: real photo */}

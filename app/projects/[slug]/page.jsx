@@ -42,7 +42,7 @@ export default function ProjectPage({ params }) {
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-9">
               <Reveal variant="mask">
-                <p className="eyebrow opacity-70">[ {project.category} ]  · {project.year}</p>
+                <p className="eyebrow opacity-70">[ {project.category} ]{project.year ? `  · ${project.year}` : ''}</p>
               </Reveal>
               <Reveal variant="mask" delay={120}>
                 <h1 className="display text-[13vw] sm:text-[11vw] md:text-[8.5rem] leading-[0.92] md:leading-[0.9] mt-3">
@@ -65,7 +65,7 @@ export default function ProjectPage({ params }) {
             { k: 'Year', v: project.year },
             { k: 'Area', v: project.area },
             { k: 'Status', v: project.status },
-          ].map((row, i) => (
+          ].filter((row) => row.v).map((row, i) => (
             <Reveal key={row.k} delay={i * 60} className="px-6 py-8">
               <p className="eyebrow text-smoke">{row.k}</p>
               <p className="display text-2xl md:text-3xl mt-2">{row.v}</p>
@@ -123,7 +123,7 @@ export default function ProjectPage({ params }) {
               <Reveal key={r.slug} delay={i * 80} className="col-span-12 md:col-span-4">
                 <Link href={`/projects/${r.slug}`} className="block">
                   <div className="img-hover">
-                    <SketchImage src={r.cover} alt={r.title} aspect="aspect-[4/5]" mode="hover" />
+                    <SketchImage src={r.cover} alt={r.title} aspect="aspect-[4/5]" mode="static" />
                   </div>
                   <h3 className="display text-3xl mt-5"><span className="ink-link">{r.title}</span></h3>
                   <p className="eyebrow text-smoke mt-2">{r.location} · {r.year}</p>

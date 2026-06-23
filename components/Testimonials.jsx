@@ -5,10 +5,10 @@ import Reveal from './Reveal';
 export default function Testimonials({ items }) {
   return (
     <section className="container-edge max-w-[100rem] mx-auto pb-32 md:pb-40">
-      <div className="grid grid-cols-12 gap-6 mb-16 md:mb-24">
-        <div className="col-span-12 md:col-span-9 md:col-start-2">
+      <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+        <div className="col-span-12">
           <Reveal variant="mask">
-            <h2 className="display text-[10vw] md:text-[7rem] leading-[0.92]">
+            <h2 className="display text-3xl md:text-[3.75rem] leading-[1.0] text-left">
               Trusted, <em className="italic font-light">quietly</em><span className="text-[var(--accent)]">.</span>
             </h2>
           </Reveal>

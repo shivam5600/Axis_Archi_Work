@@ -11,15 +11,18 @@ axis site/
 │   ├── .git/                 # tracks: github.com/shivam5600/Axis_Archi_Work (main)
 │   ├── .vercel/              # links to: kumarshivamiitbhu-7050s-projects/axis-archi-work
 │   ├── .originals/photos/    # full-resolution photo backups (gitignored, not deployed)
-│   ├── public/images/
-│   │   ├── brand/            #   logo.png + logo-original.png (uncropped backup)
-│   │   ├── slideshow/        #   slide-01.jpg … slide-05.jpg  (hero carousel)
-│   │   ├── projects/         #   commercial/ hospitality/ institutional/ residential/ township/ offices/
-│   │   └── office/           #   office-01..07 (Axis studio interior shots — used on /about)
+│   ├── public/
+│   │   ├── videos/hero/      #   township.mp4 + hospitality.mp4 (+ *-poster.jpg) — hero VIDEO slideshow
+│   │   └── images/
+│   │       ├── brand/        #   logo.png + logo-original.png (uncropped backup)
+│   │       ├── categories/   #   <cat>-sketch.jpg + <cat>-photo.jpg (homepage card hover art, team-provided)
+│   │       ├── about/        #   founder-namit-tandon.jpg
+│   │       └── projects/     #   commercial/ hospitality/ institutional/ residential/ township/ offices/ (client photos only)
 │   ├── app/                  # routes
 │   ├── components/           # reusable UI
-│   ├── data/projects.json    # SINGLE source of truth: studio info + categories + slideshow + projects
-│   ├── lib/projects.js       # helpers
+│   ├── data/projects.json    # studio info + categories + slideshow (videos) + 19 projects
+│   ├── data/links.js         # ◄ EDITABLE social links (single source) — change Instagram/FB/LinkedIn/WhatsApp here
+│   ├── lib/projects.js       # helpers (merges links.js social into `studio`)
 │   └── scripts/
 │       └── sync-shareable.sh # regenerates the sibling web-shareable/ folder
 └── web-shareable/            # CLEAN distribution mirror (no .git / .vercel / node_modules)
@@ -44,41 +47,42 @@ axis site/
 
 | URL | Purpose |
 |---|---|
-| `/` | Home — slideshow hero, categories grid, about, services, featured, stats, testimonials, CTA |
-| `/projects` | All projects organised by category, every image shown |
-| `/projects/[slug]` | Individual project detail (10 prerendered: stallion-honda, jewellers-flagship, aquatic-centre, boutique-resort, banquet-hall, ambalika-campus, kalra-residence, modern-villa, greenfield-township, studio-office) |
-| `/about` | Studio philosophy, stats, services, office gallery, chronology, team |
+| `/` | Home — **video** hero, categories grid (sketch→photo hover), about, stats, testimonials, **merged dark CTA**. (Marquee, Services, Featured sections were removed per client.) |
+| `/projects` | All projects by category — **plain photos** (no sketch on sub-pages), portrait 4:5 |
+| `/projects/[slug]` | Individual project detail (**19 prerendered** — see portfolio table below; related thumbs are plain photos too) |
+| `/about` | Studio philosophy + **founder photo & note**, stats, services, chronology, team. (Office gallery removed.) |
 | `/contact` | Form + map embed (mailto fallback) |
 | `/exteriors`, `/interiors` | **308 redirects** → `/projects` (legacy, kept for old links) |
 | `/icon.png`, `/apple-icon.png` | Favicons (auto-served by Next.js App Router conventions) |
 
 ### Categories
 
-Six verticals defined in `data.categories[]`. Each has slug, title, description, cover. Used by:
-- Homepage category grid (Section 01)
+Six verticals defined in `data.categories[]`. Each has slug, title, description, `cover` (real photo) **and `sketch`** (team-provided sketch art). Used by:
+- Homepage category grid (Section 01) — sketch shows by default, crossfades to the real photo on hover
 - Navbar Projects dropdown (hover → 6-tile panel)
 - `/projects` jump nav and section anchors (`#commercial`, `#hospitality`, etc.)
 
 ```
 commercial · hospitality · institutional · residential · township · offices
 ```
+> The `offices` slug/anchor is **kept**, but its display title is **"Interiors"** (renamed from "Office Interiors" everywhere it shows).
 
 ### Components
 
 | Component | Role |
 |---|---|
-| `HeroSlideshow` | 5-image carousel — auto-advances every 6s, separate setTimeout (advance) + RAF (progress bar). **Mobile = stacked layout** (image 16:10 + text below). **Desktop = full-bleed overlay**. Pauses on hover. ←/→ keyboard. |
-| `SketchImage` | Default = pencil sketch on theme-aware paper (cream / dark grey). Hover = real photo crossfades in. SVG `feConvolveMatrix` edge filter, lazy-mounted via IntersectionObserver. |
+| `HeroSlideshow` | **Two device-specific layouts**, shared rotation/video state (data-driven via `slideshow[]` `{video:true, poster, title, type, location}`). **Desktop** = full-bleed cinematic video; **mobile** = video in a **16:9 band** (full frame, no portrait over-crop) + text below. A high-res **poster always paints first** (never black); only the active slide mounts a video (lazy) and it **fades in when it can play**. Autoplay muted/playsInline; **advances when each video ENDS** (full-length playback, `onEnded`) with a duration-synced CSS progress bar + a fallback timer if a video can't play. **Play/pause toggle** (rightmost control) acts on the mounted video so it works in the user gesture (iOS Low-Power safe); optimistic icon flip. ←/→ keyboard. |
+| `SketchImage` | `mode="hover"` (default): shows a sketch by default, real photo on hover. If `sketchSrc` is passed → uses that provided sketch art (homepage category cards); otherwise an SVG `feConvolveMatrix` edge filter (fragile — looks faint on photos). `mode="static"` → just the photo, no sketch (used on **all sub-pages**). |
 | `Navbar` | Logo image (cropped, ~80–96px tall) · brand wordmark · 4 nav items · Projects dropdown · theme toggle · Get a Quote CTA · mobile drawer with category accordion. Persistent backdrop blur. |
-| `Footer` | Dark 4-column footer · logo (inverted in dark) · Quick Links / Services / Contact lists · social links (real URLs) |
-| `Preloader` | Full-screen splash on first load · logo + counter + progress bar · sessionStorage-gated · 4.5s safety stop |
+| `Footer` | Dark footer · logo (inverted) · Quick Links / Services / **Contact + "Follow" (social icon buttons)**. Social links/icons come from `data/links.js`. **Pre-footer dark CTA is route-aware** (hidden on `/`). Bottom bar: copyright + **"Developed by Nextgrow"** (→ nextgrow.in) — right-aligned on desktop, **centered + smaller font on mobile** (so the copyright doesn't wrap raggedly). |
+| `Preloader` | Full-screen splash on first load · logo + progress. **Bulletproof**: safety timer armed BEFORE any storage access, `sessionStorage` in try/catch, no JS scroll-lock, + a **CSS-only failsafe** (`@keyframes preloader-failsafe`, ~3.6s) so it can NEVER trap users (in-app browsers / blocked storage / JS hang). ~2.2s on normal loads. |
 | `SmoothScroll` | Lenis · skipped on touch / `prefers-reduced-motion` |
 | `Cursor` | Lerped dot, event-delegated, hidden on touch |
 | `Reveal` | IntersectionObserver fade-up + curtain mask reveals |
 | `Stats` | Animated counters (17+, 500+, 06, 100%) on dark strip |
-| `Services` | 6-tile grid with custom SVG line-art icons |
+| `Services` | 6-tile grid with custom SVG line-art icons — **only on /about** now (removed from homepage) |
 | `Testimonials` | 3 quote cards |
-| `Marquee` | Looping headline strip (lists 6 categories) |
+| `Marquee` | Looping headline strip — **removed from homepage** per client (component file kept but unused) |
 | `Lightbox` | Click-to-zoom gallery with keyboard nav |
 | `SectionHeader` | Consistent `[ NN ] Label` bar above sections |
 
@@ -108,25 +112,40 @@ commercial · hospitality · institutional · residential · township · offices
 - Stats: **17+ years · 500+ projects · 06 verticals · 100% satisfaction**
 - Accent: **`#CC1F1F`** (CSS var `--accent`)
 - Display font: **Fraunces** (variable serif) · Body: **Inter Tight** · Mono: **JetBrains Mono**
-- All studio data lives in `data/projects.json` — single source of truth
+- Studio data lives in `data/projects.json`; **social links live in `data/links.js`** (edit links there, single source — `lib/projects.js` merges them into `studio.social`)
 
-## Real project portfolio (10 featured, 23 images total)
+## Real project portfolio (19 projects — rebuilt entirely on client-provided "today's files")
 
-| Project | Category | Images |
-|---|---|---|
-| Stallion Honda Showroom | Commercial | 1 |
-| Jewellers Flagship Store | Commercial | 1 |
-| Aquatic Centre | Commercial | 1 |
-| Boutique Resort | Hospitality | 2 |
-| Banquet Hall | Hospitality | 2 |
-| Ambalika Institute Campus | Institutional | 4 |
-| Kalra Residence | Residential | 2 |
-| Modern Villa | Residential | 2 |
-| Greenfield Township | Township | 5 |
-| Studio Office Interior | Offices | 3 |
+Counts per category: Commercial 3 · Hospitality 3 · Institutional 3 · Residential 3 · Township 3 · Interiors 4. Each project has exactly one image. The category-card photo doubles as that category's lead project. **⚑ = placeholder title pending client confirmation** (no signage in the photo).
+
+| Project | Category | slug | image source |
+|---|---|---|---|
+| Aquatic Centre | Commercial | aquatic-centre | projects/commercial/swimming-centre.jpg |
+| Jewellers Flagship Store | Commercial | jewellers-flagship | projects/commercial/rahul-jwellers.jpg |
+| Gurveer Royal | Commercial | gurveer-royal | categories/commercial-photo.jpg |
+| The Fern Hotel | Hospitality | the-fern-hotel | categories/hospitality-photo.jpg |
+| Savotel Hotel | Hospitality | savotel-hotel | projects/hospitality/savotel-hotel.jpg |
+| New Naresh Hotel | Hospitality | new-naresh-hotel | projects/hospitality/new-naresh-hotel.jpg |
+| Sri Sharda Institute of Mgmt & Technology | Institutional | sri-sharda-institute | categories/institutional-photo.jpg |
+| SR Global School | Institutional | sr-global-school | projects/institutional/sr-global-school.jpg |
+| Kunwar Global School | Institutional | kunwar-global-school | projects/institutional/kunwar-global-school.jpg |
+| ⚑ Brick & Stone Residence | Residential | brick-stone-residence | categories/residential-photo.jpg |
+| ⚑ Corner Plot Residence | Residential | corner-plot-residence | projects/residential/residential-02.jpg |
+| ⚑ Courtyard Farmhouse | Residential | courtyard-farmhouse | projects/residential/residential-03.jpg |
+| ⚑ Riverside Township | Township | riverside-township | categories/township-photo.jpg |
+| ⚑ Township Apartments | Township | township-apartments | projects/township/township-landscape-02.jpg |
+| ⚑ Heritage Towers | Township | heritage-towers | projects/township/township-landscape-03.jpg |
+| ⚑ Modern Bedroom Interior | Interiors | modern-bedroom-interior | categories/interiors-photo.jpg |
+| Panchraama Restaurant | Interiors | panchraama-restaurant | projects/offices/panchraama-restaurant.jpg |
+| Karam Industries Office | Interiors | karam-industries-office | projects/offices/karam-industries-office.jpg |
+| ⚑ Hotel Lobby Interior | Interiors | hotel-lobby-interior | projects/offices/interiors-02.jpg |
+
+New-project copy is intentionally generic/safe (no fabricated year/area). All previous images were deleted from `public/`.
 
 ## Recent ship history
 
+- **(Jun 2026 — reliability + hero/footer polish — LIVE, uncommitted)** Fixed "site never loads" (bulletproof `Preloader` + CSS failsafe). Hero rewritten: **device-specific layouts** (desktop full-bleed / mobile 16:9 band), poster-first, lazy per-slide video, **full-length playback** (advance on `onEnded`, duration-synced progress), **responsive play/pause toggle** (rightmost, optimistic flip, gesture-safe). Cache headers for `/videos` + `/images` in `next.config`. Footer: **social icon buttons** + "Follow" block, "Developed by Nextgrow" right (desktop) / centered+smaller (mobile).
+- **(Jun 2026 — client change-request rounds — LIVE, uncommitted)** Hero images→**video** (poster + CRF 20); "Office Interiors"→**"Interiors"**; category cards = team sketch→photo hover; **deleted** homepage Marquee/Services/Featured + About office gallery; **merged dark CTA**; **founder photo + note** on /about; **rebuilt projects → 19** on client photos (all old images deleted); sub-pages **plain photos**; `data/links.js` (Instagram → `axisarchilko`). Deployed via `vercel --prod`; working tree is **uncommitted**.
 - `5326ca6` fix(hero): mobile slideshow shows full image (stacked layout)
 - `f68e953` feat: hero slideshow, real categories, true sketch effect
 - `5a206c9` docs: add AGENTS.md, README updates, sync-shareable script
@@ -134,9 +153,12 @@ commercial · hospitality · institutional · residential · township · offices
 
 ## What's intentionally not done (pickup later)
 
+- **Commit + `git push` the current working changes** — they're deployed to Vercel but uncommitted in git.
+- **Confirm the 8 ⚑ placeholder project titles** with the client (residential ×3, township ×3, two interiors).
+- **Higher-res hero videos** — source is only 720p (full-screen softness ceiling); need 1080p/4K from the team for crisp full-screen.
+- **Hand-drawn sketches for the 13 project photos** if the sub-page sketch→photo reveal is wanted — can't auto-generate at the team's quality locally (only ffmpeg here).
+- Double-check **Facebook / LinkedIn / WhatsApp** URLs in `data/links.js` (still on older `axisarchi` handles).
 - Real contact form backend (Resend/Postmark) — currently mailto:
 - Custom domain (e.g., axisarchi.com) on Vercel
-- Per-project richer copy / image counts beyond what the source folders provided
-- WebP/AVIF pre-conversion of source JPGs (next/image converts at runtime)
 - Open Graph designed share image (currently uses cover photos)
 - Vercel Analytics / spam honeypot on contact form

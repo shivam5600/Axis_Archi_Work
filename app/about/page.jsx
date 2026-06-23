@@ -10,16 +10,6 @@ export const metadata = {
   description: studio.shortAbout,
 };
 
-const offices = [
-  '/images/office/office-01.jpg',
-  '/images/office/office-02.jpg',
-  '/images/office/office-03.jpg',
-  '/images/office/office-04.jpg',
-  '/images/office/office-05.jpg',
-  '/images/office/office-06.jpg',
-  '/images/office/office-07.jpg',
-];
-
 const team = [
   { name: 'Principal Architect', role: 'Founder · Design Director' },
   { name: 'Associate Architect', role: 'Project Lead — Architecture' },
@@ -73,12 +63,28 @@ export default function AboutPage() {
               </p>
             </Reveal>
           </div>
-          <div className="col-span-12 md:col-span-3 md:col-start-10 self-end">
+          <div className="col-span-12 md:col-span-4 md:col-start-9 self-end">
             <Reveal delay={160}>
+              <div className="relative aspect-[1156/1361] mb-6 overflow-hidden">
+                <Image
+                  src="/images/about/founder-namit-tandon.jpg"
+                  alt="AR. Namit Tandon, Principal Architect & Founder"
+                  fill
+                  sizes="(max-width: 768px) 92vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
               <p className="eyebrow text-smoke mb-3">Founders' note</p>
-              <p className="body-serif text-[var(--fg-soft)] leading-relaxed">
-                Founded in {studio.established} in {studio.city}. {studio.philosophy}
-              </p>
+              <div className="body-serif text-[var(--fg-soft)] leading-relaxed space-y-4">
+                <p className="italic">“Function follows form.”</p>
+                <p>
+                  We believe that great architecture is not just about what a building does — it is about what it says. Every space we design begins with a question: what should this place feel like? Structure, material, and light are then assembled in service of that feeling.
+                </p>
+                <p>
+                  Since founding Axis Architects in 2005, I have had the privilege of shaping spaces across Lucknow — homes, institutions, showrooms, and townships — each one a quiet attempt to balance beauty with purpose.
+                </p>
+                <p className="text-[var(--fg)]">— AR. Namit Tandon, Principal Architect &amp; Founder</p>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -99,52 +105,6 @@ export default function AboutPage() {
 
       {/* SERVICES */}
       <Services services={studio.services} />
-
-      {/* OFFICE GALLERY */}
-      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
-        <div className="hairline-b pb-6 mb-16 flex items-end justify-between">
-          <p className="eyebrow text-smoke">[ V.a ]  The studio, photographed</p>
-          <p className="eyebrow text-smoke">{offices.length.toString().padStart(2, '0')} frames</p>
-        </div>
-
-        <div className="grid grid-cols-12 gap-6">
-          <Reveal className="col-span-12 md:col-span-8">
-            <div className="img-hover relative aspect-[16/10]">
-              <Image src={offices[0]} alt="Studio interior" fill sizes="(max-width: 768px) 100vw, 70vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal delay={120} className="col-span-12 md:col-span-4 md:mt-32">
-            <div className="img-hover relative aspect-[16/11] md:aspect-[3/4]">
-              <Image src={offices[1]} alt="Studio detail" fill sizes="(max-width: 768px) 92vw, 30vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal className="col-span-12 md:col-span-5">
-            <div className="img-hover relative aspect-[16/11] md:aspect-[4/5]">
-              <Image src={offices[2]} alt="Studio corner" fill sizes="(max-width: 768px) 92vw, 40vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal delay={120} className="col-span-12 md:col-span-7 md:-mt-12">
-            <div className="img-hover relative aspect-[16/10]">
-              <Image src={offices[3]} alt="Studio shelves" fill sizes="(max-width: 768px) 92vw, 60vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal className="col-span-6 md:col-span-4 md:mt-12">
-            <div className="img-hover relative aspect-[3/4]">
-              <Image src={offices[4]} alt="" fill sizes="(max-width: 768px) 46vw, 30vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal delay={80} className="col-span-6 md:col-span-4">
-            <div className="img-hover relative aspect-[3/4]">
-              <Image src={offices[5]} alt="" fill sizes="(max-width: 768px) 46vw, 30vw" className="object-cover" />
-            </div>
-          </Reveal>
-          <Reveal delay={160} className="col-span-12 md:col-span-4">
-            <div className="img-hover relative aspect-[16/10] md:aspect-[3/4]">
-              <Image src={offices[6]} alt="" fill sizes="(max-width: 768px) 92vw, 30vw" className="object-cover" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* TIMELINE */}
       <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
