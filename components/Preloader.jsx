@@ -32,7 +32,7 @@ export default function Preloader() {
       setTimeout(() => setVisible(false), 700);
     };
 
-    // Arm the hard safety stop FIRST — before any code that could throw — so the
+    // Arm the hard safety stop FIRST, before any code that could throw, so the
     // splash can NEVER get stuck (e.g. sessionStorage blocked in in-app browsers).
     const hardStop = setTimeout(finish, 2200);
 

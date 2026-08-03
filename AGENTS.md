@@ -12,7 +12,7 @@ axis site/
 │   ├── .vercel/              # links to: kumarshivamiitbhu-7050s-projects/axis-archi-work
 │   ├── .originals/photos/    # full-resolution photo backups (gitignored, not deployed)
 │   ├── public/
-│   │   ├── videos/hero/      #   township.mp4 + hospitality.mp4 (+ *-poster.jpg) — hero VIDEO slideshow
+│   │   ├── videos/hero/      #   home-interior.mp4 + residence.mp4 + hotel.mp4 + township.mp4 (+ *-poster.jpg) — hero VIDEO slideshow (hospitality.mp4 orphaned since round 4)
 │   │   └── images/
 │   │       ├── brand/        #   logo.png + logo-original.png (uncropped backup)
 │   │       ├── categories/   #   <cat>-sketch.jpg + <cat>-photo.jpg (homepage card hover art, team-provided)
@@ -20,7 +20,7 @@ axis site/
 │   │       └── projects/     #   commercial/ hospitality/ institutional/ residential/ township/ offices/ (client photos only)
 │   ├── app/                  # routes
 │   ├── components/           # reusable UI
-│   ├── data/projects.json    # studio info + categories + slideshow (videos) + 19 projects
+│   ├── data/projects.json    # studio info + categories + slideshow (videos) + 27 projects (as of 2026-07-19)
 │   ├── data/links.js         # ◄ EDITABLE social links (single source) — change Instagram/FB/LinkedIn/WhatsApp here
 │   ├── lib/projects.js       # helpers (merges links.js social into `studio`)
 │   └── scripts/
@@ -48,9 +48,9 @@ axis site/
 | URL | Purpose |
 |---|---|
 | `/` | Home — **video** hero, categories grid (sketch→photo hover), about, stats, testimonials, **merged dark CTA**. (Marquee, Services, Featured sections were removed per client.) |
-| `/projects` | All projects by category — **plain photos** (no sketch on sub-pages), portrait 4:5 |
-| `/projects/[slug]` | Individual project detail (**19 prerendered** — see portfolio table below; related thumbs are plain photos too) |
-| `/about` | Studio philosophy + **founder photo & note**, stats, services, chronology, team. (Office gallery removed.) |
+| `/projects` | All projects by category — horizontal cards, **image column is a hard portrait `aspect-[4/5]`** (`md:col-span-4`) at every width, matching the 1080 x 1350 source frame. Plain photos (no sketch on sub-pages). |
+| `/projects/[slug]` | Individual project detail (**27 prerendered** as of 2026-07-19; related thumbs are plain photos too) |
+| `/about` | Studio philosophy + **founders' note as a pinned card** (push pin on the top edge, founder photo centered at the top, quote then body below), stats, services, chronology, team. (Office gallery removed.) |
 | `/contact` | Form + map embed (mailto fallback) |
 | `/exteriors`, `/interiors` | **308 redirects** → `/projects` (legacy, kept for old links) |
 | `/icon.png`, `/apple-icon.png` | Favicons (auto-served by Next.js App Router conventions) |
@@ -114,7 +114,11 @@ commercial · hospitality · institutional · residential · township · offices
 - Display font: **Fraunces** (variable serif) · Body: **Inter Tight** · Mono: **JetBrains Mono**
 - Studio data lives in `data/projects.json`; **social links live in `data/links.js`** (edit links there, single source — `lib/projects.js` merges them into `studio.social`)
 
-## Real project portfolio (19 projects — rebuilt entirely on client-provided "today's files")
+## Real project portfolio
+
+> **⚑ CURRENT STATE (as of 2026-07-19): 27 projects.** Live source of truth is **`data/projects.json` → `projects[]`**, not this table. Per-category counts: **Commercial 5 · Hospitality 5 · Institutional 5 · Residential 5 · Township 2 · Interiors(`offices`) 5**. The table below is **historical** (pre-2026-07-03 Final(3) round, when the set was rebuilt to 12, then +15 in change round 4 → 27). Do not trust the slugs/titles below — read the JSON. See the round-4 ship-history entry above for the 15 additions.
+
+### Historical table (pre-2026-07-03 — kept for reference only)
 
 Counts per category: Commercial 3 · Hospitality 3 · Institutional 3 · Residential 3 · Township 3 · Interiors 4. Each project has exactly one image. The category-card photo doubles as that category's lead project. **⚑ = placeholder title pending client confirmation** (no signage in the photo).
 
@@ -144,6 +148,8 @@ New-project copy is intentionally generic/safe (no fabricated year/area). All pr
 
 ## Recent ship history
 
+- **(2026-08-03 · change round 5 · `changes/Axis Architects - Change Request (Round).docx` · BUILT + VERIFIED LOCALLY, NOT YET DEPLOYED)** Two client items, both done. **(1) Project listing cards are portrait.** `/projects` card image column went from `md:col-span-5 aspect-[16/11] md:aspect-auto md:min-h-[320px]` (landscape, height driven by the text panel, so tall buildings were side-cropped) to a hard `md:col-span-4 aspect-[4/5]` at every width; details column `md:col-span-7` → `md:col-span-8`; `sizes` 40vw → 34vw. Verified: all **27** cards measure exactly **0.8** at 390 / 834 / 1366 / 1440 / 2560 px. No asset work was needed. Every source cover is already portrait (24 are exactly 1080x1350 or 1280x1600; the 3 outliers are `gurveer-royal-hotel.jpg` 1420x1600, `mi-rustle-court.jpg` and `amit-sachdeva-shalimar.jpg` 1213x1600, which take a small centered crop in the 4:5 frame, subjects intact). **(2) Founders' note is a pinned note.** `/about` founder card: photo moved from the left of a `sm:flex-row` to **top center** (`flex-col items-center text-center`, `md:h-44 md:w-44`), quote bubble now sits **below** the photo with its tail rotated to point up (`border-l border-t`, `left-1/2 -top-[6px]`), body copy and signature unchanged below. New local `PushPin()` SVG (46x58, head `r=14` filled `var(--accent)` with dome shading + highlight, metallic collar and needle) absolutely positioned `left-1/2 -top-6` so the head straddles the card's top border and the needle enters the card; card padding became `px-8 pt-14 pb-8 md:px-14 md:pt-16 md:pb-14` to clear it. `Reveal` is `fade-up` (no `overflow:hidden`) so the pin is not clipped. Pin colour = brand accent red `var(--accent)`, **not** the doc's "gold or purple" suggestion, since the site has no gold/purple token. `next build` clean (36/36, 27 slugs, lint+types green); light + dark and 390 to 2560 px checked; zero horizontal overflow on `/projects`. **KNOWN, NOT FIXED (pre-existing, out of this round's scope):** `/about` overflows horizontally by **70px on mobile** and clips the right edge of the studio-note paragraph. Cause is the DESCRIPTION section's `grid grid-cols-12 gap-10`: 11 gaps x 40px = a 440px minimum grid width inside a 350px container. Fix is `grid-cols-1 md:grid-cols-12` plus dropping the base `col-span-12` from both children. Flagged to Kumar, awaiting a go.
+- **(2026-07-19 · change round 4 · `changes/axis 4th change/` · DEPLOYED to prod + `web-shareable` synced)** **+15 new projects → `/projects` now has 27** (Commercial 5 · Hospitality 5 · Institutional 5 · Residential 5 · Township 2 · Interiors[`offices`] 5). New ones: *Sri Sharda Institute, Amethi College, SR Group of Institutes* (institutional); *Staford School, Shalimar Paradise Villa, Chawla 2 (Restaurant & Banquet)* (interiors/`offices`); *Penguin Tower, Indira Arcade, Vatsalya Digital Data Solutions* (commercial); *Motwani / Iqbal Ji / Narula Ji Residence* (residential); *Hotel Legend INN, Ecotel Hotel, Royal Grace* (hospitality). Provided images were human-named → copied+renamed to exact kebab slugs; **interiors covers live under `/images/projects/interiors/…`** per the doc even though the category slug is `offices` (the `cover` field is a free-form string, so folder ≠ slug is fine). Doc "N/A"/"-" values normalized to empty (meta strip already `.filter(row.v)`; card year hidden by `p.year &&`); projects-list card eyebrow made conditional (`{p.type}{p.location ? ' · '+p.location : ''}`) so Ecotel (no location) shows just "Hospitality". **Gallery label removed site-wide** on `/projects/[slug]` — deleted the two `<p>` (`[ Gallery ] NN frames` + `Click to enlarge`) but KEPT the bordered divider row. **Hero slide 3 "The Fern Hotel" → "Hotel"** + new **720p `hotel.mp4?v=1`** (transcoded from a 4K/HEVC/60fps `.MOV`, 30fps crf23 faststart muted, ~2.1 MB) + regenerated `hotel-poster.jpg?v=1` (old `hospitality.mp4` now orphaned). **Hospitality homepage card** default(sketch)+hover(photo) → corrected-logo art saved as `categories/hospitality-{sketch,photo}.png` with the two category fields repointed jpg→png (the extension change IS the cache-bust; old jpgs orphaned). Verified desktop+mobile via Playwright; `next build` clean (36/36, 27 slugs, lint+types green). No em/en dashes in new copy. **NOTE:** deployed straight from the `web/` working tree via `vercel --prod` (git is snapshot-only here) — the about/contact/navbar/footer/logo changes that show as "uncommitted" in `git diff` were ALREADY LIVE from the 2026-07-06 rounds, just never committed.
 - **(Jun 2026 — "Changes 2" doc + UI fixes — committed & pushed)** Navbar **fully transparent** with adaptive light/dark text + opacity-fade bg once scrolled past the hero (fixes content overlap + the scroll glitch; no scroll-resize). Hero overlay: meta moved **bottom-left & smaller**, ←/→ arrows to the **edges**, removed tagline + slide counter. Removed Section 01 card descriptions + the "View all projects" / "The studio" / "Updated 2026" / "Three client notes" right-labels. **Slimmed Stats + CTA strips**; Testimonials heading **left-aligned + smaller**. Footer dark-CTA→footer gap removed on home.
 - **(Jun 2026 — reliability + hero/footer polish — committed & pushed)** Fixed "site never loads" (bulletproof `Preloader` + CSS failsafe). Hero: device-specific layouts (desktop full-bleed / mobile 16:9 band), poster-first, lazy video, full-length playback, responsive play/pause toggle. Cache headers for `/videos` + `/images`. Footer: social icon buttons + "Follow" block, "Developed by Nextgrow".
 - **(Jun 2026 — client change-request rounds — committed & pushed)** Hero images→**video**; "Office Interiors"→**"Interiors"**; category sketch→photo hover; deleted homepage Marquee/Services/Featured + About gallery; merged dark CTA; founder photo+note; **19 projects** on client photos (old images deleted); `data/links.js` (Instagram → `axisarchilko`).

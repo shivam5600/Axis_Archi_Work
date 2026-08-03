@@ -53,7 +53,7 @@ export default function Services({ services }) {
             </h2>
           </Reveal>
           <Reveal delay={260} className="mt-6 max-w-xl text-[var(--fg-soft)] body-serif text-lg">
-            From concept to completion — we handle every detail.
+            From concept to completion, we handle every detail.
           </Reveal>
         </div>
       </div>

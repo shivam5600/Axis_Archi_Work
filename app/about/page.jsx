@@ -1,161 +1,133 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { studio } from '@/lib/projects';
 import Reveal from '@/components/Reveal';
-import Stats from '@/components/Stats';
-import Services from '@/components/Services';
+import AxisAGlyph from '@/components/AxisAGlyph';
+import YearRoll from '@/components/YearRoll';
+import StackedPhotoRotator from '@/components/StackedPhotoRotator';
 
 export const metadata = {
   title: 'Studio',
   description: studio.shortAbout,
 };
 
-const team = [
-  { name: 'Principal Architect', role: 'Founder · Design Director' },
-  { name: 'Associate Architect', role: 'Project Lead — Architecture' },
-  { name: 'Interior Lead', role: 'Materials & Detail' },
-  { name: 'Studio Manager', role: 'Operations & Client Relations' },
+const office = [
+  { src: '/images/about/office/office-1.jpg', alt: 'Inside the Axis Architects studio' },
+  { src: '/images/about/office/office-2.jpg', alt: 'The Axis Architects studio' },
+  { src: '/images/about/office/office-3.jpg', alt: 'A corner of the Axis Architects studio' },
 ];
 
-const timeline = [
-  { y: '2005', t: 'Studio founded in Lucknow.' },
-  { y: '2010', t: 'First commercial commission delivered in Hazratganj.' },
-  { y: '2014', t: 'Interiors practice formalised as a sister discipline.' },
-  { y: '2018', t: '250th project delivered. Office expanded.' },
-  { y: '2022', t: 'Township & landscape vertical established.' },
-  { y: '2024', t: '500th project completed.' },
-];
+/* Push pin for the Founders' note card, sits on the top edge so the card reads as a pinned note.
+   Head uses the brand accent (var(--accent)); works on both the light and dark card surface. */
+function PushPin() {
+  return (
+    <span
+      aria-hidden
+      className="pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2 drop-shadow-[0_4px_5px_rgba(0,0,0,0.3)]"
+    >
+      <svg width="46" height="58" viewBox="0 0 46 58" fill="none">
+        {/* needle */}
+        <path d="M23 34 L23 55.5" stroke="#8C8C8C" strokeWidth="2.6" strokeLinecap="round" />
+        <path d="M23.9 35 L23.9 52" stroke="rgba(255,255,255,0.45)" strokeWidth="0.9" strokeLinecap="round" />
+        {/* collar */}
+        <ellipse cx="23" cy="34.4" rx="6.6" ry="2.8" fill="#8C8C8C" />
+        <ellipse cx="23" cy="32.8" rx="6.6" ry="2.8" fill="#B4B4B4" />
+        {/* head */}
+        <circle cx="23" cy="19" r="14" fill="var(--accent)" />
+        <circle cx="23" cy="19" r="14" fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="1" />
+        {/* shading + highlight so the head reads as a dome */}
+        <path d="M23 33a14 14 0 0 0 13.5-10.4A14 14 0 0 1 23 33Z" fill="rgba(0,0,0,0.2)" />
+        <ellipse cx="18" cy="13.6" rx="5" ry="3.4" transform="rotate(-26 18 13.6)" fill="rgba(255,255,255,0.55)" />
+      </svg>
+    </span>
+  );
+}
 
 export default function AboutPage() {
   return (
     <>
-      {/* HEADER */}
+      {/* HEADER, two left-aligned lines; stylized brand "A"; 2005 rolls in on load */}
       <section className="container-edge max-w-[100rem] mx-auto pt-28 md:pt-44 pb-12 md:pb-20">
-        <div className="grid grid-cols-12 gap-6 items-end">
-          <div className="col-span-12 md:col-span-3">
-            <p className="eyebrow text-smoke">— Section IV / Studio</p>
+        <div className="max-w-5xl mx-auto text-center">
+          <Reveal variant="mask">
+            <h1 className="display text-[8vw] sm:text-[6.5vw] md:text-[5.5vw] leading-[0.95]">
+              Leaders in <AxisAGlyph />rchitecture
+            </h1>
+          </Reveal>
+          <Reveal variant="mask" delay={120}>
+            <h1 className="display text-[8vw] sm:text-[6.5vw] md:text-[5.5vw] leading-[0.95]">
+              &amp; design <span className="text-[var(--accent)]">since <YearRoll target={2005} />.</span>
+            </h1>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* DESCRIPTION, rotating office-photo stack (left) + studio note (right) */}
+      <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-28">
+        <div className="grid grid-cols-12 gap-10 md:gap-8 items-center">
+          <div className="col-span-12 md:col-span-5">
+            <StackedPhotoRotator images={office} />
           </div>
-          <div className="col-span-12 md:col-span-9">
-            <Reveal variant="mask">
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10vw] leading-[0.92] md:leading-[0.9]">Leaders in</h1>
-            </Reveal>
-            <Reveal variant="mask" delay={120}>
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10vw] leading-[0.92] md:leading-[0.9]">
-                <em className="italic font-light">architecture</em>
-              </h1>
-            </Reveal>
-            <Reveal variant="mask" delay={220}>
-              <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10vw] leading-[0.92] md:leading-[0.9]">
-                & design <span className="text-[var(--accent)]">since 2005.</span>
-              </h1>
+          <div className="col-span-12 md:col-span-6 md:col-start-7">
+            <Reveal>
+              <p className="display text-balance text-2xl md:text-[2.1rem] leading-[1.28]">
+                {studio.aboutLong}
+              </p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* PHILOSOPHY */}
-      <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-7 md:col-start-2">
-            <Reveal>
-              <p className="display text-balance text-3xl md:text-5xl leading-[1.05]">
-                {studio.shortAbout}
-              </p>
-            </Reveal>
-          </div>
-          <div className="col-span-12 md:col-span-4 md:col-start-9 self-end">
-            <Reveal delay={160}>
-              <div className="relative aspect-[1156/1361] mb-6 overflow-hidden">
+      {/* FOUNDER CARD, pinned note: push pin + centered photo, quote, body note, signature */}
+      <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-28">
+        <Reveal>
+          <div className="relative mx-auto max-w-5xl rounded-2xl border border-[var(--line)] bg-[var(--cream)] px-8 pt-14 pb-8 md:px-14 md:pt-16 md:pb-14 shadow-xl">
+            <PushPin />
+            <div className="flex flex-col items-center text-center">
+              <p className="eyebrow text-smoke mb-6">Founders' note</p>
+              <div className="relative h-32 w-32 md:h-44 md:w-44 shrink-0 overflow-hidden rounded-full border border-[var(--line)]">
                 <Image
-                  src="/images/about/founder-namit-tandon.jpg"
+                  src="/images/about/founder.png"
                   alt="AR. Namit Tandon, Principal Architect & Founder"
                   fill
-                  sizes="(max-width: 768px) 92vw, 33vw"
+                  sizes="(max-width: 768px) 128px, 176px"
                   className="object-cover"
                 />
               </div>
-              <p className="eyebrow text-smoke mb-3">Founders' note</p>
-              <div className="body-serif text-[var(--fg-soft)] leading-relaxed space-y-4">
-                <p className="italic">“Function follows form.”</p>
-                <p>
-                  We believe that great architecture is not just about what a building does — it is about what it says. Every space we design begins with a question: what should this place feel like? Structure, material, and light are then assembled in service of that feeling.
-                </p>
-                <p>
-                  Since founding Axis Architects in 2005, I have had the privilege of shaping spaces across Lucknow — homes, institutions, showrooms, and townships — each one a quiet attempt to balance beauty with purpose.
-                </p>
-                <p className="text-[var(--fg)]">— AR. Namit Tandon, Principal Architect &amp; Founder</p>
+              <div className="relative mt-8 max-w-full">
+                <span
+                  aria-hidden
+                  className="absolute left-1/2 -top-[6px] -translate-x-1/2 h-3 w-3 rotate-45 border-l border-t border-[var(--line)] bg-[var(--bg)]"
+                />
+                <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] px-6 py-4">
+                  <p className="display italic text-2xl md:text-3xl leading-tight text-balance">
+                    “Function follows form.”
+                  </p>
+                </div>
               </div>
-            </Reveal>
+            </div>
+            <div className="body-serif text-[var(--fg-soft)] leading-relaxed space-y-4 mt-10">
+              <p>
+                We believe that great architecture is not just about what a building does, it is about what it says. Every space we design begins with a question: what should this place feel like? Structure, material, and light are then assembled in service of that feeling.
+              </p>
+              <p>
+                Since founding Axis Architects in 2005, I have had the privilege of shaping spaces across Lucknow, homes, institutions, showrooms, and townships, each one a quiet attempt to balance beauty with purpose.
+              </p>
+            </div>
+            <p className="eyebrow text-[var(--fg)] mt-8 text-right">AR. Namit Tandon · Principal Architect &amp; Founder
+            </p>
           </div>
-        </div>
+        </Reveal>
+      </section>
 
-        {/* Highlights */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 hairline-t hairline pt-12">
+      {/* HIGHLIGHTS */}
+      <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 hairline pt-12">
           {studio.highlights.map((h, i) => (
             <Reveal key={h} delay={i * 80}>
               <span className="text-[var(--accent)] text-lg">✦</span>
               <p className="display text-xl md:text-2xl tracking-tight leading-tight mt-3">{h}</p>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* STATS */}
-      <Stats items={studio.stats} theme="dark" />
-
-      {/* SERVICES */}
-      <Services services={studio.services} />
-
-      {/* TIMELINE */}
-      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
-        <div className="hairline-b pb-6 mb-16">
-          <p className="eyebrow text-smoke">[ V.b ]  A short chronology</p>
-        </div>
-        <ol className="grid gap-0">
-          {timeline.map((row, i) => (
-            <Reveal
-              key={row.y}
-              as="li"
-              delay={i * 80}
-              className="hairline-b grid grid-cols-12 py-8 items-baseline gap-4"
-            >
-              <span className="col-span-3 md:col-span-2 eyebrow text-smoke">{row.y}</span>
-              <span className="col-span-9 md:col-span-10 display text-2xl md:text-4xl tracking-tight text-balance">
-                {row.t}
-              </span>
-            </Reveal>
-          ))}
-        </ol>
-      </section>
-
-      {/* TEAM */}
-      <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
-        <div className="hairline-b pb-6 mb-16">
-          <p className="eyebrow text-smoke">[ V.c ]  The people</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-14 gap-x-8">
-          {team.map((m, i) => (
-            <Reveal key={m.name} delay={i * 80}>
-              <p className="eyebrow text-smoke mb-2">{String(i + 1).padStart(2, '0')}</p>
-              <p className="display text-2xl md:text-3xl tracking-tight">{m.name}</p>
-              <p className="text-sm text-[var(--fg-soft)] mt-2">{m.role}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="container-edge max-w-[100rem] mx-auto py-24">
-        <div className="hairline-b pb-6 mb-12">
-          <p className="eyebrow text-smoke">— continue</p>
-        </div>
-        <div className="flex flex-wrap gap-12">
-          <Link href="/exteriors" className="display text-5xl md:text-7xl ink-link">
-            See exteriors →
-          </Link>
-          <Link href="/contact" className="display text-5xl md:text-7xl ink-link italic font-light">
-            Write to us →
-          </Link>
         </div>
       </section>
     </>

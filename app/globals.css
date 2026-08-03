@@ -225,13 +225,20 @@ html.lenis, html.lenis body { height: auto; }
     transition: width 280ms ease, height 280ms ease, background 280ms ease;
   }
   .cursor-dot.is-hover {
-    width: 56px; height: 56px;
+    width: 22px; height: 22px;
     background: var(--accent);
   }
 
   /* Reveal */
   .reveal-mask {
     overflow: hidden;
+  }
+  /* Give masked headings room for descenders (j, p, g, y) — tight line-heights
+     + overflow:hidden were clipping them. em scales with the heading size. */
+  .reveal-mask h1,
+  .reveal-mask h2,
+  .reveal-mask h3 {
+    padding-bottom: 0.12em;
   }
   .reveal-mask > .block-inner {
     transform: translateY(110%);
@@ -375,5 +382,12 @@ html.lenis, html.lenis body { height: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+  /* Exception: the client "Trusted By" logo marquee is an explicitly requested,
+     slow, continuous, non-flashing decorative scroll — keep it running even when
+     Reduce Motion is on, or it looks broken/frozen. (Class specificity beats the
+     universal reset above, so the 40s duration is restored.) */
+  .animate-marquee {
+    animation-duration: 40s !important;
   }
 }

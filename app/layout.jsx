@@ -5,7 +5,6 @@ import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Cursor from '@/components/Cursor';
-import Preloader from '@/components/Preloader';
 
 const display = Fraunces({
   subsets: ['latin'],
@@ -38,8 +37,8 @@ export const viewport = {
 
 export const metadata = {
   title: {
-    default: `${studio.fullName} — ${studio.eyebrow}`,
-    template: `%s — ${studio.name}`,
+    default: `${studio.fullName}, ${studio.eyebrow}`,
+    template: `%s, ${studio.name}`,
   },
   description: `${studio.shortAbout} ${studio.tagline}`,
   keywords: [
@@ -68,7 +67,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <body className="grain">
-        <Preloader />
         <SmoothScroll />
         <Cursor />
         <Navbar />

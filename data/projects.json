@@ -1,16 +1,17 @@
 {
   "studio": {
     "name": "Axis Architects",
-    "fullName": "Axis Architects — Architects & Engineers",
+    "fullName": "Axis Architects, Architects & Engineers",
     "tagline": "We Design Spaces That Tell Stories.",
-    "subTagline": "17+ years of architecture, interiors & urban design across Lucknow.",
+    "subTagline": "22+ years of architecture, interiors & urban design across Lucknow.",
     "established": "2005",
     "city": "Lucknow",
     "eyebrow": "Best Architecture Firm in Lucknow",
-    "shortAbout": "Axis Architects is a Lucknow-based architecture and interior design firm with over 17 years of expertise. From luxury residences to corporate offices, our work reflects a deep commitment to design excellence, client trust, and timeless craft.",
-    "philosophy": "Lucknow's trusted design partner since 2005 — leaders in architecture & design delivering buildings that balance beauty, structure and function.",
+    "shortAbout": "Axis Architects is a Lucknow-based architecture and interior design firm with over 22 years of expertise. From luxury residences to corporate offices, our work reflects a deep commitment to design excellence, client trust, and timeless craft.",
+    "aboutLong": "Axis Architects is a Lucknow-based architecture and interior design studio, founded in 2005 by Ar. Namit Tandon and the late Ar. Deepika Bhattia Tandon. With over 22 years of expertise, we have shaped spaces across the city, from luxury residences and corporate offices to commercial interiors and townships. We bring passion, precision, and personality to every space we craft, with a portfolio that reflects your unique identity. From concept to execution, we turn ideas into inspiring environments that elevate everyday living.",
+    "philosophy": "Lucknow's trusted design partner since 2005, leaders in architecture & design delivering buildings that balance beauty, structure and function.",
     "highlights": [
-      "17+ Years of Experience",
+      "22+ Years of Experience",
       "500+ Projects Delivered",
       "Led by Expert Architects",
       "Eco-Friendly Design Focus"
@@ -18,8 +19,8 @@
     "stats": [
       {
         "label": "Years of Experience",
-        "value": "17+",
-        "raw": 17
+        "value": "22+",
+        "raw": 22
       },
       {
         "label": "Projects Completed",
@@ -96,17 +97,35 @@
       "email": "architects@axisarchi.com",
       "phone": "+91 98390 97733",
       "addressShort": "Hazratganj, Lucknow",
-      "address": "Uttam Palace, Sapru Marg, Hazratganj, Lucknow, Uttar Pradesh – 226001",
-      "hours": "Mon–Sat, 10:00 – 19:00 IST",
+      "address": "Uttam Palace, Sapru Marg, Hazratganj, Lucknow, Uttar Pradesh - 226001",
+      "hours": "Mon-Sat, 10:00 - 19:00 IST",
       "mapsEmbed": "https://www.google.com/maps?q=Hazratganj,Lucknow&output=embed"
     }
   },
   "slideshow": [
     {
-      "src": "/videos/hero/hospitality.mp4",
+      "src": "/videos/hero/home-interior.mp4?v=4",
+      "srcMobile": "/videos/hero/home-interior-m.mp4?v=4",
       "video": true,
-      "poster": "/videos/hero/hospitality-poster.jpg",
-      "title": "The Fern Hotel",
+      "poster": "/videos/hero/home-interior-poster.jpg?v=4",
+      "title": "Home Interior",
+      "type": "Interiors",
+      "location": "Lucknow"
+    },
+    {
+      "src": "/videos/hero/residence.mp4?v=4",
+      "srcMobile": "/videos/hero/residence-m.mp4?v=4",
+      "video": true,
+      "poster": "/videos/hero/residence-poster.jpg?v=4",
+      "title": "Residence",
+      "type": "Residential",
+      "location": "Lucknow"
+    },
+    {
+      "src": "/videos/hero/hotel.mp4?v=1",
+      "video": true,
+      "poster": "/videos/hero/hotel-poster.jpg?v=1",
+      "title": "Hotel",
       "type": "Hospitality",
       "location": "Lucknow"
     },
@@ -118,6 +137,17 @@
       "type": "Township & Landscape",
       "location": "Outskirts, Lucknow"
     }
+  ],
+  "clients": [
+    { "name": "Hero", "logo": "/images/clients/hero.png" },
+    { "name": "Silvete Hotel", "logo": "/images/clients/silvete.png" },
+    { "name": "Catholic Relief Services", "logo": "/images/clients/crs.png" },
+    { "name": "Shalimar", "logo": "/images/clients/shalimar.png" },
+    { "name": "iPsum Diagnostics", "logo": "/images/clients/ipsum.png" },
+    { "name": "PACSFED", "logo": "/images/clients/pacsfed.png" },
+    { "name": "Aryan Family's Delight", "logo": "/images/clients/aryan.png" },
+    { "name": "Dayal Paradise", "logo": "/images/clients/dayal-paradise.png" },
+    { "name": "Shalimar Paradise", "logo": "/images/clients/shalimar-paradise.png" }
   ],
   "categories": [
     {
@@ -131,8 +161,8 @@
       "slug": "hospitality",
       "title": "Hospitality",
       "description": "Resorts, banquet halls, and welcoming spaces designed for hosting.",
-      "cover": "/images/categories/hospitality-photo.jpg",
-      "sketch": "/images/categories/hospitality-sketch.jpg"
+      "cover": "/images/categories/hospitality-photo.png",
+      "sketch": "/images/categories/hospitality-sketch.png"
     },
     {
       "slug": "institutional",
@@ -144,7 +174,7 @@
     {
       "slug": "residential",
       "title": "Residential",
-      "description": "Houses, villas and apartments — the slow architecture of home.",
+      "description": "Houses, villas and apartments, the slow architecture of home.",
       "cover": "/images/categories/residential-photo.jpg",
       "sketch": "/images/categories/residential-sketch.jpg"
     },
@@ -165,308 +195,490 @@
   ],
   "projects": [
     {
-      "slug": "aquatic-centre",
-      "title": "Aquatic Centre",
+      "slug": "gurveer-royal-hotel",
+      "title": "Gurveer Royal Hotel",
       "category": "commercial",
       "type": "Commercial",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "year": "2016",
+      "location": "Krishna Nagar, Lucknow",
+      "area": "3400 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/commercial/swimming-centre.jpg",
+      "cover": "/images/projects/commercial/gurveer-royal-hotel.jpg",
       "images": [
-        "/images/projects/commercial/swimming-centre.jpg"
+        "/images/projects/commercial/gurveer-royal-hotel.jpg"
       ],
-      "summary": "Aquatic Centre — a commercial project by Axis Architects in Lucknow.",
-      "description": "Aquatic Centre is part of the Axis Architects portfolio in Lucknow — a commercial project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Fitting 3 banquets, 20 rooms and a terrace restaurant within a very small 3400 sq. ft. plot in a dense urban location.",
+      "solution": "Vertical multi-floor design with separate service stairs and lift, efficient kitchen and customer circulation, and a premium gold-lit elevation, rated among the best hotels in Lucknow.",
+      "summary": "Fitting 3 banquets, 20 rooms and a terrace restaurant within a very small 3400 sq. ft. plot in a dense urban location.",
+      "description": "Vertical multi-floor design with separate service stairs and lift, efficient kitchen and customer circulation, and a premium gold-lit elevation, rated among the best hotels in Lucknow."
     },
     {
-      "slug": "jewellers-flagship",
-      "title": "Jewellers Flagship Store",
+      "slug": "shalimar-paradise",
+      "title": "Shalimar Paradise",
       "category": "commercial",
       "type": "Commercial",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "year": "2012",
+      "location": "Gomti Nagar, Lucknow",
+      "area": "1,20,000 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/commercial/rahul-jwellers.jpg",
+      "cover": "/images/projects/commercial/shalimar-paradise.jpg",
       "images": [
-        "/images/projects/commercial/rahul-jwellers.jpg"
+        "/images/projects/commercial/shalimar-paradise.jpg"
       ],
-      "summary": "Jewellers Flagship Store — a commercial project by Axis Architects in Lucknow.",
-      "description": "Jewellers Flagship Store is part of the Axis Architects portfolio in Lucknow — a commercial project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Civil expansion of a running hotel, adding two floors with a rooftop swimming pool and a complete interior redo without disrupting hotel operations.",
+      "solution": "Right and left wing expansion on all levels up to roof, a rooftop swimming pool, and new banquet entries at basement and ground floor, segregated from the main reception lobby with a redesigned elevation.",
+      "summary": "Civil expansion of a running hotel, adding two floors with a rooftop swimming pool and a complete interior redo without disrupting hotel operations.",
+      "description": "Right and left wing expansion on all levels up to roof, a rooftop swimming pool, and new banquet entries at basement and ground floor, segregated from the main reception lobby with a redesigned elevation."
     },
     {
-      "slug": "gurveer-royal",
-      "title": "Gurveer Royal",
-      "category": "commercial",
-      "type": "Commercial",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
-      "status": "Completed",
-      "cover": "/images/categories/commercial-photo.jpg",
-      "images": [
-        "/images/categories/commercial-photo.jpg"
-      ],
-      "summary": "Gurveer Royal — a commercial project by Axis Architects in Lucknow.",
-      "description": "Gurveer Royal is part of the Axis Architects portfolio in Lucknow — a commercial project delivered with the studio's signature balance of beauty, structure and function."
-    },
-    {
-      "slug": "the-fern-hotel",
-      "title": "The Fern Hotel",
+      "slug": "santoriini-resort",
+      "title": "Santoriini Resort",
       "category": "hospitality",
       "type": "Hospitality",
-      "year": "",
+      "year": "2022",
       "location": "Lucknow",
-      "area": "",
+      "area": "60,000 Sq. Ft. (32,000 Sq. Ft. built up)",
       "status": "Completed",
-      "cover": "/images/categories/hospitality-photo.jpg",
+      "cover": "/images/projects/hospitality/santoriini-resort.jpg",
       "images": [
-        "/images/categories/hospitality-photo.jpg"
+        "/images/projects/hospitality/santoriini-resort.jpg"
       ],
-      "summary": "The Fern Hotel — a hospitality project by Axis Architects in Lucknow.",
-      "description": "The Fern Hotel is part of the Axis Architects portfolio in Lucknow — a hospitality project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Crafting a luxury resort experience across 60,000 sq. ft. that seamlessly blends grand colonial aesthetics with modern hospitality functionality.",
+      "solution": "Sophisticated spaces blending aesthetics with functionality, lush landscaped gardens, a grand entrance, and curated interiors ensuring an unforgettable guest experience.",
+      "summary": "Crafting a luxury resort experience across 60,000 sq. ft. that seamlessly blends grand colonial aesthetics with modern hospitality functionality.",
+      "description": "Sophisticated spaces blending aesthetics with functionality, lush landscaped gardens, a grand entrance, and curated interiors ensuring an unforgettable guest experience."
     },
     {
-      "slug": "savotel-hotel",
-      "title": "Savotel Hotel",
+      "slug": "b4-bar-banquet",
+      "title": "B4 Bar & Banquet",
       "category": "hospitality",
       "type": "Hospitality",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "year": "2017",
+      "location": "Haniman Crossing, Gomti Nagar, Lucknow",
+      "area": "5600 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/hospitality/savotel-hotel.jpg",
+      "cover": "/images/projects/hospitality/b4-bar-banquet.jpg",
       "images": [
-        "/images/projects/hospitality/savotel-hotel.jpg"
+        "/images/projects/hospitality/b4-bar-banquet.jpg"
       ],
-      "summary": "Savotel Hotel — a hospitality project by Axis Architects in Lucknow.",
-      "description": "Savotel Hotel is part of the Axis Architects portfolio in Lucknow — a hospitality project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Fitting a bar-cum-restaurant with buffet, open kitchen and banquet for 100+ people within a compact corner building.",
+      "solution": "Central entry shifted to the building core, left wing as bar-restaurant, right wing as banquet, and the kitchen placed behind the main entry, efficiently serving both spaces at once.",
+      "summary": "Fitting a bar-cum-restaurant with buffet, open kitchen and banquet for 100+ people within a compact corner building.",
+      "description": "Central entry shifted to the building core, left wing as bar-restaurant, right wing as banquet, and the kitchen placed behind the main entry, efficiently serving both spaces at once."
     },
     {
-      "slug": "new-naresh-hotel",
-      "title": "New Naresh Hotel",
-      "category": "hospitality",
-      "type": "Hospitality",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "slug": "ambalika-institute",
+      "title": "Ambalika Institute of Technology",
+      "category": "institutional",
+      "type": "Institutional",
+      "year": "2021",
+      "location": "Mohan Lal Ganj, Lucknow",
+      "area": "1100 Acre",
       "status": "Completed",
-      "cover": "/images/projects/hospitality/new-naresh-hotel.jpg",
+      "cover": "/images/projects/institutional/ambalika-institute.jpg",
       "images": [
-        "/images/projects/hospitality/new-naresh-hotel.jpg"
+        "/images/projects/institutional/ambalika-institute.jpg"
       ],
-      "summary": "New Naresh Hotel — a hospitality project by Axis Architects in Lucknow.",
-      "description": "New Naresh Hotel is part of the Axis Architects portfolio in Lucknow — a hospitality project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Achieving thermal comfort across a large campus with minimum solar heat gain.",
+      "solution": "Strategic building orientation with heat-reflective blue-tinted glazing and landscaped green spaces for passive cooling.",
+      "summary": "Achieving thermal comfort across a large campus with minimum solar heat gain.",
+      "description": "Strategic building orientation with heat-reflective blue-tinted glazing and landscaped green spaces for passive cooling."
+    },
+    {
+      "slug": "kunwars-global-school",
+      "title": "Kunwar's Global School",
+      "category": "institutional",
+      "type": "Institutional",
+      "year": "2021",
+      "location": "Lucknow",
+      "area": "350,000 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/institutional/kunwars-global-school.jpg",
+      "images": [
+        "/images/projects/institutional/kunwars-global-school.jpg"
+      ],
+      "challenges": "Designing a 14-acre international-standard campus with hexagonal planning, sports facilities, hostels and enriching natural surroundings 18 minutes from the city.",
+      "solution": "Traditional exposed brickwork blended with natural surroundings, and a unique hexagonal plan with separate senior and primary blocks plus boys' and girls' hostels.",
+      "summary": "Designing a 14-acre international-standard campus with hexagonal planning, sports facilities, hostels and enriching natural surroundings 18 minutes from the city.",
+      "description": "Traditional exposed brickwork blended with natural surroundings, and a unique hexagonal plan with separate senior and primary blocks plus boys' and girls' hostels."
+    },
+    {
+      "slug": "mk-amit-singhal",
+      "title": "MK Amit Singhal Residence",
+      "category": "residential",
+      "type": "Residential",
+      "year": "2021",
+      "location": "RKA Colony, Lucknow",
+      "area": "1132 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/residential/mk-amit-singhal.jpg",
+      "images": [
+        "/images/projects/residential/mk-amit-singhal.jpg"
+      ],
+      "challenges": "Structural stability and efficient space planning within a compact 1132 sq. ft. residential footprint.",
+      "solution": "A bespoke layout with load-optimised structure, a wood-and-charcoal facade, and functional circulation for comfortable urban living.",
+      "summary": "Structural stability and efficient space planning within a compact 1132 sq. ft. residential footprint.",
+      "description": "A bespoke layout with load-optimised structure, a wood-and-charcoal facade, and functional circulation for comfortable urban living."
+    },
+    {
+      "slug": "horas-residence",
+      "title": "Horas Residence",
+      "category": "residential",
+      "type": "Residential",
+      "year": "2022",
+      "location": "Lucknow",
+      "area": "1200 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/residential/horas-residence.jpg",
+      "images": [
+        "/images/projects/residential/horas-residence.jpg"
+      ],
+      "challenges": "Maximising vertical space on a narrow urban plot while integrating warm ambient lighting with a contemporary wood-and-charcoal facade.",
+      "solution": "A three-storey design with open balconies, warm recessed lighting and wood-panel cladding, a luxurious yet compact urban home.",
+      "summary": "Maximising vertical space on a narrow urban plot while integrating warm ambient lighting with a contemporary wood-and-charcoal facade.",
+      "description": "A three-storey design with open balconies, warm recessed lighting and wood-panel cladding, a luxurious yet compact urban home."
+    },
+    {
+      "slug": "kanchal-ansal-golf-city",
+      "title": "Kanchal Ansal Golf City",
+      "category": "township",
+      "type": "Township & Landscape",
+      "year": "",
+      "location": "Near Lucknow",
+      "area": "16-storey · 429 flats (2 & 3 BHK)",
+      "status": "Completed",
+      "cover": "/images/projects/township/kanchal-ansal-golf-city.jpg",
+      "images": [
+        "/images/projects/township/kanchal-ansal-golf-city.jpg"
+      ],
+      "challenges": "Designing a self-sufficient 16-storey luxury township with 429 flats, continuous power and water supply, and a community-centric layout half an hour from Lucknow.",
+      "solution": "16 flats per floor creating a mid-air neighbourhood, with a community centre, garden estate, gym and commercial spaces, a city within a city.",
+      "summary": "Designing a self-sufficient 16-storey luxury township with 429 flats, continuous power and water supply, and a community-centric layout half an hour from Lucknow.",
+      "description": "16 flats per floor creating a mid-air neighbourhood, with a community centre, garden estate, gym and commercial spaces, a city within a city."
+    },
+    {
+      "slug": "mi-rustle-court",
+      "title": "MI Rustle Court",
+      "category": "township",
+      "type": "Township & Landscape",
+      "year": "2021",
+      "location": "Lucknow",
+      "area": "13,000 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/township/mi-rustle-court.jpg",
+      "images": [
+        "/images/projects/township/mi-rustle-court.jpg"
+      ],
+      "challenges": "Balancing elegance and functionality across a 13,000 sq. ft. multi-storey residential complex with diverse flat configurations and eco-conscious design.",
+      "solution": "Energy-efficient design with cutting-edge technologies, a vibrant red-accent facade, and a commercial-residential mix catering to modern urban lifestyles.",
+      "summary": "Balancing elegance and functionality across a 13,000 sq. ft. multi-storey residential complex with diverse flat configurations and eco-conscious design.",
+      "description": "Energy-efficient design with cutting-edge technologies, a vibrant red-accent facade, and a commercial-residential mix catering to modern urban lifestyles."
+    },
+    {
+      "slug": "rajkumar-ji-interior",
+      "title": "Rajkumar Ji Residential Interior",
+      "category": "offices",
+      "type": "Interiors",
+      "year": "2021",
+      "location": "Lucknow",
+      "area": "13,000 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/offices/rajkumar-ji-interior.jpg",
+      "images": [
+        "/images/projects/offices/rajkumar-ji-interior.jpg"
+      ],
+      "challenges": "Crafting a personalised luxury interior across 13,000 sq. ft. that balances contemporary aesthetics with timeless elegance and sustainable practices.",
+      "solution": "Warm ambient lighting, marble-effect panels, bespoke furniture and geometric wall art, transforming a living space into a sophisticated personal sanctuary.",
+      "summary": "Crafting a personalised luxury interior across 13,000 sq. ft. that balances contemporary aesthetics with timeless elegance and sustainable practices.",
+      "description": "Warm ambient lighting, marble-effect panels, bespoke furniture and geometric wall art, transforming a living space into a sophisticated personal sanctuary."
+    },
+    {
+      "slug": "amit-sachdeva-shalimar",
+      "title": "Amit Sachdeva, Shalimar Gallant",
+      "category": "offices",
+      "type": "Interiors",
+      "year": "2021",
+      "location": "Shalimar Gallant, Lucknow",
+      "area": "1752 Sq. Ft. · 3 BHK",
+      "status": "Completed",
+      "cover": "/images/projects/offices/amit-sachdeva-shalimar.jpg",
+      "images": [
+        "/images/projects/offices/amit-sachdeva-shalimar.jpg"
+      ],
+      "challenges": "Making a compact 3 BHK flat feel spacious, glamorous and functional within tight carpet-area constraints.",
+      "solution": "A strategic false ceiling with linear lighting, a warm wood-panel TV unit, a crystal chandelier and an open layout create an illusion of spaciousness and luxury.",
+      "summary": "Making a compact 3 BHK flat feel spacious, glamorous and functional within tight carpet-area constraints.",
+      "description": "A strategic false ceiling with linear lighting, a warm wood-panel TV unit, a crystal chandelier and an open layout create an illusion of spaciousness and luxury."
     },
     {
       "slug": "sri-sharda-institute",
       "title": "Sri Sharda Institute of Management & Technology",
       "category": "institutional",
       "type": "Institutional",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "year": "2012",
+      "location": "Sultanpur Road, Lucknow",
+      "area": "5 Acre",
       "status": "Completed",
-      "cover": "/images/categories/institutional-photo.jpg",
+      "cover": "/images/projects/institutional/sri-sharda-institute.png",
       "images": [
-        "/images/categories/institutional-photo.jpg"
+        "/images/projects/institutional/sri-sharda-institute.png"
       ],
-      "summary": "Sri Sharda Institute of Management & Technology — a institutional project by Axis Architects in Lucknow.",
-      "description": "Sri Sharda Institute of Management & Technology is part of the Axis Architects portfolio in Lucknow — a institutional project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Designing a 5-acre campus on the busy Lucknow-Sultanpur highway while keeping the site as green as possible, so students feel like they are studying amid nature.",
+      "solution": "A rectangular management block built around a central green courtyard, with classroom walls replaced by glass panels and designer films, bringing natural light in from both the courtyard and outside windows and cutting down on power costs.",
+      "summary": "Designing a 5-acre campus on the busy Lucknow-Sultanpur highway while keeping the site as green as possible, so students feel like they are studying amid nature.",
+      "description": "A rectangular management block built around a central green courtyard, with classroom walls replaced by glass panels and designer films, bringing natural light in from both the courtyard and outside windows and cutting down on power costs."
     },
     {
-      "slug": "sr-global-school",
-      "title": "SR Global School",
+      "slug": "amethi-college",
+      "title": "Amethi College",
       "category": "institutional",
       "type": "Institutional",
-      "year": "",
-      "location": "Lucknow",
+      "year": "2010",
+      "location": "Amethi",
       "area": "",
       "status": "Completed",
-      "cover": "/images/projects/institutional/sr-global-school.jpg",
+      "cover": "/images/projects/institutional/amethi-college.png",
       "images": [
-        "/images/projects/institutional/sr-global-school.jpg"
+        "/images/projects/institutional/amethi-college.png"
       ],
-      "summary": "SR Global School — a institutional project by Axis Architects in Lucknow.",
-      "description": "SR Global School is part of the Axis Architects portfolio in Lucknow — a institutional project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Built through the trust of Raja Sanjay Singh of Amethi, to create education infrastructure for children who otherwise could not afford schooling and higher education.",
+      "solution": "A low-power-consumption design with natural light and ventilation across classrooms and other rooms, with maximum open ground kept for the play area to support physical sports.",
+      "summary": "Built through the trust of Raja Sanjay Singh of Amethi, to create education infrastructure for children who otherwise could not afford schooling and higher education.",
+      "description": "A low-power-consumption design with natural light and ventilation across classrooms and other rooms, with maximum open ground kept for the play area to support physical sports."
     },
     {
-      "slug": "kunwar-global-school",
-      "title": "Kunwar Global School",
+      "slug": "sr-group-institutes",
+      "title": "SR Group of Institutes and Colleges",
       "category": "institutional",
       "type": "Institutional",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "year": "2010 onwards",
+      "location": "Sitapur Road, Bakshi Ka Talab, Lucknow",
+      "area": "150 Beegha",
       "status": "Completed",
-      "cover": "/images/projects/institutional/kunwar-global-school.jpg",
+      "cover": "/images/projects/institutional/sr-group-institutes.png",
       "images": [
-        "/images/projects/institutional/kunwar-global-school.jpg"
+        "/images/projects/institutional/sr-group-institutes.png"
       ],
-      "summary": "Kunwar Global School — a institutional project by Axis Architects in Lucknow.",
-      "description": "Kunwar Global School is part of the Axis Architects portfolio in Lucknow — a institutional project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "A college started around 2010, during a boom in engineering colleges in U.P. The college did not have a future road map at the time, but was still designed with three to four future blocks in mind.",
+      "solution": "Over 11 to 12 years, the campus has been maintained and expanded to now house engineering colleges, an MBA college, a higher secondary school and several external sports areas, hosting more than 4000 students across the buildings. It is now one of the most in-demand colleges in U.P., with the highest student numbers, and continues to grow.",
+      "summary": "A college started around 2010, during a boom in engineering colleges in U.P. The college did not have a future road map at the time, but was still designed with three to four future blocks in mind.",
+      "description": "Over 11 to 12 years, the campus has been maintained and expanded to now house engineering colleges, an MBA college, a higher secondary school and several external sports areas, hosting more than 4000 students across the buildings. It is now one of the most in-demand colleges in U.P., with the highest student numbers, and continues to grow."
     },
     {
-      "slug": "brick-stone-residence",
-      "title": "Brick & Stone Residence",
+      "slug": "staford-school",
+      "title": "Staford School",
+      "category": "offices",
+      "type": "Interiors",
+      "year": "2016",
+      "location": "Chowk, Lucknow",
+      "area": "2008 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/interiors/staford-school.png",
+      "images": [
+        "/images/projects/interiors/staford-school.png"
+      ],
+      "challenges": "Designing a playgroup-to-class-3 school interior to match international standards, in a space where every child's first reaction on arrival needed to be one of comfort and excitement, since a young child cannot tell parents in words that they want to stay.",
+      "solution": "A playful, colour-coded interior with bright hanging canopy lights, illustrated wall murals and child-scaled furniture in red and blue, paired with a glass-partitioned classroom for openness and natural light. The school reached full strength within days of opening.",
+      "summary": "Designing a playgroup-to-class-3 school interior to match international standards, in a space where every child's first reaction on arrival needed to be one of comfort and excitement, since a young child cannot tell parents in words that they want to stay.",
+      "description": "A playful, colour-coded interior with bright hanging canopy lights, illustrated wall murals and child-scaled furniture in red and blue, paired with a glass-partitioned classroom for openness and natural light. The school reached full strength within days of opening."
+    },
+    {
+      "slug": "shalimar-paradise-villa",
+      "title": "Shalimar Paradise Villa",
+      "category": "offices",
+      "type": "Interiors",
+      "year": "September 2019",
+      "location": "Faizabad Rd, Safedabad, Lucknow",
+      "area": "Around 3000 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/interiors/shalimar-paradise-villa.png",
+      "images": [
+        "/images/projects/interiors/shalimar-paradise-villa.png"
+      ],
+      "challenges": "The site belonged to a leading builder group in U.P., well known for their quality and design among consumers. They wanted decent, simple and sober interiors, done as a key job within a limited budget, and the brief needed to be met to the client's satisfaction.",
+      "solution": "A simple design approach with subtle P.O.P. patterns on the walls, plain ceilings with minimal cove lighting and no wallpaper, keeping the interiors sober, along with statement hanging lights at select locations.",
+      "summary": "The site belonged to a leading builder group in U.P., well known for their quality and design among consumers. They wanted decent, simple and sober interiors, done as a key job within a limited budget, and the brief needed to be met to the client's satisfaction.",
+      "description": "A simple design approach with subtle P.O.P. patterns on the walls, plain ceilings with minimal cove lighting and no wallpaper, keeping the interiors sober, along with statement hanging lights at select locations."
+    },
+    {
+      "slug": "chawla-2-restaurant-banquet",
+      "title": "Chawla 2 (Restaurant & Banquet)",
+      "category": "offices",
+      "type": "Interiors",
+      "year": "2018",
+      "location": "Husadia Crossing, Gomti Nagar, Lucknow",
+      "area": "2000 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/interiors/chawla-2-restaurant-banquet.png",
+      "images": [
+        "/images/projects/interiors/chawla-2-restaurant-banquet.png"
+      ],
+      "challenges": "Chawla 2, a small shack restaurant and banquet already famous in Lucknow's Alambagh, wanted to launch a new A.C. outlet with a restaurant and banquet to better serve customers, choosing a site near Husariya Crossing in Gomti Nagar.",
+      "solution": "Interiors designed to give the space the feel of the best non-veg point in Lucknow, with an elevated entry featuring lush artificial greenery and interiors in red and light wood tones with a hint of golden streaks. The restaurant and banquet came out beautifully to the client's satisfaction.",
+      "summary": "Chawla 2, a small shack restaurant and banquet already famous in Lucknow's Alambagh, wanted to launch a new A.C. outlet with a restaurant and banquet to better serve customers, choosing a site near Husariya Crossing in Gomti Nagar.",
+      "description": "Interiors designed to give the space the feel of the best non-veg point in Lucknow, with an elevated entry featuring lush artificial greenery and interiors in red and light wood tones with a hint of golden streaks. The restaurant and banquet came out beautifully to the client's satisfaction."
+    },
+    {
+      "slug": "penguin-tower",
+      "title": "Penguin Tower",
+      "category": "commercial",
+      "type": "Commercial",
+      "year": "2019",
+      "location": "Sitapur",
+      "area": "75,000 Sq. Ft. (Built Up Area: 80,000 Sq. Ft.)",
+      "status": "Completed",
+      "cover": "/images/projects/commercial/penguin-tower.png",
+      "images": [
+        "/images/projects/commercial/penguin-tower.png"
+      ],
+      "challenges": "Bringing exquisite commercial building design together with a strong retail and cinema experience, as the first mall of its kind in Sitapur, a small town around 100 km from Lucknow.",
+      "solution": "A landmark commercial tower with a bold branded facade and signage, anchored by national retail names and a multiplex, designed to establish itself as the premier shopping and entertainment destination for the town.",
+      "summary": "Bringing exquisite commercial building design together with a strong retail and cinema experience, as the first mall of its kind in Sitapur, a small town around 100 km from Lucknow.",
+      "description": "A landmark commercial tower with a bold branded facade and signage, anchored by national retail names and a multiplex, designed to establish itself as the premier shopping and entertainment destination for the town."
+    },
+    {
+      "slug": "indira-arcade",
+      "title": "Indira Arcade",
+      "category": "commercial",
+      "type": "Commercial",
+      "year": "December 2012",
+      "location": "Bhootnaath Market, Lucknow",
+      "area": "3400 Sq. Ft.",
+      "status": "Completed",
+      "cover": "/images/projects/commercial/indira-arcade.png",
+      "images": [
+        "/images/projects/commercial/indira-arcade.png"
+      ],
+      "challenges": "Bhootnath Market is a prime market street in Lucknow. The land was a small corner plot with a major frontage on the main road but hardly any depth.",
+      "solution": "The corner location and frontage were used to their advantage with a clean, attractive front elevation, giving every showroom maximum frontage view. The building sold out immediately after completion, within a year.",
+      "summary": "Bhootnath Market is a prime market street in Lucknow. The land was a small corner plot with a major frontage on the main road but hardly any depth.",
+      "description": "The corner location and frontage were used to their advantage with a clean, attractive front elevation, giving every showroom maximum frontage view. The building sold out immediately after completion, within a year."
+    },
+    {
+      "slug": "motwani-residence",
+      "title": "Motwani Residence",
       "category": "residential",
       "type": "Residential",
-      "year": "",
+      "year": "2017",
       "location": "Lucknow",
-      "area": "",
+      "area": "1132 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/categories/residential-photo.jpg",
+      "cover": "/images/projects/residential/motwani-residence.png",
       "images": [
-        "/images/categories/residential-photo.jpg"
+        "/images/projects/residential/motwani-residence.png"
       ],
-      "summary": "Brick & Stone Residence — a residential project by Axis Architects in Lucknow.",
-      "description": "Brick & Stone Residence is part of the Axis Architects portfolio in Lucknow — a residential project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Ensuring the structural stability and integrity of the building was crucial, with load-bearing capacities, foundation requirements and seismic considerations factored in for occupant safety. Efficient space planning was needed to maximise usable area within a compact footprint, creating comfortable living spaces, adequate storage and smooth circulation as per Mr. Bhagwani Motwani's specific requirements.",
+      "solution": "A compact, well-planned layout that made the most of the limited footprint, with a strong structural frame and clean, contemporary elevation. Balconies, storage and circulation were worked out carefully so the home felt spacious and functional despite the modest plot size.",
+      "summary": "Ensuring the structural stability and integrity of the building was crucial, with load-bearing capacities, foundation requirements and seismic considerations factored in for occupant safety. Efficient space planning was needed to maximise usable area within a compact footprint, creating comfortable living spaces, adequate storage and smooth circulation as per Mr. Bhagwani Motwani's specific requirements.",
+      "description": "A compact, well-planned layout that made the most of the limited footprint, with a strong structural frame and clean, contemporary elevation. Balconies, storage and circulation were worked out carefully so the home felt spacious and functional despite the modest plot size."
     },
     {
-      "slug": "corner-plot-residence",
-      "title": "Corner Plot Residence",
+      "slug": "iqbal-ji-residence",
+      "title": "Iqbal Ji Residence",
       "category": "residential",
       "type": "Residential",
-      "year": "",
+      "year": "2021",
       "location": "Lucknow",
-      "area": "",
+      "area": "1132 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/residential/residential-02.jpg",
+      "cover": "/images/projects/residential/iqbal-ji-residence.png",
       "images": [
-        "/images/projects/residential/residential-02.jpg"
+        "/images/projects/residential/iqbal-ji-residence.png"
       ],
-      "summary": "Corner Plot Residence — a residential project by Axis Architects in Lucknow.",
-      "description": "Corner Plot Residence is part of the Axis Architects portfolio in Lucknow — a residential project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Ensuring the structural stability and integrity of the building was crucial, with load-bearing capacities, foundation requirements and seismic considerations factored in for occupant safety. Efficient space planning was needed to maximise usable area within a compact footprint, creating comfortable living spaces, adequate storage and smooth circulation as per Mr. Iqbal's specific requirements.",
+      "solution": "A two-storey home with a clean yellow-and-white facade, framed by a dark stone-clad tower on one side. A covered, glass-fronted sit-out at the entry level and an open balcony above give the compact plot a sense of openness, while wooden window and door frames add warmth to the elevation.",
+      "summary": "Ensuring the structural stability and integrity of the building was crucial, with load-bearing capacities, foundation requirements and seismic considerations factored in for occupant safety. Efficient space planning was needed to maximise usable area within a compact footprint, creating comfortable living spaces, adequate storage and smooth circulation as per Mr. Iqbal's specific requirements.",
+      "description": "A two-storey home with a clean yellow-and-white facade, framed by a dark stone-clad tower on one side. A covered, glass-fronted sit-out at the entry level and an open balcony above give the compact plot a sense of openness, while wooden window and door frames add warmth to the elevation."
     },
     {
-      "slug": "courtyard-farmhouse",
-      "title": "Courtyard Farmhouse",
+      "slug": "narula-ji-residence",
+      "title": "Narula Ji Residence",
       "category": "residential",
       "type": "Residential",
-      "year": "",
+      "year": "2021",
       "location": "Lucknow",
-      "area": "",
+      "area": "13,000 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/residential/residential-03.jpg",
+      "cover": "/images/projects/residential/narula-ji-residence.png",
       "images": [
-        "/images/projects/residential/residential-03.jpg"
+        "/images/projects/residential/narula-ji-residence.png"
       ],
-      "summary": "Courtyard Farmhouse — a residential project by Axis Architects in Lucknow.",
-      "description": "Courtyard Farmhouse is part of the Axis Architects portfolio in Lucknow — a residential project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Designing a large residential building for the Narula family that reflected their lifestyle and personal preferences, working closely with them through the process to translate their requirements into a personalised home.",
+      "solution": "A comprehensive design and build process covering architectural planning, structural stability and interior spaces suited to the residents. The home combines a curved corner facade with a stone-clad porch and gated courtyard, giving the large plot a strong street presence.",
+      "summary": "Designing a large residential building for the Narula family that reflected their lifestyle and personal preferences, working closely with them through the process to translate their requirements into a personalised home.",
+      "description": "A comprehensive design and build process covering architectural planning, structural stability and interior spaces suited to the residents. The home combines a curved corner facade with a stone-clad porch and gated courtyard, giving the large plot a strong street presence."
     },
     {
-      "slug": "riverside-township",
-      "title": "Riverside Township",
-      "category": "township",
-      "type": "Township",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "slug": "vatsalya-digital-data-solutions",
+      "title": "Vatsalya Digital Data Solutions",
+      "category": "commercial",
+      "type": "Commercial",
+      "year": "2019",
+      "location": "Hausila Nagar Colony, Civil Line, Faizabad",
+      "area": "9000 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/categories/township-photo.jpg",
+      "cover": "/images/projects/commercial/vatsalya-digital-data-solutions.png",
       "images": [
-        "/images/categories/township-photo.jpg"
+        "/images/projects/commercial/vatsalya-digital-data-solutions.png"
       ],
-      "summary": "Riverside Township — a township & landscape project by Axis Architects in Lucknow.",
-      "description": "Riverside Township is part of the Axis Architects portfolio in Lucknow — a township & landscape project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "A unique concept for Faizabad, being a call centre building for a company tied up with an American firm delivering work through an online platform. The design needed to make people working there feel like they were part of an MNC, a feel that was widely praised.",
+      "solution": "A glass-fronted corporate facade with a dark textured cladding band carrying the branding, and a landscaped rooftop deck with a pergola. Full-height glazing across the office floors brings in natural light and gives the building the polished, MNC-office feel the brief called for.",
+      "summary": "A unique concept for Faizabad, being a call centre building for a company tied up with an American firm delivering work through an online platform. The design needed to make people working there feel like they were part of an MNC, a feel that was widely praised.",
+      "description": "A glass-fronted corporate facade with a dark textured cladding band carrying the branding, and a landscaped rooftop deck with a pergola. Full-height glazing across the office floors brings in natural light and gives the building the polished, MNC-office feel the brief called for."
     },
     {
-      "slug": "township-apartments",
-      "title": "Township Apartments",
-      "category": "township",
-      "type": "Township",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "slug": "hotel-legend-inn",
+      "title": "Hotel Legend INN",
+      "category": "hospitality",
+      "type": "Hospitality",
+      "year": "2019",
+      "location": "Gomti Nagar, Lucknow",
+      "area": "5400 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/township/township-landscape-02.jpg",
+      "cover": "/images/projects/hospitality/hotel-legend-inn.png",
       "images": [
-        "/images/projects/township/township-landscape-02.jpg"
+        "/images/projects/hospitality/hotel-legend-inn.png"
       ],
-      "summary": "Township Apartments — a township & landscape project by Axis Architects in Lucknow.",
-      "description": "Township Apartments is part of the Axis Architects portfolio in Lucknow — a township & landscape project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "The hotel was coming up next to big brands near Sahara Hospital, Gomti Nagar, Lucknow, on a plot area of around 5400 sq. ft.",
+      "solution": "A restaurant placed next to reception on the ground floor gives an immediate sense of space as guests enter. The basement holds a large banquet approachable from outside as well, guest rooms occupy the upper floors, and a rooftop restaurant under a tensile roof is coming up as an added attraction for the property.",
+      "summary": "The hotel was coming up next to big brands near Sahara Hospital, Gomti Nagar, Lucknow, on a plot area of around 5400 sq. ft.",
+      "description": "A restaurant placed next to reception on the ground floor gives an immediate sense of space as guests enter. The basement holds a large banquet approachable from outside as well, guest rooms occupy the upper floors, and a rooftop restaurant under a tensile roof is coming up as an added attraction for the property."
     },
     {
-      "slug": "heritage-towers",
-      "title": "Heritage Towers",
-      "category": "township",
-      "type": "Township",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "slug": "ecotel-hotel",
+      "title": "Ecotel Hotel",
+      "category": "hospitality",
+      "type": "Hospitality",
+      "year": "2021",
+      "location": "",
+      "area": "13,000 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/projects/township/township-landscape-03.jpg",
+      "cover": "/images/projects/hospitality/ecotel-hotel.png",
       "images": [
-        "/images/projects/township/township-landscape-03.jpg"
+        "/images/projects/hospitality/ecotel-hotel.png"
       ],
-      "summary": "Heritage Towers — a township & landscape project by Axis Architects in Lucknow.",
-      "description": "Heritage Towers is part of the Axis Architects portfolio in Lucknow — a township & landscape project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Designing a commercial interior for a hotel positioned around eco-conscious, sustainable hospitality, with the brief covering everything from the lobby to guest rooms to dining spaces.",
+      "solution": "Interiors built around eco-friendly materials and energy-efficient systems, with nature-inspired elements woven into the lobby, guest rooms and dining spaces to give the property a calm, mindful feel for both business and leisure guests.",
+      "summary": "Designing a commercial interior for a hotel positioned around eco-conscious, sustainable hospitality, with the brief covering everything from the lobby to guest rooms to dining spaces.",
+      "description": "Interiors built around eco-friendly materials and energy-efficient systems, with nature-inspired elements woven into the lobby, guest rooms and dining spaces to give the property a calm, mindful feel for both business and leisure guests."
     },
     {
-      "slug": "modern-bedroom-interior",
-      "title": "Modern Bedroom Interior",
-      "category": "offices",
-      "type": "Interior",
+      "slug": "royal-grace",
+      "title": "Royal Grace",
+      "category": "hospitality",
+      "type": "Hospitality",
       "year": "",
-      "location": "Lucknow",
-      "area": "",
+      "location": "Sarfarazganj, Lucknow",
+      "area": "70,000 Sq. Ft.",
       "status": "Completed",
-      "cover": "/images/categories/interiors-photo.jpg",
+      "cover": "/images/projects/hospitality/royal-grace.png",
       "images": [
-        "/images/categories/interiors-photo.jpg"
+        "/images/projects/hospitality/royal-grace.png"
       ],
-      "summary": "Modern Bedroom Interior — a interiors project by Axis Architects in Lucknow.",
-      "description": "Modern Bedroom Interior is part of the Axis Architects portfolio in Lucknow — a interiors project delivered with the studio's signature balance of beauty, structure and function."
-    },
-    {
-      "slug": "panchraama-restaurant",
-      "title": "Panchraama Restaurant",
-      "category": "offices",
-      "type": "Interior",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
-      "status": "Completed",
-      "cover": "/images/projects/offices/panchraama-restaurant.jpg",
-      "images": [
-        "/images/projects/offices/panchraama-restaurant.jpg"
-      ],
-      "summary": "Panchraama Restaurant — a interiors project by Axis Architects in Lucknow.",
-      "description": "Panchraama Restaurant is part of the Axis Architects portfolio in Lucknow — a interiors project delivered with the studio's signature balance of beauty, structure and function."
-    },
-    {
-      "slug": "karam-industries-office",
-      "title": "Karam Industries Office",
-      "category": "offices",
-      "type": "Interior",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
-      "status": "Completed",
-      "cover": "/images/projects/offices/karam-industries-office.jpg",
-      "images": [
-        "/images/projects/offices/karam-industries-office.jpg"
-      ],
-      "summary": "Karam Industries Office — a interiors project by Axis Architects in Lucknow.",
-      "description": "Karam Industries Office is part of the Axis Architects portfolio in Lucknow — a interiors project delivered with the studio's signature balance of beauty, structure and function."
-    },
-    {
-      "slug": "hotel-lobby-interior",
-      "title": "Hotel Lobby Interior",
-      "category": "offices",
-      "type": "Interior",
-      "year": "",
-      "location": "Lucknow",
-      "area": "",
-      "status": "Completed",
-      "cover": "/images/projects/offices/interiors-02.jpg",
-      "images": [
-        "/images/projects/offices/interiors-02.jpg"
-      ],
-      "summary": "Hotel Lobby Interior — a interiors project by Axis Architects in Lucknow.",
-      "description": "Hotel Lobby Interior is part of the Axis Architects portfolio in Lucknow — a interiors project delivered with the studio's signature balance of beauty, structure and function."
+      "challenges": "Building a graceful, elegant property on Sitapur Road, just 15 minutes from central Lucknow, using a multilevel bungalow concept that could accommodate the required spaces with precision, with a central courtyard enclosed on all sides.",
+      "solution": "A multilevel apartment complex built around a central courtyard and pool, keeping the space cool and comfortable through the region's heat, with a design that carries a sense of grandeur and prestige while staying practical to build and operate.",
+      "summary": "Building a graceful, elegant property on Sitapur Road, just 15 minutes from central Lucknow, using a multilevel bungalow concept that could accommodate the required spaces with precision, with a central courtyard enclosed on all sides.",
+      "description": "A multilevel apartment complex built around a central courtyard and pool, keeping the space cool and comfortable through the region's heat, with a design that carries a sense of grandeur and prestige while staying practical to build and operate."
     }
   ]
 }

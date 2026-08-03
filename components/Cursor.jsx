@@ -24,7 +24,7 @@ export default function Cursor() {
         dot.dataset.warm = '1';
       }
     };
-    // Event delegation — no per-element listeners, no MutationObserver.
+    // Event delegation, no per-element listeners, no MutationObserver.
     const onOver = (e) => {
       if (e.target instanceof Element && e.target.closest(HOVER_SELECTOR)) {
         dot.classList.add('is-hover');

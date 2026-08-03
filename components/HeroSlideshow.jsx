@@ -107,7 +107,7 @@ export default function HeroSlideshow({ slides }) {
         {showVideo && (
           <video
             ref={videoRef}
-            src={s.src}
+            src={isMobile && s.srcMobile ? s.srcMobile : s.src}
             autoPlay
             muted
             playsInline

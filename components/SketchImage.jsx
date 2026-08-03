@@ -5,7 +5,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 /**
- * Real sketch effect — looks like a hand-drawn line study on paper.
+ * Real sketch effect, looks like a hand-drawn line study on paper.
  * Hover (or focus) reveals the original color photograph.
  *
  *   Default state          Hover state
@@ -20,7 +20,7 @@ import clsx from 'clsx';
  *   On hover the photo crossfades in and the sketch layers fade out.
  *
  * mode="hover"  : default behaviour described above
- * mode="static" : no sketch effect — just shows the photo
+ * mode="static" : no sketch effect, just shows the photo
  */
 export default function SketchImage({
   src,
@@ -103,7 +103,7 @@ export default function SketchImage({
                     <feFuncG type="table" tableValues="1 0" />
                     <feFuncB type="table" tableValues="1 0" />
                   </feComponentTransfer>
-                  {/* boost contrast — line work that reads as pencil */}
+                  {/* boost contrast, line work that reads as pencil */}
                   <feComponentTransfer in="ink" result="boosted">
                     <feFuncR type="linear" slope="2.4" intercept="-0.5" />
                     <feFuncG type="linear" slope="2.4" intercept="-0.5" />

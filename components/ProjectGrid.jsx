@@ -63,7 +63,7 @@ export default function ProjectGrid({ projects, allowFilter = false }) {
                 <div className="mt-6 flex items-baseline justify-between gap-6">
                   <div>
                     <p className="eyebrow text-smoke mb-2">
-                      {String(i + 1).padStart(2, '0')} — {p.category}
+                      {String(i + 1).padStart(2, '0')}, {p.category}
                     </p>
                     <h3 className="display text-3xl md:text-4xl tracking-tight">
                       <span className="ink-link">{p.title}</span>

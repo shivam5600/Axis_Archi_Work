@@ -78,7 +78,7 @@ export default function ProjectPage({ params }) {
       <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-3">
-            <p className="eyebrow text-smoke">— Project note</p>
+            <p className="eyebrow text-smoke">Project note</p>
           </div>
           <div className="col-span-12 md:col-span-7">
             <Reveal>
@@ -90,19 +90,16 @@ export default function ProjectPage({ params }) {
         </div>
       </section>
 
-      {/* Gallery — lightbox-enabled mosaic */}
+      {/* Gallery, lightbox-enabled mosaic */}
       <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
-        <div className="hairline-b pb-6 mb-12 flex items-end justify-between">
-          <p className="eyebrow text-smoke">[ Gallery ] {project.images.length.toString().padStart(2, '0')} frames</p>
-          <p className="eyebrow text-smoke hidden md:block">Click to enlarge</p>
-        </div>
+        <div className="hairline-b pb-6 mb-12 flex items-end justify-between" />
         <Lightbox images={project.images} alt={project.title} />
       </section>
 
       {/* Pull quote */}
       <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-24">
         <div className="hairline-b pb-6 mb-12">
-          <p className="eyebrow text-smoke">— A note on the work</p>
+          <p className="eyebrow text-smoke">A note on the work</p>
         </div>
         <Reveal>
           <p className="display text-balance text-4xl md:text-7xl leading-[0.96]">
@@ -115,7 +112,7 @@ export default function ProjectPage({ params }) {
       {related.length > 0 && (
         <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
           <div className="hairline-b pb-6 mb-12 flex items-end justify-between">
-            <p className="eyebrow text-smoke">— Continue reading</p>
+            <p className="eyebrow text-smoke">Continue reading</p>
             <Link href={`/projects#${project.category}`} className="eyebrow ink-link">All {project.type} projects →</Link>
           </div>
           <div className="grid grid-cols-12 gap-6">

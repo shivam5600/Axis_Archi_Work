@@ -48,7 +48,7 @@ export default function Lightbox({ images, alt }) {
             >
               <Image
                 src={src}
-                alt={`${alt} — ${i + 1}`}
+                alt={`${alt}, ${i + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
                 className="object-cover"
@@ -90,7 +90,7 @@ export default function Lightbox({ images, alt }) {
           >
             <Image
               src={images[index]}
-              alt={`${alt} — ${index + 1}`}
+              alt={`${alt}, ${index + 1}`}
               fill
               sizes="90vw"
               className="object-contain"
