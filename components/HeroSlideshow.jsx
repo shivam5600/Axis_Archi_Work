@@ -5,6 +5,9 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 const AUTO_MS = 6000;
+// Every slide rests on its finished frame for this same beat before advancing,
+// so no build animation cuts away abruptly.
+const HOLD_MS = 3000;
 
 /**
  * Two device-specific layouts, one shared video + rotation:
@@ -12,18 +15,25 @@ const AUTO_MS = 6000;
  *  • Mobile  → video in a 16:9 band (full frame) + text below.
  * Overlay: project meta is bottom-LEFT (small); ←/→ arrows sit at the left/right
  * edges (vertically centred); dots + play/pause stay at the bottom. No tagline,
- * no slide counter. Videos play full length (advance on `onEnded`).
+ * no slide counter. Videos play full length, then hold on the completed view for
+ * HOLD_MS (identical for every slide) before the transition.
  */
 export default function HeroSlideshow({ slides }) {
   const [index, setIndex] = useState(0);
   const [seen, setSeen] = useState(() => new Set([0]));
   const [videoReady, setVideoReady] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [videoDurMs, setVideoDurMs] = useState(null);
+  // Duration is stored WITH the slide it belongs to: `loadedmetadata` can fire
+  // before React flushes the mount effects, so a plain per-index reset would
+  // clobber slide 0's real duration (and leave the fallback timer guessing).
+  const [videoDur, setVideoDur] = useState({ i: -1, ms: null });
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const advanceTimer = useRef(null);
+  const holdTimer = useRef(null);
   const videoRef = useRef(null);
+
+  const videoDurMs = videoDur.i === index ? videoDur.ms : null;
 
   const goTo = useCallback((i) => {
     setIndex(((i % slides.length) + slides.length) % slides.length);
@@ -40,19 +50,23 @@ export default function HeroSlideshow({ slides }) {
     return () => { mq.removeEventListener ? mq.removeEventListener('change', update) : mq.removeListener(update); };
   }, []);
 
-  // Continuous rotation. Videos advance on END (full play); the timer is a fallback.
+  // Continuous rotation. Videos advance HOLD_MS after they END (full play); the
+  // timer is a fallback, armed past duration + hold so it never cuts the hold short.
   useEffect(() => {
     const isVid = !!(slides[index] && slides[index].video);
-    const delay = isVid ? (videoDurMs || 8000) + 2500 : AUTO_MS;
+    const delay = isVid ? (videoDurMs || 8000) + HOLD_MS + 1500 : AUTO_MS;
     advanceTimer.current = setTimeout(() => setIndex((i) => (i + 1) % slides.length), delay);
-    return () => clearTimeout(advanceTimer.current);
+    return () => {
+      clearTimeout(advanceTimer.current);
+      clearTimeout(holdTimer.current);
+    };
   }, [index, videoDurMs, slides]);
 
   useEffect(() => {
     setSeen((p) => (p.has(index) ? p : new Set(p).add(index)));
   }, [index]);
 
-  useEffect(() => { setVideoReady(false); setPlaying(false); setVideoDurMs(null); }, [index]);
+  useEffect(() => { setVideoReady(false); setPlaying(false); }, [index]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -83,7 +97,7 @@ export default function HeroSlideshow({ slides }) {
   };
 
   const current = slides[index] || slides[0];
-  const barMs = current.video ? (videoDurMs || 8000) : AUTO_MS;
+  const barMs = current.video ? (videoDurMs || 8000) + HOLD_MS : AUTO_MS;
   const edgeBtn = 'absolute top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full grid place-items-center border border-bone/40 text-bone bg-black/15 hover:bg-bone hover:text-ink transition-colors';
   const dotBtn = 'w-9 h-9 md:w-10 md:h-10 rounded-full grid place-items-center border border-bone/45 text-bone hover:bg-bone hover:text-ink transition-colors';
 
@@ -113,12 +127,18 @@ export default function HeroSlideshow({ slides }) {
             playsInline
             preload="auto"
             aria-label={s.title}
-            onLoadedMetadata={(e) => { const d = e.currentTarget.duration; if (d && isFinite(d)) setVideoDurMs(Math.round(d * 1000)); }}
+            onLoadedMetadata={(e) => { const d = e.currentTarget.duration; if (d && isFinite(d)) setVideoDur({ i, ms: Math.round(d * 1000) }); }}
             onLoadedData={attemptAutoplay}
             onCanPlay={attemptAutoplay}
             onPlaying={() => { setPlaying(true); setVideoReady(true); }}
             onPause={() => setPlaying(false)}
-            onEnded={() => goTo(index + 1)}
+            onEnded={() => {
+              // `ended` is the authoritative signal: it owns the transition from
+              // here, so drop the fallback timer or it could cut the hold short.
+              clearTimeout(advanceTimer.current);
+              clearTimeout(holdTimer.current);
+              holdTimer.current = setTimeout(() => goTo(index + 1), HOLD_MS);
+            }}
             className={clsx('absolute inset-0 w-full h-full object-cover transition-opacity duration-700', videoReady ? 'opacity-100' : 'opacity-0')}
           />
         )}

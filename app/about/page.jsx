@@ -63,11 +63,11 @@ export default function AboutPage() {
 
       {/* DESCRIPTION, rotating office-photo stack (left) + studio note (right) */}
       <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-28">
-        <div className="grid grid-cols-12 gap-10 md:gap-8 items-center">
-          <div className="col-span-12 md:col-span-5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-center">
+          <div className="md:col-span-5">
             <StackedPhotoRotator images={office} />
           </div>
-          <div className="col-span-12 md:col-span-6 md:col-start-7">
+          <div className="md:col-span-6 md:col-start-7">
             <Reveal>
               <p className="display text-balance text-2xl md:text-[2.1rem] leading-[1.28]">
                 {studio.aboutLong}
@@ -119,17 +119,6 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      {/* HIGHLIGHTS */}
-      <section className="container-edge max-w-[100rem] mx-auto pb-16 md:pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 hairline pt-12">
-          {studio.highlights.map((h, i) => (
-            <Reveal key={h} delay={i * 80}>
-              <span className="text-[var(--accent)] text-lg">✦</span>
-              <p className="display text-xl md:text-2xl tracking-tight leading-tight mt-3">{h}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

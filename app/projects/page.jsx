@@ -1,15 +1,35 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { projectsByCategory, projects, studio } from '@/lib/projects';
+import { projectsByCategory, projects, studio, categories, getCategory } from '@/lib/projects';
 import Reveal from '@/components/Reveal';
 
-export const metadata = {
-  title: 'Projects',
-  description: `Selected works by ${studio.name}, across Commercial, Hospitality, Institutional, Residential, Township and Interior projects in Lucknow.`,
-};
+// `?category=<slug>` filters the page down to that one vertical. An unknown or
+// missing value shows every category (the original full listing).
+function activeSlug(searchParams) {
+  const raw = searchParams?.category;
+  const slug = Array.isArray(raw) ? raw[0] : raw;
+  return slug && getCategory(slug) ? slug : null;
+}
 
-export default function ProjectsIndex() {
-  const grouped = projectsByCategory();
+export function generateMetadata({ searchParams }) {
+  const slug = activeSlug(searchParams);
+  const cat = slug ? getCategory(slug) : null;
+  if (cat) {
+    return {
+      title: `${cat.title} Projects`,
+      description: `${cat.title} projects by ${studio.name} in Lucknow. ${cat.description}`,
+    };
+  }
+  return {
+    title: 'Projects',
+    description: `Selected works by ${studio.name}, across Commercial, Hospitality, Institutional, Residential, Township and Interior projects in Lucknow.`,
+  };
+}
+
+export default function ProjectsIndex({ searchParams }) {
+  const slug = activeSlug(searchParams);
+  const grouped = projectsByCategory().filter((cat) => !slug || cat.slug === slug);
+  const active = slug ? getCategory(slug) : null;
 
   return (
     <>
@@ -17,9 +37,33 @@ export default function ProjectsIndex() {
       <section className="container-edge max-w-[100rem] mx-auto pt-28 md:pt-44 pb-8 md:pb-14">
         <Reveal variant="mask">
           <h1 className="display text-[15vw] sm:text-[12vw] md:text-[10vw] leading-[0.9] text-center">
-            Projects<span className="text-[var(--accent)]">.</span>
+            {active ? active.title : 'Projects'}<span className="text-[var(--accent)]">.</span>
           </h1>
         </Reveal>
+      </section>
+
+      {/* CATEGORY FILTER */}
+      <section className="container-edge max-w-[100rem] mx-auto pb-4 md:pb-8">
+        <nav aria-label="Filter projects by category" className="flex flex-wrap justify-center gap-2 md:gap-3">
+          {[{ slug: null, title: 'All' }, ...categories].map((c) => {
+            const on = c.slug === slug;
+            return (
+              <Link
+                key={c.slug || 'all'}
+                href={c.slug ? `/projects?category=${c.slug}` : '/projects'}
+                aria-current={on ? 'page' : undefined}
+                data-cursor="hover"
+                className={`eyebrow rounded-full border px-4 py-2.5 transition-colors ${
+                  on
+                    ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
+                    : 'border-[var(--line)] text-[var(--fg-soft)] hover:border-[var(--fg-soft)] hover:text-[var(--fg)]'
+                }`}
+              >
+                {c.title}
+              </Link>
+            );
+          })}
+        </nav>
       </section>
 
       {/* CATEGORY SECTIONS */}
@@ -31,14 +75,20 @@ export default function ProjectsIndex() {
             id={cat.slug}
             className="container-edge max-w-[100rem] mx-auto py-10 md:py-20 scroll-mt-28"
           >
-            {/* Section header */}
+            {/* Section header. The title is dropped when filtered, the h1 already carries it. */}
             <div className="hairline-b pb-5 mb-8 md:mb-12 grid grid-cols-12 gap-4 items-end">
-              <div className="col-span-12 md:col-span-7">
-                <h2 className="display text-[10vw] sm:text-[7vw] md:text-5xl lg:text-6xl tracking-tight leading-[0.95]">
-                  {cat.title}<span className="text-[var(--accent)]">.</span>
-                </h2>
-              </div>
-              <div className="col-span-12 md:col-span-4 md:col-start-9 text-[var(--fg-soft)] body-serif leading-relaxed">
+              {!active && (
+                <div className="col-span-12 md:col-span-7">
+                  <h2 className="display text-[10vw] sm:text-[7vw] md:text-5xl lg:text-6xl tracking-tight leading-[0.95]">
+                    {cat.title}<span className="text-[var(--accent)]">.</span>
+                  </h2>
+                </div>
+              )}
+              <div
+                className={`text-[var(--fg-soft)] body-serif leading-relaxed ${
+                  active ? 'col-span-12 md:col-span-8' : 'col-span-12 md:col-span-4 md:col-start-9'
+                }`}
+              >
                 {cat.description}
               </div>
             </div>
@@ -102,6 +152,15 @@ export default function ProjectsIndex() {
           </section>
         );
       })}
+
+      {active && grouped.every((cat) => cat.projects.length === 0) && (
+        <section className="container-edge max-w-[100rem] mx-auto py-10 md:py-20">
+          <p className="body-serif text-lg text-[var(--fg-soft)]">
+            No {active.title} projects are listed yet.{' '}
+            <Link href="/projects" className="ink-link text-[var(--fg)]">View all projects</Link>
+          </p>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="container-edge max-w-[100rem] mx-auto py-12 md:py-20">

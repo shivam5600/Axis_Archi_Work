@@ -4,9 +4,9 @@ import Reveal from '@/components/Reveal';
 export default function ContactPage() {
   return (
     <section className="container-edge max-w-[100rem] mx-auto pt-28 md:pt-44 pb-24 md:pb-32">
-      <div className="grid grid-cols-12 gap-10 md:gap-12 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
         {/* LEFT, compact map */}
-        <div className="col-span-12 md:col-span-7">
+        <div className="md:col-span-7">
           <Reveal>
             <div className="hairline overflow-hidden" style={{ height: 'min(58vh, 440px)' }}>
               <iframe
@@ -21,7 +21,7 @@ export default function ContactPage() {
         </div>
 
         {/* RIGHT, studio details, vertically centred with the map */}
-        <Reveal delay={120} className="col-span-12 md:col-span-4 md:col-start-9 space-y-10">
+        <Reveal delay={120} className="md:col-span-4 md:col-start-9 space-y-10">
           <div>
             <p className="eyebrow text-smoke mb-3">Studio</p>
             <p className="body-serif leading-relaxed text-[var(--fg-soft)]">{studio.contact.address}</p>

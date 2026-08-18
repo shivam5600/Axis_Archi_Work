@@ -18,7 +18,7 @@ export default function HomePage() {
           {categories.map((cat, i) => (
             <Reveal as="li" key={cat.slug} delay={i * 70}>
               <Link
-                href={`/projects#${cat.slug}`}
+                href={`/projects?category=${cat.slug}`}
                 className="group block"
                 data-cursor="hover"
               >
@@ -46,7 +46,7 @@ export default function HomePage() {
       {/* ─────── 02 · ABOUT ─────── */}
       <section id="about" className="container-edge max-w-[100rem] mx-auto pt-10 md:pt-16 pb-14 md:pb-24">
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
-          <div className="col-span-12 md:col-span-7">
+          <div className="col-span-12">
             <Reveal variant="mask">
               <h2 className="display text-[10vw] md:text-[6.4rem] leading-[0.95]">
                 Leaders in architecture
@@ -68,19 +68,6 @@ export default function HomePage() {
                 </svg>
               </Link>
             </Reveal>
-          </div>
-
-          <div className="col-span-12 md:col-span-4 md:col-start-9 md:mt-12">
-            <ul className="grid grid-cols-2 md:grid-cols-1 gap-y-6 gap-x-6">
-              {studio.highlights.map((h, i) => (
-                <Reveal as="li" key={h} delay={i * 80} className="hairline pt-5">
-                  <span className="flex items-baseline gap-3">
-                    <span className="text-[var(--accent)] text-lg leading-none">✦</span>
-                    <span className="display text-xl md:text-2xl tracking-tight leading-tight">{h}</span>
-                  </span>
-                </Reveal>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
