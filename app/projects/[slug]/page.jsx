@@ -113,7 +113,7 @@ export default function ProjectPage({ params }) {
         <section className="container-edge max-w-[100rem] mx-auto pb-12 md:pb-20">
           <div className="hairline-b pb-6 mb-12 flex items-end justify-between">
             <p className="eyebrow text-smoke">Continue reading</p>
-            <Link href={`/projects#${project.category}`} className="eyebrow ink-link">All {project.type} projects →</Link>
+            <Link href={`/projects?category=${project.category}`} className="eyebrow ink-link">All {project.type} projects →</Link>
           </div>
           <div className="grid grid-cols-12 gap-6">
             {related.map((r, i) => (
