@@ -54,6 +54,12 @@ export default function Navbar() {
     clearTimeout(dropdownTimerRef.current);
     dropdownTimerRef.current = setTimeout(() => setShowDropdown(false), 180);
   };
+  // Clicking a panel link must close it at once. The 180ms grace above is for
+  // mouse-out only, and `pathname` does not change on a query-only navigation.
+  const hideDropdown = () => {
+    clearTimeout(dropdownTimerRef.current);
+    setShowDropdown(false);
+  };
 
   return (
     <>
@@ -130,13 +136,14 @@ export default function Navbar() {
                       >
                         <div className="p-4 md:p-5">
                           <div className="flex items-center justify-end mb-3">
-                            <Link href="/projects" className="eyebrow ink-link text-smoke">View all →</Link>
+                            <Link href="/projects" onClick={hideDropdown} className="eyebrow ink-link text-smoke">View all →</Link>
                           </div>
                           <div className="grid grid-cols-3 gap-x-6 gap-y-1">
                             {categories.map((cat) => (
                               <Link
                                 key={cat.slug}
-                                href={`/projects#${cat.slug}`}
+                                href={`/projects?category=${cat.slug}`}
+                                onClick={hideDropdown}
                                 className="group flex items-baseline gap-3 hairline-b py-2.5 hover:border-[var(--accent)] transition-colors"
                                 data-cursor="hover"
                               >
@@ -187,6 +194,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setOpen(false)}
               className="display text-5xl ink-link"
               style={{ transitionDelay: `${i * 60}ms` }}
             >
@@ -199,7 +207,7 @@ export default function Navbar() {
             <ul className="mt-4 flex flex-col gap-3 pl-2">
               {categories.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/projects#${c.slug}`} className="text-lg">
+                  <Link href={`/projects?category=${c.slug}`} onClick={() => setOpen(false)} className="text-lg">
                     <span className="text-[var(--accent)] mr-2">◦</span>{c.title}
                   </Link>
                 </li>
