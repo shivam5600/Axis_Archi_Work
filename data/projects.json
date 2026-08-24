@@ -122,9 +122,9 @@
       "location": "Lucknow"
     },
     {
-      "src": "/videos/hero/hotel.mp4?v=1",
+      "src": "/videos/hero/hotel.mp4?v=2",
       "video": true,
-      "poster": "/videos/hero/hotel-poster.jpg?v=1",
+      "poster": "/videos/hero/hotel-poster.jpg?v=2",
       "title": "Hotel",
       "type": "Hospitality",
       "location": "Lucknow"
@@ -161,8 +161,8 @@
       "slug": "hospitality",
       "title": "Hospitality",
       "description": "Resorts, banquet halls, and welcoming spaces designed for hosting.",
-      "cover": "/images/categories/hospitality-photo.png",
-      "sketch": "/images/categories/hospitality-sketch.png"
+      "cover": "/images/categories/hospitality-photo.png?v=2",
+      "sketch": "/images/categories/hospitality-sketch.png?v=2"
     },
     {
       "slug": "institutional",
@@ -197,8 +197,8 @@
     {
       "slug": "gurveer-royal-hotel",
       "title": "Gurveer Royal Hotel",
-      "category": "commercial",
-      "type": "Commercial",
+      "category": "hospitality",
+      "type": "Hospitality",
       "year": "2016",
       "location": "Krishna Nagar, Lucknow",
       "area": "3400 Sq. Ft.",
@@ -215,8 +215,8 @@
     {
       "slug": "shalimar-paradise",
       "title": "Shalimar Paradise",
-      "category": "commercial",
-      "type": "Commercial",
+      "category": "hospitality",
+      "type": "Hospitality",
       "year": "2012",
       "location": "Gomti Nagar, Lucknow",
       "area": "1,20,000 Sq. Ft.",
