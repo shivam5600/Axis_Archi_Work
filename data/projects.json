@@ -154,8 +154,8 @@
       "slug": "commercial",
       "title": "Commercial",
       "description": "Showrooms, offices, and high-impact retail addresses across the city.",
-      "cover": "/images/categories/commercial-photo.jpg",
-      "sketch": "/images/categories/commercial-sketch.jpg"
+      "cover": "/images/categories/commercial-photo.png",
+      "sketch": "/images/categories/commercial-sketch.png"
     },
     {
       "slug": "hospitality",
